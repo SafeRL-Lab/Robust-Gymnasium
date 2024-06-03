@@ -134,6 +134,16 @@ class HopperEnv(MujocoEnv, utils.EzPickle):
     def step(self, action):
         mu = args.noise_mu
         sigma = args.noise_sigma
+        if args.noise_factor == "action":
+            if args.noise_type == "gauss":
+                action = action + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                action = action + args.noise_shift
+            else:
+                action = action
+                print('\033[0;31m "No action entropy learning! Using the original action" \033[0m')
+        else:
+            action = action
         x_position_before = self.data.qpos[0]
         self.do_simulation(action, self.frame_skip)
         x_position_after = self.data.qpos[0]
@@ -147,8 +157,27 @@ class HopperEnv(MujocoEnv, utils.EzPickle):
         rewards = forward_reward + healthy_reward
         costs = ctrl_cost
 
-        observation = self._get_obs() + random.gauss(mu, sigma)  # robust setting
+        if args.noise_factor == "state":
+            if args.noise_type == "gauss":
+                observation = self._get_obs() + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                observation = self._get_obs() + args.noise_shift
+            else:
+                observation = self._get_obs()
+                print('\033[0;31m "No state entropy learning! Using the original state" \033[0m')
+        else:
+            observation = self._get_obs()
         reward = rewards - costs
+        if args.noise_factor == "reward":
+            if args.noise_type == "gauss":
+                reward = reward + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                reward = reward + args.noise_shift
+            else:
+                reward = reward
+                print('\033[0;31m "No reward entropy learning! Using the original reward" \033[0m')
+        else:
+            reward = reward
         terminated = self.terminated
         info = {
             "x_position": x_position_after,

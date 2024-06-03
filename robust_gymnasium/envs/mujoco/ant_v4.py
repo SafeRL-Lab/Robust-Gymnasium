@@ -133,6 +133,18 @@ class AntEnv(MujocoEnv, utils.EzPickle):
     def step(self, action):
         mu = args.noise_mu
         sigma = args.noise_sigma
+
+        if args.noise_factor == "action":
+            if args.noise_type == "gauss":
+                action = action + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                action = action + args.noise_shift
+            else:
+                action = action
+                print('\033[0;31m "No action entropy learning! Using the original action" \033[0m')
+        else:
+            action = action
+
         xy_position_before = self.get_body_com("torso")[:2].copy()
         self.do_simulation(action, self.frame_skip)
         xy_position_after = self.get_body_com("torso")[:2].copy()
@@ -148,7 +160,20 @@ class AntEnv(MujocoEnv, utils.EzPickle):
         costs = ctrl_cost = self.control_cost(action)
 
         terminated = self.terminated
-        observation = self._get_obs() + random.gauss(mu, sigma)  # robust setting
+
+        if args.noise_factor == "state":
+            if args.noise_type == "gauss":
+                observation = self._get_obs() + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                observation = self._get_obs() + args.noise_shift
+            else:
+                observation = self._get_obs()
+                print('\033[0;31m "No state entropy learning! Using the original state" \033[0m')
+        else:
+            observation = self._get_obs()
+
+
+
         info = {
             "reward_forward": forward_reward,
             "reward_ctrl": -ctrl_cost,
@@ -166,6 +191,17 @@ class AntEnv(MujocoEnv, utils.EzPickle):
             info["reward_ctrl"] = -contact_cost
 
         reward = rewards - costs
+
+        if args.noise_factor == "reward":
+            if args.noise_type == "gauss":
+                reward = reward + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                reward = reward + args.noise_shift
+            else:
+                reward = reward
+                print('\033[0;31m "No reward entropy learning! Using the original reward" \033[0m')
+        else:
+            reward = reward
 
         if self.render_mode == "human":
             self.render()
