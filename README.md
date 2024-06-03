@@ -38,3 +38,15 @@ python test.py
 ---
 
 Ensure you follow these steps to set up and test the environment properly. Adjust paths and versions as necessary based on your specific setup requirements.
+
+
+### Tasks
+
+| Tasks\Robust type | Robust State | Robust Action | Robust Reward |
+|:-------------:|:--------------:|:--------------:|:--------------:|
+| Ant-v4         |    :white_check_mark:     | :white_check_mark:          |:white_check_mark:          |
+| Walker-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+
+
+
+
