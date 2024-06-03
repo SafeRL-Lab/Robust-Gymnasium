@@ -31,7 +31,7 @@ We are currently developing our environments on an Ubuntu system. The operating 
 To run the tests, navigate to the `tests` directory and execute the test script:
 
 ```bash
-cd tests/
+cd examples/
 python test.py
 ```
 
