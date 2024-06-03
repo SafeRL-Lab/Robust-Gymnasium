@@ -35,9 +35,11 @@ cd examples/
 python test.py
 ```
 
+Ensure you follow these steps to set up and test the environment properly. Adjust paths and versions as necessary based on your specific setup requirements.
+
 ---
 
-Ensure you follow these steps to set up and test the environment properly. Adjust paths and versions as necessary based on your specific setup requirements.
+
 
 
 ### Tasks
@@ -45,8 +47,16 @@ Ensure you follow these steps to set up and test the environment properly. Adjus
 | Tasks\Robust type | Robust State | Robust Action | Robust Reward |
 |:-------------:|:--------------:|:--------------:|:--------------:|
 | Ant-v4         |    :white_check_mark:     | :white_check_mark:          |:white_check_mark:          |
-| Walker-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-
+| HalfCheetah-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| Hopper-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| Walker2d-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| Swimmer-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| Humanoid-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| HumanoidStandup-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| Pusher-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| Reacher-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| InvertedDoublePendulum-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| InvertedPendulum-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
 
 
 
