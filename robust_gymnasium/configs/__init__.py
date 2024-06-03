@@ -1,0 +1,1 @@
+from robust_gymnasium.configs.robust_setting import get_config
