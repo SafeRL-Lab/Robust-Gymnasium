@@ -6,16 +6,16 @@ We are currently developing our environments on an Ubuntu system. The operating 
 
 1. **Create an environment (requires [Conda installation](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)):**
 
-   Use the following command to create a new Conda environment named `omnirobust` with Python 3.10:
+   Use the following command to create a new Conda environment named `robustgymnasium` with Python 3.10:
 
    ```bash
-   conda create -n omnirobust python=3.10
+   conda create -n robustgymnasium  python=3.10
    ```
 
    Activate the newly created environment:
 
    ```bash
-   conda activate omnirobust
+   conda activate robustgymnasium
    ```
 
 2. **Install dependency packages:**
@@ -93,6 +93,11 @@ Ensure you follow these steps to set up and test the environment properly. Adjus
 | Reacher-v5    | :white_check_mark:      | :x:    | :x:          |
 | InvertedDoublePendulum-v5    | :white_check_mark:      | :x:    | :x:          |
 | InvertedPendulum-v5    | :white_check_mark:      | :x:    | :x:          |
+
+---------
+### Acknowledgments
+
+We thank the contributors from [Gymnasium](https://github.com/Farama-Foundation/Gymnasium.git).
 
 
 
