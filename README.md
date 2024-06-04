@@ -61,7 +61,7 @@ Ensure you follow these steps to set up and test the environment properly. Adjus
 | InvertedDoublePendulum-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
 | InvertedPendulum-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
 |  |   |  |  |
-| Ant-v2         |    :white_check_mark:     |    - [x]      |:x:          |
+| Ant-v2         |    :white_check_mark:     |    :x:      |:x:          |
 | HalfCheetah-v2    | :white_check_mark:      | :x:    | :x:          |
 | Hopper-v2    | :white_check_mark:      | :x:    | :x:          |
 | Walker2d-v2    | :white_check_mark:      | :x:    | :x:          |
