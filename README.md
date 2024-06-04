@@ -29,7 +29,7 @@ We are currently developing our environments on an Ubuntu system. The operating 
 
 ### Testing the Tasks
 
-To run the tests, navigate to the `tests` directory and execute the test script:
+To run the tests, navigate to the `examples` directory and execute the test script:
 
 ```bash
 cd examples/
