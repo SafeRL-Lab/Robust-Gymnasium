@@ -23,6 +23,7 @@ We are currently developing our environments on an Ubuntu system. The operating 
    Install the necessary packages using pip. Make sure you are in the project directory where the `setup.py` file is located:
 
    ```bash
+   pip install gymnasium[mujoco]
    pip install -e .
    ```
 
