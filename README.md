@@ -120,6 +120,9 @@ Ensure you follow these steps to set up and test the environment properly. Adjus
    <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/inver-double.gif" alt="Image 1" width="300" style="margin-right: 100px;"/>
   <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/invert.gif" alt="Image 2" width="300" style="margin-right: 10px;"/>
 </p>
+<p align="center">
+  These demonstrations are from version 4 of the MuJoCo tasks.
+</p>
 
 
 
