@@ -20,7 +20,7 @@
   <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/invert.gif" alt="Image 2" width="300" style="margin-right: 10px;"/>
 </p>
 <p align="center">
-  These demonstrations are from version 4 of the MuJoCo tasks.
+  These demonstrations are from version 4 of the MuJoCo tasks with robust settings.
 </p>
 
 ---------------
