@@ -62,41 +62,41 @@ Ensure you follow these steps to set up and test the environment properly. Adjus
 | InvertedDoublePendulum-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
 | InvertedPendulum-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
 |  |   |  |  |
-| Ant-v2         |    :white_check_mark:     |    :x:      |:x:          |
-| HalfCheetah-v2    | :white_check_mark:      | :x:    | :x:          |
-| Hopper-v2    | :white_check_mark:      | :x:    | :x:          |
-| Walker2d-v2    | :white_check_mark:      | :x:    | :x:          |
-| Swimmer-v2    | :white_check_mark:      | :x:    | :x:          |
-| Humanoid-v2    | :white_check_mark:      | :x:    | :x:          |
-| HumanoidStandup-v2    | :white_check_mark:      | :x:    | :x:          |
-| Pusher-v2    | :white_check_mark:      | :x:    | :x:          |
-| Reacher-v2    | :white_check_mark:      | :x:    | :x:          |
-| InvertedDoublePendulum-v2    | :white_check_mark:      | :x:    | :x:          |
-| InvertedPendulum-v2    | :white_check_mark:      | :x:    | :x:          |
+| Ant-v2         |    :white_check_mark:     |    :white_check_mark:      |:white_check_mark:          |
+| HalfCheetah-v2    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| Hopper-v2    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| Walker2d-v2    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| Swimmer-v2    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| Humanoid-v2    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| HumanoidStandup-v2    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| Pusher-v2    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| Reacher-v2    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| InvertedDoublePendulum-v2    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| InvertedPendulum-v2    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
 |  |   |  |  |
-| Ant-v3         |    :white_check_mark:     | :x:          |:x:          |
-| HalfCheetah-v3    | :white_check_mark:      | :x:    | :x:          |
-| Hopper-v3    | :white_check_mark:      | :x:    | :x:          |
-| Walker2d-v3    | :white_check_mark:      | :x:    | :x:          |
-| Swimmer-v3    | :white_check_mark:      | :x:    | :x:          |
-| Humanoid-v3    | :white_check_mark:      | :x:    | :x:          |
-| HumanoidStandup-v3    | :white_check_mark:      | :x:    | :x:          |
-| Pusher-v3    | :white_check_mark:      | :x:    | :x:          |
-| Reacher-v3    | :white_check_mark:      | :x:    | :x:          |
-| InvertedDoublePendulum-v3    | :white_check_mark:      | :x:    | :x:          |
-| InvertedPendulum-v3    | :white_check_mark:      | :x:    | :x:          |
+| Ant-v3         |    :white_check_mark:     | :white_check_mark:          |:white_check_mark:          |
+| HalfCheetah-v3    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| Hopper-v3    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| Walker2d-v3    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| Swimmer-v3    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| Humanoid-v3    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| HumanoidStandup-v3    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| Pusher-v3    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| Reacher-v3    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| InvertedDoublePendulum-v3    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| InvertedPendulum-v3    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
 |  |   |  |  |
-| Ant-v5         |    :white_check_mark:     | :x:          |:x:          |
-| HalfCheetah-v5    | :white_check_mark:      | :x:    | :x:          |
-| Hopper-v5    | :white_check_mark:      | :x:    | :x:          |
-| Walker2d-v5    | :white_check_mark:      | :x:    | :x:          |
-| Swimmer-v5    | :white_check_mark:      | :x:    | :x:          |
-| Humanoid-v5    | :white_check_mark:      | :x:    | :x:          |
-| HumanoidStandup-v5    | :white_check_mark:      | :x:    | :x:          |
-| Pusher-v5    | :white_check_mark:      | :x:    | :x:          |
-| Reacher-v5    | :white_check_mark:      | :x:    | :x:          |
-| InvertedDoublePendulum-v5    | :white_check_mark:      | :x:    | :x:          |
-| InvertedPendulum-v5    | :white_check_mark:      | :x:    | :x:          |
+| Ant-v5         |    :white_check_mark:     | :white_check_mark:          |:white_check_mark:          |
+| HalfCheetah-v5    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| Hopper-v5    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| Walker2d-v5    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| Swimmer-v5    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| Humanoid-v5    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| HumanoidStandup-v5    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| Pusher-v5    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| Reacher-v5    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| InvertedDoublePendulum-v5    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| InvertedPendulum-v5    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
 
 
 
