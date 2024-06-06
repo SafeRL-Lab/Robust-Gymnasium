@@ -28,6 +28,16 @@ class HopperEnv(MuJocoPyEnv, utils.EzPickle):
     def step(self, a):
         mu = args.noise_mu
         sigma = args.noise_sigma
+        if args.noise_factor == "action":
+            if args.noise_type == "gauss":
+                a = a + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                a = a + args.noise_shift
+            else:
+                a = a
+                print('\033[0;31m "No action robust learning! Using the original action" \033[0m')
+        else:
+            a = a
         posbefore = self.sim.data.qpos[0]
         self.do_simulation(a, self.frame_skip)
         posafter, height, ang = self.sim.data.qpos[0:3]
@@ -43,11 +53,30 @@ class HopperEnv(MuJocoPyEnv, utils.EzPickle):
             and (height > 0.7)
             and (abs(ang) < 0.2)
         )
-        ob = self._get_obs() + random.gauss(mu, sigma)  # robust setting
+        if args.noise_factor == "state":
+            if args.noise_type == "gauss":
+                ob = self._get_obs() + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                ob = self._get_obs() + args.noise_shift
+            else:
+                ob = self._get_obs()
+                print('\033[0;31m "No state robust learning! Using the original state" \033[0m')
+        else:
+            ob = self._get_obs()
 
         if self.render_mode == "human":
             self.render()
         # truncation=False as the time limit is handled by the `TimeLimit` wrapper added during `make`
+        if args.noise_factor == "reward":
+            if args.noise_type == "gauss":
+                reward = reward + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                reward = reward + args.noise_shift
+            else:
+                reward = reward
+                print('\033[0;31m "No reward robust learning! Using the original reward" \033[0m')
+        else:
+            reward = reward
         return ob, reward, terminated, False, {}
 
     def _get_obs(self):

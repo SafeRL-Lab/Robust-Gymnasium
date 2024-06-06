@@ -161,9 +161,28 @@ class InvertedPendulumEnv(MujocoEnv, utils.EzPickle):
     def step(self, action):
         mu = args.noise_mu
         sigma = args.noise_sigma
+        if args.noise_factor == "action":
+            if args.noise_type == "gauss":
+                action = action + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                action = action + args.noise_shift
+            else:
+                action = action
+                print('\033[0;31m "No action robust learning! Using the original action" \033[0m')
+        else:
+            action = action
         self.do_simulation(action, self.frame_skip)
 
-        observation = self._get_obs() + random.gauss(mu, sigma)  # robust setting
+        if args.noise_factor == "state":
+            if args.noise_type == "gauss":
+                observation = self._get_obs() + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                observation = self._get_obs() + args.noise_shift
+            else:
+                observation = self._get_obs()
+                print('\033[0;31m "No state robust learning! Using the original state" \033[0m')
+        else:
+            observation = self._get_obs()
 
         terminated = bool(
             not np.isfinite(observation).all() or (np.abs(observation[1]) > 0.2)
@@ -176,6 +195,16 @@ class InvertedPendulumEnv(MujocoEnv, utils.EzPickle):
         if self.render_mode == "human":
             self.render()
         # truncation=False as the time limit is handled by the `TimeLimit` wrapper added during `make`
+        if args.noise_factor == "reward":
+            if args.noise_type == "gauss":
+                reward = reward + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                reward = reward + args.noise_shift
+            else:
+                reward = reward
+                print('\033[0;31m "No reward robust learning! Using the original reward" \033[0m')
+        else:
+            reward = reward
         return observation, reward, terminated, False, info
 
     def reset_model(self):
