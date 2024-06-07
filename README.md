@@ -1,5 +1,5 @@
 
-### Demos
+## Demos
 
 
 <p align="center">
@@ -27,7 +27,7 @@
 
 We are currently developing our environments on an Ubuntu system. The operating system version is 20.04.3 LTS.
 
-### Setting Up the Environment
+## Setting Up the Environment
 
 1. **Create an environment (requires [Conda installation](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)):**
 
@@ -52,7 +52,7 @@ We are currently developing our environments on an Ubuntu system. The operating 
    pip install -e .
    ```
 
-### Testing the Tasks
+## Testing the Tasks
 
 To run the tests, navigate to the `examples` directory and execute the test script:
 
@@ -68,10 +68,11 @@ Ensure you follow these steps to set up and test the environment properly. Adjus
 
 
 
-### Tasks
+## Tasks
 - [x] Single Agent Tasks
 - [ ] Multi-Agent Tasks
 
+### Single Robust Agent Tasks
 
 | Tasks\Robust type | Robust State | Robust Action | Robust Reward |
 |:-------------:|:--------------:|:--------------:|:--------------:|
@@ -123,13 +124,29 @@ Ensure you follow these steps to set up and test the environment properly. Adjus
 | InvertedDoublePendulum-v5    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
 | InvertedPendulum-v5    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
 
+
+### Safety Robust Rasks
+| Tasks\Robust type | Robust State | Robust Action | Robust Reward |
+|:-------------:|:--------------:|:--------------:|:--------------:|
+| SafetyAnt-v4         |    :white_check_mark:     | :white_check_mark:          |:white_check_mark:          |
+| SafetyAntHalfCheetah-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| SafetyAntHopper-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| SafetyAntWalker2d-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| SafetyAntSwimmer-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| SafetyAntHumanoid-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| SafetyAntHumanoidStandup-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| SafetyAntPusher-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| SafetyAntReacher-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+
 ---------
 
 
 
 
 
-### Acknowledgments
+
+
+## Acknowledgments
 
 We thank the contributors from [Gymnasium](https://github.com/Farama-Foundation/Gymnasium.git).
 
