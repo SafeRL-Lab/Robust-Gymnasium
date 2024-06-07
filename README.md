@@ -57,8 +57,9 @@ We are currently developing our environments on an Ubuntu system. The operating 
 To run the tests, navigate to the `examples` directory and execute the test script:
 
 ```bash
-cd examples/
-python test.py
+cd examples/mujoco/ or cd examples/safety_mujoco/
+chmod +x test.sh
+./test.sh
 ```
 
 Ensure you follow these steps to set up and test the environment properly. Adjust paths and versions as necessary based on your specific setup requirements.
