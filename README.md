@@ -131,14 +131,14 @@ Ensure you follow these steps to set up and test the environment properly. Adjus
 | Tasks\Robust type | Robust State | Robust Action | Robust Reward |
 |:-------------:|:--------------:|:--------------:|:--------------:|
 | SafetyAnt-v4         |    :white_check_mark:     | :white_check_mark:          |:white_check_mark:          |
-| SafetyAntHalfCheetah-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| SafetyAntHopper-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| SafetyAntWalker2d-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| SafetyAntSwimmer-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| SafetyAntHumanoid-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| SafetyAntHumanoidStandup-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| SafetyAntPusher-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| SafetyAntReacher-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| SafetyHalfCheetah-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| SafetyHopper-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| SafetyWalker2d-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| SafetySwimmer-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| SafetyHumanoid-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| SafetyHumanoidStandup-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| SafetyPusher-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| SafetyReacher-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
 
 ---------
 
