@@ -33,8 +33,8 @@ observation, info = env.reset(seed=42)
 for i in range(1000):
     action = env.action_space.sample()
     observation, reward, terminated, truncated, info = env.step(action)
-    # print("reward----------:", info["reward"])
-    # print("cost----------:", info["cost"])
+    print("reward----------:", info["reward"])
+    print("cost----------:", info["cost"])
     # env.render() # render environments
     if terminated or truncated:
         observation, info = env.reset()
