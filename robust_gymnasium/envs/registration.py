@@ -770,6 +770,7 @@ def make(
             )
 
     if not isinstance(env, gym.Env):
+        print("str(env.__class__.__base__)-------:", str(env.__class__.__base__))
         if (
             str(env.__class__.__base__) == "<class 'gym.core.Env'>"
             or str(env.__class__.__base__) == "<class 'gym.core.Wrapper'>"

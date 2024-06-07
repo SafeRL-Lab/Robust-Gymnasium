@@ -1,0 +1,9 @@
+------------------ start ------------------
+gamma : 0.995
+env_name : Hopper-v4
+noise_factor : state
+noise_type : gauss
+noise_mu : 0.0
+noise_sigma : 0.005
+noise_shift : 0.005
+------------------- end -------------------

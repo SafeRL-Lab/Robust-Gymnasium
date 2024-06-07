@@ -5,11 +5,15 @@ from typing import Optional, Union
 
 import numpy as np
 
-import gymnasium as gym
-from gymnasium import spaces
-from gymnasium.envs.box2d.car_dynamics import Car
-from gymnasium.error import DependencyNotInstalled, InvalidAction
-from gymnasium.utils import EzPickle
+import robust_gymnasium as gym
+from robust_gymnasium import spaces
+from robust_gymnasium.envs.box2d.car_dynamics import Car
+from robust_gymnasium.error import DependencyNotInstalled, InvalidAction
+from robust_gymnasium.utils import EzPickle
+
+import random
+from robust_gymnasium.configs.robust_setting import get_config
+args = get_config().parse_args()
 
 
 try:
@@ -17,7 +21,7 @@ try:
     from Box2D.b2 import contactListener, fixtureDef, polygonShape
 except ImportError as e:
     raise DependencyNotInstalled(
-        'Box2D is not installed, you can install it by run `pip install swig` followed by `pip install "gymnasium[box2d]"`'
+        'Box2D is not installed, you can install it by run `pip install swig` followed by `pip install "robust_gymnasium[box2d]"`'
     ) from e
 
 try:
@@ -27,7 +31,7 @@ try:
     from pygame import gfxdraw
 except ImportError as e:
     raise DependencyNotInstalled(
-        'pygame is not installed, run `pip install "gymnasium[box2d]"`'
+        'pygame is not installed, run `pip install "robust_gymnasium[box2d]"`'
     ) from e
 
 
@@ -116,7 +120,7 @@ class CarRacing(gym.Env, EzPickle):
     steering wheel position, and gyroscope.
     To play yourself (it's rather fast for humans), type:
     ```shell
-    python gymnasium/envs/box2d/car_racing.py
+    python robust_gymnasium/envs/box2d/car_racing.py
     ```
     Remember: it's a powerful rear-wheel drive car - don't press the accelerator
     and turn at the same time.
@@ -152,7 +156,7 @@ class CarRacing(gym.Env, EzPickle):
     ## Arguments
 
     ```python
-    >>> import gymnasium as gym
+    >>> import robust_gymnasium as gym
     >>> env = gym.make("CarRacing-v2", render_mode="rgb_array", lap_complete_percent=0.95, domain_randomize=False, continuous=False)
     >>> env
     <TimeLimit<OrderEnforcing<PassiveEnvChecker<CarRacing<CarRacing-v2>>>>>
@@ -175,7 +179,7 @@ class CarRacing(gym.Env, EzPickle):
     `domain_randomize` must be `True` on init for this argument to work.
 
     ```python
-    >>> import gymnasium as gym
+    >>> import robust_gymnasium as gym
     >>> env = gym.make("CarRacing-v2", domain_randomize=True)
 
     # normal reset, this changes the colour scheme by default
@@ -538,6 +542,21 @@ class CarRacing(gym.Env, EzPickle):
         return self.step(None)[0], {}
 
     def step(self, action: Union[np.ndarray, int]):
+        mu = args.noise_mu
+        sigma = args.noise_sigma
+        if action is not None:
+            if args.noise_factor == "action":
+                if args.noise_type == "gauss":
+                    action = action + random.gauss(mu, sigma)  # robust setting
+                elif args.noise_type == "shift":
+                    action = action + args.noise_shift
+                else:
+                    action = action
+                    print('\033[0;31m "No action entropy learning! Using the original action" \033[0m')
+
+        else:
+            action = action
+
         assert self.car is not None
         if action is not None:
             if self.continuous:
@@ -582,6 +601,29 @@ class CarRacing(gym.Env, EzPickle):
 
         if self.render_mode == "human":
             self.render()
+
+        if args.noise_factor == "state":
+            if args.noise_type == "gauss":
+                self.state = self.state + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                self.state = self.state + args.noise_shift
+            else:
+                self.state = self.state
+                print('\033[0;31m "No state entropy learning! Using the original state" \033[0m')
+        else:
+            self.state = self.state
+
+        if args.noise_factor == "reward":
+            if args.noise_type == "gauss":
+                step_reward = step_reward + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                step_reward = step_reward + args.noise_shift
+            else:
+                step_reward = step_reward
+                print('\033[0;31m "No reward entropy learning! Using the original reward" \033[0m')
+        else:
+            step_reward = step_reward
+
         return self.state, step_reward, terminated, truncated, {}
 
     def render(self):

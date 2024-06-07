@@ -5,11 +5,14 @@ from typing import TYPE_CHECKING, List, Optional
 
 import numpy as np
 
-import gymnasium as gym
-from gymnasium import error, spaces
-from gymnasium.error import DependencyNotInstalled
-from gymnasium.utils import EzPickle
+import robust_gymnasium as gym
+from robust_gymnasium import error, spaces
+from robust_gymnasium.error import DependencyNotInstalled
+from robust_gymnasium.utils import EzPickle
 
+import random
+from robust_gymnasium.configs.robust_setting import get_config
+args = get_config().parse_args()
 
 try:
     import Box2D
@@ -23,7 +26,7 @@ try:
     )
 except ImportError as e:
     raise DependencyNotInstalled(
-        'Box2D is not installed, you can install it by run `pip install swig` followed by `pip install "gymnasium[box2d]"`'
+        'Box2D is not installed, you can install it by run `pip install swig` followed by `pip install "robust_gymnasium[box2d]"`'
     ) from e
 
 
@@ -115,7 +118,7 @@ class BipedalWalker(gym.Env, EzPickle):
     A heuristic is provided for testing. It's also useful to get demonstrations
     to learn from. To run the heuristic:
     ```
-    python gymnasium/envs/box2d/bipedal_walker.py
+    python robust_gymnasium/envs/box2d/bipedal_walker.py
     ```
 
     ## Action Space
@@ -146,7 +149,7 @@ class BipedalWalker(gym.Env, EzPickle):
     To use the _hardcore_ environment, you need to specify the `hardcore=True`:
 
     ```python
-    >>> import gymnasium as gym
+    >>> import robust_gymnasium as gym
     >>> env = gym.make("BipedalWalker-v3", hardcore=True, render_mode="rgb_array")
     >>> env
     <TimeLimit<OrderEnforcing<PassiveEnvChecker<BipedalWalker<BipedalWalker-v3>>>>>
@@ -522,6 +525,19 @@ class BipedalWalker(gym.Env, EzPickle):
         return self.step(np.array([0, 0, 0, 0]))[0], {}
 
     def step(self, action: np.ndarray):
+        mu = args.noise_mu
+        sigma = args.noise_sigma
+        if args.noise_factor == "action":
+            if args.noise_type == "gauss":
+                action = action + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                action = action + args.noise_shift
+            else:
+                action = action
+                print('\033[0;31m "No action entropy learning! Using the original action" \033[0m')
+        else:
+            action = action
+
         assert self.hull is not None
 
         # self.hull.ApplyForceToCenter((0, 20), True) -- Uncomment this to receive a bit of stability help
@@ -608,6 +624,31 @@ class BipedalWalker(gym.Env, EzPickle):
         if pos[0] > (TERRAIN_LENGTH - TERRAIN_GRASS) * TERRAIN_STEP:
             terminated = True
 
+        if args.noise_factor == "state":
+            # result = [x + my_float for x in my_list]
+            if args.noise_type == "gauss":
+                state = [x + random.gauss(mu, sigma) for x in state]
+                # state = state + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                state = [x + args.noise_shift for x in state]
+                # state = state + args.noise_shift
+            else:
+                state = state
+                print('\033[0;31m "No state entropy learning! Using the original state" \033[0m')
+        else:
+            state = state
+
+        if args.noise_factor == "reward":
+            if args.noise_type == "gauss":
+                reward = reward + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                reward = reward + args.noise_shift
+            else:
+                reward = reward
+                print('\033[0;31m "No reward entropy learning! Using the original reward" \033[0m')
+        else:
+            reward = reward
+
         if self.render_mode == "human":
             self.render()
         # truncation=False as the time limit is handled by the `TimeLimit` wrapper added during `make`
@@ -628,7 +669,7 @@ class BipedalWalker(gym.Env, EzPickle):
             from pygame import gfxdraw
         except ImportError as e:
             raise DependencyNotInstalled(
-                'pygame is not installed, run `pip install "gymnasium[box2d]"`'
+                'pygame is not installed, run `pip install "robust_gymnasium[box2d]"`'
             ) from e
 
         if self.screen is None and self.render_mode == "human":

@@ -5,12 +5,15 @@ from typing import TYPE_CHECKING, Optional
 
 import numpy as np
 
-import gymnasium as gym
-from gymnasium import error, spaces
-from gymnasium.error import DependencyNotInstalled
-from gymnasium.utils import EzPickle
-from gymnasium.utils.step_api_compatibility import step_api_compatibility
+import robust_gymnasium as gym
+from robust_gymnasium import error, spaces
+from robust_gymnasium.error import DependencyNotInstalled
+from robust_gymnasium.utils import EzPickle
+from robust_gymnasium.utils.step_api_compatibility import step_api_compatibility
 
+import random
+from robust_gymnasium.configs.robust_setting import get_config
+args = get_config().parse_args()
 
 try:
     import Box2D
@@ -24,7 +27,7 @@ try:
     )
 except ImportError as e:
     raise DependencyNotInstalled(
-        'Box2D is not installed, you can install it by run `pip install swig` followed by `pip install "gymnasium[box2d]"`'
+        'Box2D is not installed, you can install it by run `pip install swig` followed by `pip install "robust_gymnasium[box2d]"`'
     ) from e
 
 
@@ -93,7 +96,7 @@ class LunarLander(gym.Env, EzPickle):
 
     To see a heuristic landing, run:
     ```shell
-    python gymnasium/envs/box2d/lunar_lander.py
+    python robust_gymnasium/envs/box2d/lunar_lander.py
     ```
 
     ## Action Space
@@ -146,7 +149,7 @@ class LunarLander(gym.Env, EzPickle):
     Lunar Lander has a large number of arguments
 
     ```python
-    >>> import gymnasium as gym
+    >>> import robust_gymnasium as gym
     >>> env = gym.make("LunarLander-v3", continuous=False, gravity=-10.0,
     ...                enable_wind=False, wind_power=15.0, turbulence_power=1.5)
     >>> env
@@ -177,9 +180,9 @@ class LunarLander(gym.Env, EzPickle):
 
     ## Version History
     - v3:
-        - Reset wind and turbulence offset (`C`) whenever the environment is reset to ensure statistical independence between consecutive episodes (related [GitHub issue](https://github.com/Farama-Foundation/Gymnasium/issues/954)).
-        - Fix non-deterministic behaviour due to not fully destroying the world (related [GitHub issue](https://github.com/Farama-Foundation/Gymnasium/issues/728)).
-        - Changed observation space for `x`, `y`  coordinates from $\pm 1.5$ to $\pm 2.5$, velocities from $\pm 5$ to $\pm 10$ and angles from $\pm \pi$ to $\pm 2\pi$ (related [GitHub issue](https://github.com/Farama-Foundation/Gymnasium/issues/752)).
+        - Reset wind and turbulence offset (`C`) whenever the environment is reset to ensure statistical independence between consecutive episodes (related [GitHub issue](https://github.com/Farama-Foundation/robust_gymnasium/issues/954)).
+        - Fix non-deterministic behaviour due to not fully destroying the world (related [GitHub issue](https://github.com/Farama-Foundation/robust_gymnasium/issues/728)).
+        - Changed observation space for `x`, `y`  coordinates from $\pm 1.5$ to $\pm 2.5$, velocities from $\pm 5$ to $\pm 10$ and angles from $\pm \pi$ to $\pm 2\pi$ (related [GitHub issue](https://github.com/Farama-Foundation/robust_gymnasium/issues/752)).
     - v2: Count energy spent and in v0.24, added turbulence with wind power and turbulence_power parameters
     - v1: Legs contact with ground added in state vector; contact with ground give +10 reward points, and -10 if then lose contact; reward renormalized to 200; harder initial random push.
     - v0: Initial version
@@ -329,7 +332,7 @@ class LunarLander(gym.Env, EzPickle):
         super().reset(seed=seed)
         self._destroy()
 
-        # Bug's workaround for: https://github.com/Farama-Foundation/Gymnasium/issues/728
+        # Bug's workaround for: https://github.com/Farama-Foundation/robust_gymnasium/issues/728
         # Not sure why the self._destroy() is not enough to clean(reset) the total world environment elements, need more investigation on the root cause,
         # we must create a totally new world for self.reset(), or the bug#728 will happen
         self.world = Box2D.b2World(gravity=(0, self.gravity))
@@ -471,7 +474,23 @@ class LunarLander(gym.Env, EzPickle):
             self.world.DestroyBody(self.particles.pop(0))
 
     def step(self, action):
-        assert self.lander is not None
+
+        mu = args.noise_mu
+        sigma = args.noise_sigma
+        """action does not work, since it is a finite int discrete number; 
+        there is another version for continuous action settings
+        """
+        # if args.noise_factor == "action":
+        #     if args.noise_type == "gauss":
+        #         action = action + random.randint(0, 1)  # random.gauss(mu, sigma)  # robust setting
+        #     elif args.noise_type == "shift":
+        #         action = action + args.noise_shift
+        #     else:
+        #         action = action
+        #         print('\033[0;31m "No action entropy learning! Using the original action" \033[0m')
+        # else:
+        #     action = action
+        # assert self.lander is not None
 
         # Update wind and apply to the lander
         assert self.lander is not None, "You forgot to call reset()"
@@ -509,6 +528,16 @@ class LunarLander(gym.Env, EzPickle):
             )
 
         if self.continuous:
+            if args.noise_factor == "action":
+                if args.noise_type == "gauss":
+                    action = action + random.gauss(mu, sigma)  # robust setting
+                elif args.noise_type == "shift":
+                    action = action + args.noise_shift
+                else:
+                    action = action
+                    print('\033[0;31m "No action entropy learning! Using the original action" \033[0m')
+            else:
+                action = action
             action = np.clip(action, -1, +1).astype(np.float32)
         else:
             assert self.action_space.contains(
@@ -663,6 +692,31 @@ class LunarLander(gym.Env, EzPickle):
 
         if self.render_mode == "human":
             self.render()
+
+        if args.noise_factor == "state":
+            # result = [x + my_float for x in my_list]
+            if args.noise_type == "gauss":
+                state = [x + random.gauss(mu, sigma) for x in state]
+                # state = state + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                state = [x + args.noise_shift for x in state]
+                # state = state + args.noise_shift
+            else:
+                state = state
+                print('\033[0;31m "No state entropy learning! Using the original state" \033[0m')
+        else:
+            state = state
+
+        if args.noise_factor == "reward":
+            if args.noise_type == "gauss":
+                reward = reward + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                reward = reward + args.noise_shift
+            else:
+                reward = reward
+                print('\033[0;31m "No reward entropy learning! Using the original reward" \033[0m')
+        else:
+            reward = reward
         # truncation=False as the time limit is handled by the `TimeLimit` wrapper added during `make`
         return np.array(state, dtype=np.float32), reward, terminated, False, {}
 
@@ -681,7 +735,7 @@ class LunarLander(gym.Env, EzPickle):
             from pygame import gfxdraw
         except ImportError as e:
             raise DependencyNotInstalled(
-                'pygame is not installed, run `pip install "gymnasium[box2d]"`'
+                'pygame is not installed, run `pip install "robust_gymnasium[box2d]"`'
             ) from e
 
         if self.screen is None and self.render_mode == "human":
