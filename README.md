@@ -70,8 +70,8 @@ Ensure you follow these steps to set up and test the environment properly. Adjus
 
 
 ## Tasks
-- [x] Single Robust Agent Tasks
-- [x] Single Safe Robust Agent Tasks
+- [x] Robust Single Agent Tasks
+- [x] Safe Robust Single Agent Tasks
 - [ ] Robust Multi-Agent Tasks
 
 ### Single Robust Agent Tasks
