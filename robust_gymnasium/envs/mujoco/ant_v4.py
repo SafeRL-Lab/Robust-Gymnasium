@@ -4,13 +4,9 @@ from robust_gymnasium import utils
 from robust_gymnasium.envs.mujoco import MujocoEnv
 from robust_gymnasium.spaces import Box
 
+import random
 from robust_gymnasium.configs.robust_setting import get_config
 args = get_config().parse_args()
-
-
-
-import random
-
 
 DEFAULT_CAMERA_CONFIG = {
     "distance": 4.0,
@@ -133,7 +129,6 @@ class AntEnv(MujocoEnv, utils.EzPickle):
     def step(self, action):
         mu = args.noise_mu
         sigma = args.noise_sigma
-
         if args.noise_factor == "action":
             if args.noise_type == "gauss":
                 action = action + random.gauss(mu, sigma)  # robust setting

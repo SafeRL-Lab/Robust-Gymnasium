@@ -8,7 +8,7 @@ currentDateAndTime = datetime.now()
 start_run_date_and_time=time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime())
 from robust_gymnasium.configs.robust_setting import get_config
 args = get_config().parse_args()
-args.env_name = "Ant-v4"
+args.env_name = "SafetyReacher-v4" # "SafetyAnt-v4" # "SafetyReacher-v4" # "Pusher-v4" # "HumanoidStandup-v4" # "Humanoid-v4" # "Swimmer-v4" # "Hopper-v4" # "Walker2d-v4" # "HalfCheetah-v4" # "Ant-v4"
 
 folder = os.getcwd()[:0] + 'data/' + str(args.env_name)+'/'+ str(args.noise_type)+'/'+ str(
     start_run_date_and_time) + '/'
@@ -25,16 +25,17 @@ with open(json_path, 'w') as f:
     f.writelines('------------------- end -------------------')
 
 # env = gym.make("Ant-v4")
-# env = gym.make(args.env_name, args, render_mode="human") # render environments
-env = gym.make(args.env_name, args)
+env = gym.make(args.env_name, args, render_mode="human") # render environments
+# env = gym.make(args.env_name, args)
 print("type-----------args:", args)
 
 observation, info = env.reset(seed=42)
-for i in range(1000):
+for i in range(10000):
     action = env.action_space.sample()
     observation, reward, terminated, truncated, info = env.step(action)
-    print("reward----------:", reward)
-    # env.render() # render environments
+    # print("reward----------:", info["reward"])
+    # print("cost----------:", info["cost"])
+    env.render() # render environments
     if terminated or truncated:
         observation, info = env.reset()
 env.close()

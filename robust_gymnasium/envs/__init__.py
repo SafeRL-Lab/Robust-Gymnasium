@@ -446,6 +446,62 @@ register(
 )
 
 
+# Safety MuJoCo
+# ----------------------------------------
+
+register(
+    id="SafetyAnt-v4",
+    entry_point="robust_gymnasium.envs.safety_mujoco.ant_v4:AntEnv",
+    max_episode_steps=1000,
+    reward_threshold=6000.0,
+)
+
+register(
+    id="SafetyHalfCheetah-v4",
+    entry_point="robust_gymnasium.envs.safety_mujoco.half_cheetah_v4:HalfCheetahEnv",
+    max_episode_steps=1000,
+    reward_threshold=4800.0,
+)
+
+register(
+    id="SafetyHopper-v4",
+    entry_point="robust_gymnasium.envs.safety_mujoco.hopper_v4:HopperEnv",
+    max_episode_steps=1000,
+    reward_threshold=3800.0,
+)
+
+register(
+    id="SafetyHumanoid-v4",
+    entry_point="robust_gymnasium.envs.safety_mujoco.humanoid_v4:HumanoidEnv",
+    max_episode_steps=1000,
+)
+
+register(
+    id="SafetyHumanoidStandup-v4",
+    entry_point="robust_gymnasium.envs.safety_mujoco.humanoidstandup_v4:HumanoidStandupEnv",
+    max_episode_steps=1000,
+)
+
+register(
+    id="SafetyPusher-v4",
+    entry_point="robust_gymnasium.envs.safety_mujoco.pusher_v4:PusherEnv",
+    max_episode_steps=100,
+    reward_threshold=0.0,
+)
+
+register(
+    id="SafetyReacher-v4",
+    entry_point="robust_gymnasium.envs.safety_mujoco.reacher_v4:ReacherEnv",
+    max_episode_steps=50,
+    reward_threshold=-3.75,
+)
+
+register(
+    id="SafetyWalker2d-v4",
+    max_episode_steps=1000,
+    entry_point="robust_gymnasium.envs.safety_mujoco.walker2d_v4:Walker2dEnv",
+)
+
 # --- For shimmy compatibility
 def _raise_shimmy_error(*args: Any, **kwargs: Any):
     raise ImportError(
