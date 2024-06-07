@@ -127,7 +127,7 @@ Ensure you follow these steps to set up and test the environment properly. Adjus
 | InvertedPendulum-v5    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
 
 
-### Safety Robust Rasks
+### Safety Robust Tasks
 | Tasks\Robust type | Robust State | Robust Action | Robust Reward |
 |:-------------:|:--------------:|:--------------:|:--------------:|
 | SafetyAnt-v4         |    :white_check_mark:     | :white_check_mark:          |:white_check_mark:          |
