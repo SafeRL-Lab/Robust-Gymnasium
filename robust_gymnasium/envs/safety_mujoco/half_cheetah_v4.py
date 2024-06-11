@@ -252,6 +252,17 @@ class HalfCheetahEnv(MujocoEnv, utils.EzPickle):
                 print('\033[0;31m "No reward entropy learning! Using the original reward" \033[0m')
         else:
             info["reward"] = info["reward"]
+
+        if args.noise_factor == "cost":
+            if args.noise_type == "gauss":
+                info["cost"] = info["cost"] + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                info["cost"] = info["cost"] + args.noise_shift
+            else:
+                info["cost"] = info["cost"]
+                print('\033[0;31m "No reward entropy learning! Using the original reward" \033[0m')
+        else:
+            info["cost"] = info["cost"]
         
         return observation, reward, terminated, False, info
 

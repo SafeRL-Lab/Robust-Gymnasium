@@ -22,6 +22,7 @@ from robust_gymnasium.envs.registration import (
 
 # necessary for `envs.__init__` which registers all robust_gymnasium environments and loads plugins
 from robust_gymnasium import envs
+# from robust_gymnasium.envs import robosuite
 from robust_gymnasium import spaces, utils, vector, wrappers, error, logger, functional
 from robust_gymnasium import configs
 

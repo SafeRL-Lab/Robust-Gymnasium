@@ -12,16 +12,19 @@ import math
 import Box2D
 import numpy as np
 
-from gymnasium.error import DependencyNotInstalled
+from robust_gymnasium.error import DependencyNotInstalled
 
 
 try:
     from Box2D.b2 import fixtureDef, polygonShape, revoluteJointDef
 except ImportError as e:
     raise DependencyNotInstalled(
-        'Box2D is not installed, you can install it by run `pip install swig` followed by `pip install "gymnasium[box2d]"`'
+        'Box2D is not installed, you can install it by run `pip install swig` followed by `pip install "robust_gymnasium[box2d]"`'
     ) from e
 
+import random
+from robust_gymnasium.configs.robust_setting import get_config
+args = get_config().parse_args()
 
 SIZE = 0.02
 ENGINE_POWER = 100000000 * SIZE * SIZE

@@ -48,7 +48,7 @@ We are currently developing our environments on an Ubuntu system. The operating 
    Install the necessary packages using pip. Make sure you are in the project directory where the `setup.py` file is located:
 
    ```bash
-   pip install gymnasium[mujoco]
+   pip install -r requirements.txt
    pip install -e .
    ```
 
@@ -71,6 +71,7 @@ Ensure you follow these steps to set up and test the environment properly. Adjus
 
 ## Tasks
 - [x] Robust Single Agent Tasks
+- [x] Robust Boxd2d Tasks
 - [x] Safe Robust Single Agent Tasks
 - [ ] Robust Multi-Agent Tasks
 - [ ] Image Robust Tasks

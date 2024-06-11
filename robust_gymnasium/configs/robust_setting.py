@@ -8,7 +8,7 @@ def get_config():
     parser.add_argument('--env-name', default="Ant-v4", metavar='G',
                         help='name of the environment to run')
     parser.add_argument('--noise-factor', default="state", metavar='G',
-                        help='name of noise factor, such as state, action, reward, policy')
+                        help='name of noise factor, such as state, action, reward, cost, policy')
     parser.add_argument('--noise-type', default="gauss", metavar='G',
                         help='name of the noise type, e.g., gauss, shift')
     parser.add_argument('--noise-mu', type=float, default=0.0, metavar='G',
