@@ -13,6 +13,9 @@ from robust_gymnasium.envs.robosuite.utils.binding_utils import MjRenderContextO
 
 REGISTERED_ENVS = {}
 
+import random
+from robust_gymnasium.configs.robust_setting import get_config
+args = get_config().parse_args()
 
 def register_env(target_class):
     REGISTERED_ENVS[target_class.__name__] = target_class
@@ -375,6 +378,20 @@ class MujocoEnv(metaclass=EnvMeta):
         Raises:
             ValueError: [Steps past episode termination]
         """
+
+        mu = args.noise_mu
+        sigma = args.noise_sigma
+        if args.noise_factor == "action":
+            if args.noise_type == "gauss":
+                action = action + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                action = action + args.noise_shift
+            else:
+                action = action
+                print('\033[0;31m "No action entropy learning! Using the original action" \033[0m')
+        else:
+            action = action
+
         if self.done:
             raise ValueError("executing action in terminated episode")
 
@@ -404,6 +421,29 @@ class MujocoEnv(metaclass=EnvMeta):
             self.viewer.update()
 
         observations = self.viewer._get_observations() if self.viewer_get_obs else self._get_observations()
+
+        if args.noise_factor == "state":
+            if args.noise_type == "gauss":
+                observations = self._get_obs() + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                observations = self._get_obs() + args.noise_shift
+            else:
+                observations = self._get_obs()
+                print('\033[0;31m "No state entropy learning! Using the original state" \033[0m')
+        else:
+            observations = self._get_obs()
+
+        if args.noise_factor == "reward":
+            if args.noise_type == "gauss":
+                reward = reward + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                reward = reward + args.noise_shift
+            else:
+                reward = reward
+                print('\033[0;31m "No reward entropy learning! Using the original reward" \033[0m')
+        else:
+            reward = reward
+
         return observations, reward, done, info
 
     def _pre_action(self, action, policy_step=False):
