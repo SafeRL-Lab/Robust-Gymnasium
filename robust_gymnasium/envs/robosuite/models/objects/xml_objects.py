@@ -2,7 +2,10 @@ import numpy as np
 
 from robust_gymnasium.envs.robosuite.models.objects import MujocoXMLObject
 from robust_gymnasium.envs.robosuite.utils.mjcf_utils import array_to_string, find_elements, xml_path_completion
-
+import xml.etree.ElementTree as ET
+import random
+from robust_gymnasium.configs.robust_setting import get_config
+args = get_config().parse_args()
 
 class BottleObject(MujocoXMLObject):
     """
@@ -251,6 +254,32 @@ class DoorObject(MujocoXMLObject):
             xml_path_completion(xml_path), name=name, joints=None, obj_type="all", duplicate_collision_geoms=True
         )
 
+        handle_height_door = -0.025
+        if args.noise_factor == "handle_height_door":
+            if args.noise_type == "gauss":
+                handle_height_door = handle_height_door + random.gauss(args.noise_mu, args.noise_sigma)  # robust setting
+            elif args.noise_type == "shift":
+                handle_height_door = handle_height_door + args.noise_shift
+            else:
+                handle_height_door = handle_height_door
+                print('\033[0;31m "No table_height entropy learning! Using the original action" \033[0m')
+        else:
+            handle_height_door = handle_height_door
+
+        handle_width_left_door = -0.175
+        if args.noise_factor == "handle_width_left_door":
+            if args.noise_type == "gauss":
+                handle_width_left_door = handle_width_left_door + random.gauss(args.noise_mu,
+                                                                       args.noise_sigma)  # robust setting
+            elif args.noise_type == "shift":
+                handle_width_left_door = handle_width_left_door + args.noise_shift
+            else:
+                handle_width_left_door = handle_width_left_door
+                print('\033[0;31m "No table_height entropy learning! Using the original action" \033[0m')
+        else:
+            handle_width_left_door = handle_width_left_door
+        self.modify_xml(xml_path_completion(xml_path), str(handle_width_left_door)  + ' 0 ' + str(handle_height_door))  # <body name="latch" pos="-0.175 0 -0.025">
+
         # Set relevant body names
         self.door_body = self.naming_prefix + "door"
         self.frame_body = self.naming_prefix + "frame"
@@ -264,6 +293,20 @@ class DoorObject(MujocoXMLObject):
             self._set_door_friction(self.friction)
         if self.damping is not None:
             self._set_door_damping(self.damping)
+        # self.latch
+
+    def modify_xml(self, file_name, new_pos):
+        # import xml file
+        tree = ET.parse(file_name)
+        root = tree.getroot()
+        # find the specified name and revise its values
+        for body in root.iter('body'):
+            if body.get('name') == 'latch':
+                body.set('pos', new_pos)  # set new pos value
+                break  # if find, then break
+
+        # write back to the revised file with new values
+        tree.write(file_name)
 
     def _set_door_friction(self, friction):
         """

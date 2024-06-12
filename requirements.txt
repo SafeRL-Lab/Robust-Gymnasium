@@ -1,6 +1,29 @@
+# for gymnasium
 swig==4.2.1
 pygame==2.1.3
 mujoco==2.3.3
 gymnasium==0.28.1
 gymnasium[box2d]
 gymnasium[mujoco]
+
+# for robosuite
+numpy>=1.13.3
+numba>=0.49.1
+scipy>=1.2.3
+mujoco>=2.3.0
+Pillow
+opencv-python
+pynput
+termcolor
+
+# for extra
+# required for IK controllers
+pybullet-svl>=3.1.6.4
+# required for GymWrapper
+gymnasium
+# macOS only
+hidapi
+# required for demonstration utils
+h5py
+# required for nvisii renderer
+open3d

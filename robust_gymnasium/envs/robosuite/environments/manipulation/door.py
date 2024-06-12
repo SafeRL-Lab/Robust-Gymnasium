@@ -9,6 +9,10 @@ from robust_gymnasium.envs.robosuite.models.tasks import ManipulationTask
 from robust_gymnasium.envs.robosuite.utils.observables import Observable, sensor
 from robust_gymnasium.envs.robosuite.utils.placement_samplers import UniformRandomSampler
 
+import random
+from robust_gymnasium.configs.robust_setting import get_config
+args = get_config().parse_args()
+
 
 class Door(SingleArmEnv):
     """
@@ -161,8 +165,53 @@ class Door(SingleArmEnv):
         renderer_config=None,
     ):
         # settings for table top (hardcoded since it's not an essential part of the environment)
+
+        """
+        When the table_height value is larger, the table will be higher.
+        When the table_robot_back_distance value is smaller, the table will be farther away from the robot.
+        When the table_robot_left_distance value is larger, the table will be farther to the left relative to the robot.
+        """
+        mu = args.noise_mu
+        sigma = args.noise_sigma
+        table_height = 0.8
+        if args.noise_factor == "door_table_height":
+            if args.noise_type == "gauss":
+                table_height = table_height + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                table_height = table_height + args.noise_shift
+            else:
+                table_height = table_height
+                print('\033[0;31m "No table_height entropy learning! Using the original action" \033[0m')
+        else:
+            table_height = table_height
+
+        table_robot_back_distance = -0.35
+        if args.noise_factor == "table_robot_back_distance":
+            if args.noise_type == "gauss":
+                table_robot_back_distance = table_robot_back_distance + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                table_robot_back_distance = table_robot_back_distance + args.noise_shift
+            else:
+                table_robot_back_distance = table_robot_back_distance
+                print('\033[0;31m "No table_height entropy learning! Using the original action" \033[0m')
+        else:
+            table_robot_back_distance = table_robot_back_distance
+
+        table_robot_left_distance = -0.2
+        if args.noise_factor == "table_robot_left_distance":
+            if args.noise_type == "gauss":
+                table_robot_left_distance = table_robot_left_distance + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                table_robot_left_distance = table_robot_left_distance + args.noise_shift
+            else:
+                table_robot_left_distance = table_robot_left_distance
+                print('\033[0;31m "No table_height entropy learning! Using the original action" \033[0m')
+        else:
+            table_robot_left_distance = table_robot_left_distance
+
         self.table_full_size = (0.8, 0.3, 0.05)
-        self.table_offset = (-0.2, -0.35, 0.8)
+        self.table_offset = (table_robot_left_distance, table_robot_back_distance, table_height) # (-0.2, -0.35, 0.8)
+
 
         # reward configuration
         self.use_latch = use_latch
@@ -284,6 +333,33 @@ class Door(SingleArmEnv):
             damping=0.1,
             lock=self.use_latch,
         )
+        # print(" self.door.joints[1] -------:",  self.door.joints[1] )
+
+        mu = args.noise_mu
+        sigma = args.noise_sigma
+        table_robot_left_rotation = -np.pi / 2.0 - 0.25
+        if args.noise_factor == "table_robot_left_rotation":
+            if args.noise_type == "gauss":
+                table_robot_left_rotation = table_robot_left_rotation + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                table_robot_left_rotation = table_robot_left_rotation + args.noise_shift
+            else:
+                table_robot_left_rotation = table_robot_left_rotation
+                print('\033[0;31m "No table_robot_left_rotation entropy learning! Using the original action" \033[0m')
+        else:
+            table_robot_left_rotation = table_robot_left_rotation
+
+        table_robot_right_rotation = -np.pi / 2.0
+        if args.noise_factor == "table_robot_right_rotation":
+            if args.noise_type == "gauss":
+                table_robot_right_rotation = table_robot_right_rotation + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                table_robot_right_rotation = table_robot_right_rotation + args.noise_shift
+            else:
+                table_robot_right_rotation = table_robot_right_rotation
+                print('\033[0;31m "No table_robot_right_rotation entropy learning! Using the original action" \033[0m')
+        else:
+            table_robot_right_rotation = table_robot_right_rotation
 
         # Create placement initializer
         if self.placement_initializer is not None:
@@ -295,7 +371,7 @@ class Door(SingleArmEnv):
                 mujoco_objects=self.door,
                 x_range=[0.07, 0.09],
                 y_range=[-0.01, 0.01],
-                rotation=(-np.pi / 2.0 - 0.25, -np.pi / 2.0),
+                rotation=(table_robot_left_rotation, table_robot_right_rotation),
                 rotation_axis="z",
                 ensure_object_boundary_in_range=False,
                 ensure_valid_placement=True,
@@ -324,6 +400,7 @@ class Door(SingleArmEnv):
         self.object_body_ids["latch"] = self.sim.model.body_name2id(self.door.latch_body)
         self.door_handle_site_id = self.sim.model.site_name2id(self.door.important_sites["handle"])
         self.hinge_qpos_addr = self.sim.model.get_joint_qpos_addr(self.door.joints[0])
+        # print(" self.hinge_qpos_addr------:",  self.hinge_qpos_addr)
         if self.use_latch:
             self.handle_qpos_addr = self.sim.model.get_joint_qpos_addr(self.door.joints[1])
 
