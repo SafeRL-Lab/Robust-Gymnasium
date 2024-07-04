@@ -4,13 +4,10 @@ from typing import Dict, Union
 
 import numpy as np
 
-from robust_gymnasium import utils
-from robust_gymnasium.envs.mujoco import MujocoEnv
-from robust_gymnasium.spaces import Box
+from gymnasium import utils
+from gymnasium.envs.mujoco import MujocoEnv
+from gymnasium.spaces import Box
 
-import random
-from robust_gymnasium.configs.robust_setting import get_config
-args = get_config().parse_args()
 
 DEFAULT_CAMERA_CONFIG = {
     "trackbodyid": -1,
@@ -129,10 +126,10 @@ class PusherEnv(MujocoEnv, utils.EzPickle):
 
     ## Arguments
     Pusher provides a range of parameters to modify the observation space, reward function, initial state, and termination condition.
-    These parameters can be applied during `robust_gymnasium.make` in the following way:
+    These parameters can be applied during `gymnasium.make` in the following way:
 
     ```python
-    import robust_gymnasium as gym
+    import gymnasium as gym
     env = gym.make('Pusher-v5', xml_file=...)
     ```
 
@@ -146,16 +143,16 @@ class PusherEnv(MujocoEnv, utils.EzPickle):
     ## Version History
     * v5:
         - Minimum `mujoco` version is now 2.3.3.
-        - Fixed bug: increased the density of the object to be higher than air (related [GitHub issue](https://github.com/Farama-Foundation/robust_gymnasium/issues/950)).
+        - Fixed bug: increased the density of the object to be higher than air (related [GitHub issue](https://github.com/Farama-Foundation/Gymnasium/issues/950)).
         - Added `default_camera_config` argument, a dictionary for setting the `mj_camera` properties, mainly useful for custom environments.
         - Added `frame_skip` argument, used to configure the `dt` (duration of `step()`), default varies by environment check environment documentation pages.
         - Added `xml_file` argument.
-        - Fixed bug: `reward_distance` & `reward_near` was based on the state before the physics step, now it is based on the state after the physics step (related [GitHub issue](https://github.com/Farama-Foundation/robust_gymnasium/issues/821)).
+        - Fixed bug: `reward_distance` & `reward_near` was based on the state before the physics step, now it is based on the state after the physics step (related [GitHub issue](https://github.com/Farama-Foundation/Gymnasium/issues/821)).
         - Added `reward_near_weight`, `reward_dist_weight`, `reward_control_weight` arguments to configure the reward function (defaults are effectively the same as in `v4`).
         - Fixed `info["reward_ctrl"]` not being multiplied by the reward weight.
         - Added `info["reward_near"]` which is equal to the reward term `reward_near`.
     * v4: All MuJoCo environments now use the MuJoCo bindings in mujoco >= 2.1.3.
-        - Warning: This version of the environment is not compatible with `mujoco>=3.0.0` (related [GitHub issue](https://github.com/Farama-Foundation/robust_gymnasium/issues/950)).
+        - Warning: This version of the environment is not compatible with `mujoco>=3.0.0` (related [GitHub issue](https://github.com/Farama-Foundation/Gymnasium/issues/950)).
     * v3: This environment does not have a v3 release.
     * v2: All continuous control environments now use mujoco-py >= 1.50.
     * v1: max_time_steps raised to 1000 for robot based tasks (not including pusher, which has a max_time_steps of 100). Added reward_threshold to environments.
@@ -215,46 +212,15 @@ class PusherEnv(MujocoEnv, utils.EzPickle):
         }
 
     def step(self, action):
-        mu = args.noise_mu
-        sigma = args.noise_sigma
-        if args.noise_factor == "action":
-            if args.noise_type == "gauss":
-                action = action + random.gauss(mu, sigma)  # robust setting
-            elif args.noise_type == "shift":
-                action = action + args.noise_shift
-            else:
-                action = action
-                print('\033[0;31m "No action robust learning! Using the original action" \033[0m')
-        else:
-            action = action
         self.do_simulation(action, self.frame_skip)
 
-        if args.noise_factor == "state":
-            if args.noise_type == "gauss":
-                observation = self._get_obs() + random.gauss(mu, sigma)  # robust setting
-            elif args.noise_type == "shift":
-                observation = self._get_obs() + args.noise_shift
-            else:
-                observation = self._get_obs()
-                print('\033[0;31m "No state robust learning! Using the original state" \033[0m')
-        else:
-            observation = self._get_obs()
+        observation = self._get_obs()
         reward, reward_info = self._get_rew(action)
         info = reward_info
 
         if self.render_mode == "human":
             self.render()
         # truncation=False as the time limit is handled by the `TimeLimit` wrapper added during `make`
-        if args.noise_factor == "reward":
-            if args.noise_type == "gauss":
-                reward = reward + random.gauss(mu, sigma)  # robust setting
-            elif args.noise_type == "shift":
-                reward = reward + args.noise_shift
-            else:
-                reward = reward
-                print('\033[0;31m "No reward robust learning! Using the original reward" \033[0m')
-        else:
-            reward = reward
         return observation, reward, False, False, info
 
     def _get_rew(self, action):

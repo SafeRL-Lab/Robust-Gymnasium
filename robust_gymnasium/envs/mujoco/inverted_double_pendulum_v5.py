@@ -4,13 +4,10 @@ from typing import Dict, Union
 
 import numpy as np
 
-from robust_gymnasium import utils
-from robust_gymnasium.envs.mujoco import MujocoEnv
-from robust_gymnasium.spaces import Box
+from gymnasium import utils
+from gymnasium.envs.mujoco import MujocoEnv
+from gymnasium.spaces import Box
 
-import random
-from robust_gymnasium.configs.robust_setting import get_config
-args = get_config().parse_args()
 
 DEFAULT_CAMERA_CONFIG = {
     "trackbodyid": 0,
@@ -108,10 +105,10 @@ class InvertedDoublePendulumEnv(MujocoEnv, utils.EzPickle):
 
     ## Arguments
     InvertedDoublePendulum provides a range of parameters to modify the observation space, reward function, initial state, and termination condition.
-    These parameters can be applied during `robust_gymnasium.make` in the following way:
+    These parameters can be applied during `gymnasium.make` in the following way:
 
     ```python
-    import robust_gymnasium as gym
+    import gymnasium as gym
     env = gym.make('InvertedDoublePendulum-v5', healthy_reward=10, ...)
     ```
 
@@ -126,8 +123,8 @@ class InvertedDoublePendulumEnv(MujocoEnv, utils.EzPickle):
         - Minimum `mujoco` version is now 2.3.3.
         - Added `default_camera_config` argument, a dictionary for setting the `mj_camera` properties, mainly useful for custom environments.
         - Added `frame_skip` argument, used to configure the `dt` (duration of `step()`), default varies by environment check environment documentation pages.
-        - Fixed bug: `healthy_reward` was given on every step (even if the Pendulum is unhealthy), now it is only given if the DoublePendulum is healthy (not terminated)(related [GitHub issue](https://github.com/Farama-Foundation/robust_gymnasium/issues/500)).
-        - Excluded the `qfrc_constraint` ("constraint force") of the hinges from the observation space (as it was always 0, thus providing no useful information to the agent, resulting in slightly faster training) (related [GitHub issue](https://github.com/Farama-Foundation/robust_gymnasium/issues/228)).
+        - Fixed bug: `healthy_reward` was given on every step (even if the Pendulum is unhealthy), now it is only given if the DoublePendulum is healthy (not terminated)(related [GitHub issue](https://github.com/Farama-Foundation/Gymnasium/issues/500)).
+        - Excluded the `qfrc_constraint` ("constraint force") of the hinges from the observation space (as it was always 0, thus providing no useful information to the agent, resulting in slightly faster training) (related [GitHub issue](https://github.com/Farama-Foundation/Gymnasium/issues/228)).
         - Added `xml_file` argument.
         - Added `reset_noise_scale` argument to set the range of initial states.
         - Added `healthy_reward` argument to configure the reward function (defaults are effectively the same as in `v4`).
@@ -182,31 +179,10 @@ class InvertedDoublePendulumEnv(MujocoEnv, utils.EzPickle):
         }
 
     def step(self, action):
-        mu = args.noise_mu
-        sigma = args.noise_sigma
-        if args.noise_factor == "action":
-            if args.noise_type == "gauss":
-                action = action + random.gauss(mu, sigma)  # robust setting
-            elif args.noise_type == "shift":
-                action = action + args.noise_shift
-            else:
-                action = action
-                print('\033[0;31m "No action robust learning! Using the original action" \033[0m')
-        else:
-            action = action
         self.do_simulation(action, self.frame_skip)
 
         x, _, y = self.data.site_xpos[0]
-        if args.noise_factor == "state":
-            if args.noise_type == "gauss":
-                observation = self._get_obs() + random.gauss(mu, sigma)  # robust setting
-            elif args.noise_type == "shift":
-                observation = self._get_obs() + args.noise_shift
-            else:
-                observation = self._get_obs()
-                print('\033[0;31m "No state robust learning! Using the original state" \033[0m')
-        else:
-            observation = self._get_obs()
+        observation = self._get_obs()
         terminated = bool(y <= 1)
         reward, reward_info = self._get_rew(x, y, terminated)
 
@@ -215,16 +191,6 @@ class InvertedDoublePendulumEnv(MujocoEnv, utils.EzPickle):
         if self.render_mode == "human":
             self.render()
         # truncation=False as the time limit is handled by the `TimeLimit` wrapper added during `make`
-        if args.noise_factor == "reward":
-            if args.noise_type == "gauss":
-                reward = reward + random.gauss(mu, sigma)  # robust setting
-            elif args.noise_type == "shift":
-                reward = reward + args.noise_shift
-            else:
-                reward = reward
-                print('\033[0;31m "No reward robust learning! Using the original reward" \033[0m')
-        else:
-            reward = reward
         return observation, reward, terminated, False, info
 
     def _get_rew(self, x, y, terminated):

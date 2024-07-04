@@ -4,13 +4,10 @@ from typing import Dict, Tuple, Union
 
 import numpy as np
 
-from robust_gymnasium import utils
-from robust_gymnasium.envs.mujoco import MujocoEnv
-from robust_gymnasium.spaces import Box
+from gymnasium import utils
+from gymnasium.envs.mujoco import MujocoEnv
+from gymnasium.spaces import Box
 
-import random
-from robust_gymnasium.configs.robust_setting import get_config
-args = get_config().parse_args()
 
 DEFAULT_CAMERA_CONFIG = {
     "trackbodyid": 2,
@@ -23,7 +20,7 @@ DEFAULT_CAMERA_CONFIG = {
 class Walker2dEnv(MujocoEnv, utils.EzPickle):
     r"""
     ## Description
-    This environment builds on the [hopper](https://robust_gymnasium.farama.org/environments/mujoco/hopper/) environment by adding another set of legs that allow the robot to walk forward instead of hop.
+    This environment builds on the [hopper](https://gymnasium.farama.org/environments/mujoco/hopper/) environment by adding another set of legs that allow the robot to walk forward instead of hop.
     Like other MuJoCo environments, this environment aims to increase the number of independent state and control variables compared to classical control environments.
     The walker is a two-dimensional bipedal robot consisting of seven main body parts - a single torso at the top (with the two legs splitting after the torso), two thighs in the middle below the torso, two legs below the thighs, and two feet attached to the legs on which the entire body rests.
     The goal is to walk in the forward (right) direction by applying torque to the six hinges connecting the seven body parts.
@@ -126,10 +123,10 @@ class Walker2dEnv(MujocoEnv, utils.EzPickle):
 
     ## Arguments
     Walker2d provides a range of parameters to modify the observation space, reward function, initial state, and termination condition.
-    These parameters can be applied during `robust_gymnasium.make` in the following way:
+    These parameters can be applied during `gymnasium.make` in the following way:
 
     ```python
-    import robust_gymnasium as gym
+    import gymnasium as gym
     env = gym.make('Walker2d-v5', ctrl_cost_weight=1e-3, ...)
     ```
 
@@ -154,13 +151,13 @@ class Walker2dEnv(MujocoEnv, utils.EzPickle):
         - Added `env.observation_structure`, a dictionary for specifying the observation space compose (e.g. `qpos`, `qvel`), useful for building tooling and wrappers for the MuJoCo environments.
         - Return a non-empty `info` with `reset()`, previously an empty dictionary was returned, the new keys are the same state information as `step()`.
         - Added `frame_skip` argument, used to configure the `dt` (duration of `step()`), default varies by environment check environment documentation pages.
-        - In v2, v3 and v4 the models have different friction values for the two feet (left foot friction == 1.9 and right foot friction == 0.9). The `Walker-v5` model is updated to have the same friction for both feet (set to 1.9). This causes the Walker2d's the right foot to slide less on the surface and therefore require more force to move (related [GitHub issue](https://github.com/Farama-Foundation/robust_gymnasium/issues/477)).
-        - Fixed bug: `healthy_reward` was given on every step (even if the Walker2D is unhealthy), now it is only given if the Walker2d is healthy. The `info` "reward_survive" is updated with this change (related [GitHub issue](https://github.com/Farama-Foundation/robust_gymnasium/issues/526)).
+        - In v2, v3 and v4 the models have different friction values for the two feet (left foot friction == 1.9 and right foot friction == 0.9). The `Walker-v5` model is updated to have the same friction for both feet (set to 1.9). This causes the Walker2d's the right foot to slide less on the surface and therefore require more force to move (related [GitHub issue](https://github.com/Farama-Foundation/Gymnasium/issues/477)).
+        - Fixed bug: `healthy_reward` was given on every step (even if the Walker2D is unhealthy), now it is only given if the Walker2d is healthy. The `info` "reward_survive" is updated with this change (related [GitHub issue](https://github.com/Farama-Foundation/Gymnasium/issues/526)).
         - Restored the `xml_file` argument (was removed in `v4`).
         - Added individual reward terms in `info` (`info["reward_forward"]`, info`["reward_ctrl"]`, `info["reward_survive"]`).
         - Added `info["z_distance_from_origin"]` which is equal to the vertical distance of the "torso" body from its initial position.
     * v4: All MuJoCo environments now use the MuJoCo bindings in mujoco >= 2.1.3
-    * v3: Support for `robust_gymnasium.make` kwargs such as `xml_file`, `ctrl_cost_weight`, `reset_noise_scale`, etc. rgb rendering comes from tracking camera (so agent does not run away from screen)
+    * v3: Support for `gymnasium.make` kwargs such as `xml_file`, `ctrl_cost_weight`, `reset_noise_scale`, etc. rgb rendering comes from tracking camera (so agent does not run away from screen)
     * v2: All continuous control environments now use mujoco-py >= 1.50
     * v1: max_time_steps raised to 1000 for robot based tasks. Added reward_threshold to environments.
     * v0: Initial versions release
@@ -286,33 +283,12 @@ class Walker2dEnv(MujocoEnv, utils.EzPickle):
         return observation
 
     def step(self, action):
-        mu = args.noise_mu
-        sigma = args.noise_sigma
-        if args.noise_factor == "action":
-            if args.noise_type == "gauss":
-                action = action + random.gauss(mu, sigma)  # robust setting
-            elif args.noise_type == "shift":
-                action = action + args.noise_shift
-            else:
-                action = action
-                print('\033[0;31m "No action robust learning! Using the original action" \033[0m')
-        else:
-            action = action
         x_position_before = self.data.qpos[0]
         self.do_simulation(action, self.frame_skip)
         x_position_after = self.data.qpos[0]
         x_velocity = (x_position_after - x_position_before) / self.dt
 
-        if args.noise_factor == "state":
-            if args.noise_type == "gauss":
-                observation = self._get_obs() + random.gauss(mu, sigma)  # robust setting
-            elif args.noise_type == "shift":
-                observation = self._get_obs() + args.noise_shift
-            else:
-                observation = self._get_obs()
-                print('\033[0;31m "No state robust learning! Using the original state" \033[0m')
-        else:
-            observation = self._get_obs()
+        observation = self._get_obs()
         reward, reward_info = self._get_rew(x_velocity, action)
         terminated = (not self.is_healthy) and self._terminate_when_unhealthy
         info = {
@@ -325,16 +301,6 @@ class Walker2dEnv(MujocoEnv, utils.EzPickle):
         if self.render_mode == "human":
             self.render()
         # truncation=False as the time limit is handled by the `TimeLimit` wrapper added during `make`
-        if args.noise_factor == "reward":
-            if args.noise_type == "gauss":
-                reward = reward + random.gauss(mu, sigma)  # robust setting
-            elif args.noise_type == "shift":
-                reward = reward + args.noise_shift
-            else:
-                reward = reward
-                print('\033[0;31m "No reward robust learning! Using the original reward" \033[0m')
-        else:
-            reward = reward
         return observation, reward, terminated, False, info
 
     def _get_rew(self, x_velocity: float, action):

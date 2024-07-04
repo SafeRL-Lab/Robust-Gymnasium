@@ -4,13 +4,10 @@ from typing import Dict, Union
 
 import numpy as np
 
-from robust_gymnasium import utils
-from robust_gymnasium.envs.mujoco import MujocoEnv
-from robust_gymnasium.spaces import Box
+from gymnasium import utils
+from gymnasium.envs.mujoco import MujocoEnv
+from gymnasium.spaces import Box
 
-import random
-from robust_gymnasium.configs.robust_setting import get_config
-args = get_config().parse_args()
 
 DEFAULT_CAMERA_CONFIG = {"trackbodyid": 0}
 
@@ -61,7 +58,7 @@ class ReacherEnv(MujocoEnv, utils.EzPickle):
     | excluded | z-value of position_fingertip - position_target (constantly 0 since reacher is 2d)        | -Inf | Inf | NA                               | slide | position (m)             |
 
 
-    Most robust_gymnasium environments just return the positions and velocities of the joints in the `.xml` file as the state of the environment.
+    Most Gymnasium environments just return the positions and velocities of the joints in the `.xml` file as the state of the environment.
     In reacher, however, the state is created by combining only certain elements of the position and velocity and performing some function transformations on them.
     The `reacher.xml` contains these 4 joints:
 
@@ -109,10 +106,10 @@ class ReacherEnv(MujocoEnv, utils.EzPickle):
 
     ## Arguments
     Reacher provides a range of parameters to modify the observation space, reward function, initial state, and termination condition.
-    These parameters can be applied during `robust_gymnasium.make` in the following way:
+    These parameters can be applied during `gymnasium.make` in the following way:
 
     ```python
-    import robust_gymnasium as gym
+    import gymnasium as gym
     env = gym.make('Reacher-v5', xml_file=...)
     ```
 
@@ -127,8 +124,8 @@ class ReacherEnv(MujocoEnv, utils.EzPickle):
         - Minimum `mujoco` version is now 2.3.3.
         - Added `default_camera_config` argument, a dictionary for setting the `mj_camera` properties, mainly useful for custom environments.
         - Added `frame_skip` argument, used to configure the `dt` (duration of `step()`), default varies by environment check environment documentation pages.
-        - Fixed bug: `reward_distance` was based on the state before the physics step, now it is based on the state after the physics step (related [GitHub issue](https://github.com/Farama-Foundation/robust_gymnasium/issues/821)).
-        - Removed `"z - position_fingertip"` from the observation space since it is always 0 and therefore provides no useful information to the agent, this should result is slightly faster training (related [GitHub issue](https://github.com/Farama-Foundation/robust_gymnasium/issues/204)).
+        - Fixed bug: `reward_distance` was based on the state before the physics step, now it is based on the state after the physics step (related [GitHub issue](https://github.com/Farama-Foundation/Gymnasium/issues/821)).
+        - Removed `"z - position_fingertip"` from the observation space since it is always 0 and therefore provides no useful information to the agent, this should result is slightly faster training (related [GitHub issue](https://github.com/Farama-Foundation/Gymnasium/issues/204)).
         - Added `xml_file` argument.
         - Added `reward_dist_weight`, `reward_control_weight` arguments to configure the reward function (defaults are effectively the same as in `v4`).
         - Fixed `info["reward_ctrl"]`  not being multiplied by the reward weight.
@@ -190,46 +187,15 @@ class ReacherEnv(MujocoEnv, utils.EzPickle):
         }
 
     def step(self, action):
-        mu = args.noise_mu
-        sigma = args.noise_sigma
-        if args.noise_factor == "action":
-            if args.noise_type == "gauss":
-                action = action + random.gauss(mu, sigma)  # robust setting
-            elif args.noise_type == "shift":
-                action = action + args.noise_shift
-            else:
-                action = action
-                print('\033[0;31m "No action robust learning! Using the original action" \033[0m')
-        else:
-            action = action
         self.do_simulation(action, self.frame_skip)
 
-        if args.noise_factor == "state":
-            if args.noise_type == "gauss":
-                observation = self._get_obs() + random.gauss(mu, sigma)  # robust setting
-            elif args.noise_type == "shift":
-                observation = self._get_obs() + args.noise_shift
-            else:
-                observation = self._get_obs()
-                print('\033[0;31m "No state robust learning! Using the original state" \033[0m')
-        else:
-            observation = self._get_obs()
+        observation = self._get_obs()
         reward, reward_info = self._get_rew(action)
         info = reward_info
 
         if self.render_mode == "human":
             self.render()
         # truncation=False as the time limit is handled by the `TimeLimit` wrapper added during `make`
-        if args.noise_factor == "reward":
-            if args.noise_type == "gauss":
-                reward = reward + random.gauss(mu, sigma)  # robust setting
-            elif args.noise_type == "shift":
-                reward = reward + args.noise_shift
-            else:
-                reward = reward
-                print('\033[0;31m "No reward robust learning! Using the original reward" \033[0m')
-        else:
-            reward = reward
         return observation, reward, False, False, info
 
     def _get_rew(self, action):

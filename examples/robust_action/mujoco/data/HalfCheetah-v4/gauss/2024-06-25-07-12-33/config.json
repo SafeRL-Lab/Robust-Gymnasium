@@ -1,0 +1,15 @@
+------------------ start ------------------
+gamma : 0.995
+env_name : HalfCheetah-v4
+noise_factor : robust_force
+noise_type : gauss
+noise_mu : 0.0
+noise_sigma : 0.005
+robust_force_mu : 0.0
+robust_force_sigma : 0.005
+robust_shape_mu : 0.0
+robust_shape_sigma : 0.05
+uniform_min_val : 0.05
+uniform_max_val : 0.55
+noise_shift : 0.005
+------------------- end -------------------

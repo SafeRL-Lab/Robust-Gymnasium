@@ -4,13 +4,10 @@ from typing import Dict, Tuple, Union
 
 import numpy as np
 
-from robust_gymnasium import utils
-from robust_gymnasium.envs.mujoco import MujocoEnv
-from robust_gymnasium.spaces import Box
+from gymnasium import utils
+from gymnasium.envs.mujoco import MujocoEnv
+from gymnasium.spaces import Box
 
-import random
-from robust_gymnasium.configs.robust_setting import get_config
-args = get_config().parse_args()
 
 DEFAULT_CAMERA_CONFIG = {
     "trackbodyid": 1,
@@ -248,10 +245,10 @@ class HumanoidEnv(MujocoEnv, utils.EzPickle):
 
     ## Arguments
     Humanoid provides a range of parameters to modify the observation space, reward function, initial state, and termination condition.
-    These parameters can be applied during `robust_gymnasium.make` in the following way:
+    These parameters can be applied during `gymnasium.make` in the following way:
 
     ```python
-    import robust_gymnasium as gym
+    import gymnasium as gym
     env = gym.make('Humanoid-v5', ctrl_cost_weight=0.1, ....)
     ```
 
@@ -280,19 +277,19 @@ class HumanoidEnv(MujocoEnv, utils.EzPickle):
         - Added `env.observation_structure`, a dictionary for specifying the observation space compose (e.g. `qpos`, `qvel`), useful for building tooling and wrappers for the MuJoCo environments.
         - Return a non-empty `info` with `reset()`, previously an empty dictionary was returned, the new keys are the same state information as `step()`.
         - Added `frame_skip` argument, used to configure the `dt` (duration of `step()`), default varies by environment check environment documentation pages.
-        - Fixed bug: `healthy_reward` was given on every step (even if the Humanoid was unhealthy), now it is only given when the Humanoid is healthy. The `info["reward_survive"]` is updated with this change (related [GitHub issue](https://github.com/Farama-Foundation/robust_gymnasium/issues/526)).
-        - Restored `contact_cost` and the corresponding `contact_cost_weight` and `contact_cost_range` arguments, with the same defaults as in `Humanoid-v3` (was removed in `v4`) (related [GitHub issue](https://github.com/Farama-Foundation/robust_gymnasium/issues/504)).
-        - Excluded the `cinert` & `cvel` & `cfrc_ext` of `worldbody` and `root`/`freejoint` `qfrc_actuator` from the observation space, as it was always 0 and thus provided no useful information to the agent, resulting in slightly faster training (related [GitHub issue](https://github.com/Farama-Foundation/robust_gymnasium/issues/204)).
+        - Fixed bug: `healthy_reward` was given on every step (even if the Humanoid was unhealthy), now it is only given when the Humanoid is healthy. The `info["reward_survive"]` is updated with this change (related [GitHub issue](https://github.com/Farama-Foundation/Gymnasium/issues/526)).
+        - Restored `contact_cost` and the corresponding `contact_cost_weight` and `contact_cost_range` arguments, with the same defaults as in `Humanoid-v3` (was removed in `v4`) (related [GitHub issue](https://github.com/Farama-Foundation/Gymnasium/issues/504)).
+        - Excluded the `cinert` & `cvel` & `cfrc_ext` of `worldbody` and `root`/`freejoint` `qfrc_actuator` from the observation space, as it was always 0 and thus provided no useful information to the agent, resulting in slightly faster training (related [GitHub issue](https://github.com/Farama-Foundation/Gymnasium/issues/204)).
         - Restored the `xml_file` argument (was removed in `v4`).
         - Added `include_cinert_in_observation`, `include_cvel_in_observation`, `include_qfrc_actuator_in_observation`, `include_cfrc_ext_in_observation` arguments to allow for the exclusion of observation elements from the observation space.
-        - Fixed `info["x_position"]` & `info["y_position"]` & `info["distance_from_origin"]` returning `xpos` instead of `qpos` based observations (`xpos` observations are behind 1 `mj_step()` more [here](https://github.com/deepmind/mujoco/issues/889#issuecomment-1568896388)) (related [GitHub issue #1](https://github.com/Farama-Foundation/robust_gymnasium/issues/521) & [GitHub issue #2](https://github.com/Farama-Foundation/robust_gymnasium/issues/539)).
+        - Fixed `info["x_position"]` & `info["y_position"]` & `info["distance_from_origin"]` returning `xpos` instead of `qpos` based observations (`xpos` observations are behind 1 `mj_step()` more [here](https://github.com/deepmind/mujoco/issues/889#issuecomment-1568896388)) (related [GitHub issue #1](https://github.com/Farama-Foundation/Gymnasium/issues/521) & [GitHub issue #2](https://github.com/Farama-Foundation/Gymnasium/issues/539)).
         - Added `info["tendon_length"]` and `info["tendon_velocity"]` containing observations of the Humanoid's 2 tendons connecting the hips to the knees.
         - Renamed `info["reward_alive"]` to `info["reward_survive"]` to be consistent with the other environments.
         - Renamed `info["reward_linvel"]` to `info["reward_forward"]` to be consistent with the other environments.
         - Renamed `info["reward_quadctrl"]` to `info["reward_ctrl"]` to be consistent with the other environments.
         - Removed `info["forward_reward"]` as it is equivalent to `info["reward_forward"]`.
     * v4: All MuJoCo environments now use the MuJoCo bindings in mujoco >= 2.1.3
-    * v3: Support for `robust_gymnasium.make` kwargs such as `xml_file`, `ctrl_cost_weight`, `reset_noise_scale`, etc. rgb rendering comes from tracking camera (so agent does not run away from screen)
+    * v3: Support for `gymnasium.make` kwargs such as `xml_file`, `ctrl_cost_weight`, `reset_noise_scale`, etc. rgb rendering comes from tracking camera (so agent does not run away from screen)
         - Note: the environment robot model was slightly changed at `gym==0.21.0` and training results are not comparable with `gym<0.21` and `gym>=0.21` (related [GitHub PR](https://github.com/openai/gym/pull/932/files))
     * v2: All continuous control environments now use mujoco-py >= 1.50
         - Note: the environment robot model was slightly changed at `gym==0.21.0` and training results are not comparable with `gym<0.21` and `gym>=0.21` (related [GitHub PR](https://github.com/openai/gym/pull/932/files))
@@ -473,18 +470,6 @@ class HumanoidEnv(MujocoEnv, utils.EzPickle):
         )
 
     def step(self, action):
-        mu = args.noise_mu
-        sigma = args.noise_sigma
-        if args.noise_factor == "action":
-            if args.noise_type == "gauss":
-                action = action + random.gauss(mu, sigma)  # robust setting
-            elif args.noise_type == "shift":
-                action = action + args.noise_shift
-            else:
-                action = action
-                print('\033[0;31m "No action robust learning! Using the original action" \033[0m')
-        else:
-            action = action
         xy_position_before = mass_center(self.model, self.data)
         self.do_simulation(action, self.frame_skip)
         xy_position_after = mass_center(self.model, self.data)
@@ -492,16 +477,7 @@ class HumanoidEnv(MujocoEnv, utils.EzPickle):
         xy_velocity = (xy_position_after - xy_position_before) / self.dt
         x_velocity, y_velocity = xy_velocity
 
-        if args.noise_factor == "state":
-            if args.noise_type == "gauss":
-                observation = self._get_obs() + random.gauss(mu, sigma)  # robust setting
-            elif args.noise_type == "shift":
-                observation = self._get_obs() + args.noise_shift
-            else:
-                observation = self._get_obs()
-                print('\033[0;31m "No state robust learning! Using the original state" \033[0m')
-        else:
-            observation = self._get_obs()
+        observation = self._get_obs()
         reward, reward_info = self._get_rew(x_velocity, action)
         terminated = (not self.is_healthy) and self._terminate_when_unhealthy
         info = {
@@ -518,16 +494,6 @@ class HumanoidEnv(MujocoEnv, utils.EzPickle):
         if self.render_mode == "human":
             self.render()
         # truncation=False as the time limit is handled by the `TimeLimit` wrapper added during `make`
-        if args.noise_factor == "reward":
-            if args.noise_type == "gauss":
-                reward = reward + random.gauss(mu, sigma)  # robust setting
-            elif args.noise_type == "shift":
-                reward = reward + args.noise_shift
-            else:
-                reward = reward
-                print('\033[0;31m "No reward robust learning! Using the original reward" \033[0m')
-        else:
-            reward = reward
         return observation, reward, terminated, False, info
 
     def _get_rew(self, x_velocity: float, action):

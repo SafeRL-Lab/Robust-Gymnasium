@@ -168,49 +168,55 @@ class Door(SingleArmEnv):
 
         """
         When the table_height value is larger, the table will be higher.
-        When the table_robot_back_distance value is smaller, the table will be farther away from the robot.
-        When the table_robot_left_distance value is larger, the table will be farther to the left relative to the robot.
+        When the self.table_robot_back_distance value is smaller, the table will be farther away from the robot.
+        When the self.table_robot_left_distance value is larger, the table will be farther to the left relative to the robot.
         """
+        # robust_setting = options["robust_setting"] # robust_setting["robust_config"]
+        # robust_setting_args = robust_setting["robust_config"]
         mu = args.noise_mu
         sigma = args.noise_sigma
-        table_height = 0.8
+        # table_height = robust_setting_args.door_robot_table_distance
+        self.table_height = 0.8  # 0.8 # 1.1
         if args.noise_factor == "door_table_height":
             if args.noise_type == "gauss":
-                table_height = table_height + random.gauss(mu, sigma)  # robust setting
+                self.table_height = self.table_height + random.gauss(mu, sigma)  # robust setting
             elif args.noise_type == "shift":
-                table_height = table_height + args.noise_shift
+                self.table_height = self.table_height + args.noise_shift
             else:
-                table_height = table_height
+                self.table_height = self.table_height
                 print('\033[0;31m "No table_height entropy learning! Using the original action" \033[0m')
         else:
-            table_height = table_height
+            self.table_height = self.table_height
 
-        table_robot_back_distance = -0.35
+        if self.table_height < 1.0:
+            self.table_robot_back_distance = -0.35  # 0.5 # -0.35
+        else:
+            self.table_robot_back_distance = -0.65  # -0.55 # 0.5 # -0.35
         if args.noise_factor == "table_robot_back_distance":
             if args.noise_type == "gauss":
-                table_robot_back_distance = table_robot_back_distance + random.gauss(mu, sigma)  # robust setting
+                self.table_robot_back_distance = self.table_robot_back_distance + random.gauss(mu, sigma)  # robust setting
             elif args.noise_type == "shift":
-                table_robot_back_distance = table_robot_back_distance + args.noise_shift
+                self.table_robot_back_distance = self.table_robot_back_distance + args.noise_shift
             else:
-                table_robot_back_distance = table_robot_back_distance
+                self.table_robot_back_distance = self.table_robot_back_distance
                 print('\033[0;31m "No table_height entropy learning! Using the original action" \033[0m')
         else:
-            table_robot_back_distance = table_robot_back_distance
+            self.table_robot_back_distance = self.table_robot_back_distance
 
-        table_robot_left_distance = -0.2
+        self.table_robot_left_distance = -0.2 # -1 #-0.2
         if args.noise_factor == "table_robot_left_distance":
             if args.noise_type == "gauss":
-                table_robot_left_distance = table_robot_left_distance + random.gauss(mu, sigma)  # robust setting
+                self.table_robot_left_distance = self.table_robot_left_distance + random.gauss(mu, sigma)  # robust setting
             elif args.noise_type == "shift":
-                table_robot_left_distance = table_robot_left_distance + args.noise_shift
+                self.table_robot_left_distance = self.table_robot_left_distance + args.noise_shift
             else:
-                table_robot_left_distance = table_robot_left_distance
+                self.table_robot_left_distance = self.table_robot_left_distance
                 print('\033[0;31m "No table_height entropy learning! Using the original action" \033[0m')
         else:
-            table_robot_left_distance = table_robot_left_distance
+            self.table_robot_left_distance = self.table_robot_left_distance
 
         self.table_full_size = (0.8, 0.3, 0.05)
-        self.table_offset = (table_robot_left_distance, table_robot_back_distance, table_height) # (-0.2, -0.35, 0.8)
+        self.table_offset = (self.table_robot_left_distance, self.table_robot_back_distance, self.table_height) # (-0.2, -0.35, 0.8)
 
 
         # reward configuration
@@ -251,7 +257,7 @@ class Door(SingleArmEnv):
             renderer_config=renderer_config,
         )
 
-    def reward(self, action=None):
+    def reward(self, robust_setting_robosuite=None):
         """
         Reward function for the task.
 
@@ -278,7 +284,12 @@ class Door(SingleArmEnv):
             float: reward value
         """
         reward = 0.0
-
+        action = robust_setting_robosuite["action"]
+        robust_door_args = robust_setting_robosuite["robust_config"]
+        # print("robust_door_args----:", robust_door_args)
+        if robust_door_args.env_robosuite_robust == "Door-Semantic":
+            self.table_height = robust_door_args.door_table_height
+            self.table_robot_back_distance = robust_door_args.door_robot_table_distance
         # sparse completion reward
         if self._check_success():
             reward = 1.0
@@ -319,7 +330,14 @@ class Door(SingleArmEnv):
         # Arena always gets set to zero origin
         mujoco_arena.set_origin([0, 0, 0])
 
-        # Modify default agentview camera
+        # # Modify default agentview camera
+        # mujoco_arena.set_camera(
+        #     camera_name="agentview",
+        #     pos=[0.5986131746834771, -4.392035683362857e-09, 1.5903500240372423],
+        #     quat=[0.6380177736282349, 0.3048497438430786, 0.30484986305236816, 0.6380177736282349],
+        # )
+
+        # TODO: revise it for robust multi-robot settings
         mujoco_arena.set_camera(
             camera_name="agentview",
             pos=[0.5986131746834771, -4.392035683362857e-09, 1.5903500240372423],
@@ -337,7 +355,7 @@ class Door(SingleArmEnv):
 
         mu = args.noise_mu
         sigma = args.noise_sigma
-        table_robot_left_rotation = -np.pi / 2.0 - 0.25
+        table_robot_left_rotation = -np.pi / 2.0 - 0.25 # -np.pi / 2.0 - 0.25-1.18 # -np.pi / 2.0 - 0.25
         if args.noise_factor == "table_robot_left_rotation":
             if args.noise_type == "gauss":
                 table_robot_left_rotation = table_robot_left_rotation + random.gauss(mu, sigma)  # robust setting

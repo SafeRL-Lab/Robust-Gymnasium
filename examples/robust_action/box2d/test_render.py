@@ -27,7 +27,7 @@ with open(json_path, 'w') as f:
 
 
 # env = gym.make(args.env_name, args, render_mode="human")  # "LunarLander-v3" "LunarLanderContinuous-v3", "CarRacing-v2"
-env = gym.make(args.env_name, args, hardcore=True, render_mode="human")  # "BipedalWalker-v3", "BipedalWalkerHardcore-v3"
+env = gym.make(args.env_name, hardcore=True, render_mode="human")  # "BipedalWalker-v3", "BipedalWalkerHardcore-v3"
 # env = gym.make(args.env_name, args, render_mode="human") # render environments
 # env = gym.make(args.env_name, args)
 print("type-----------args:", args)
@@ -35,7 +35,12 @@ print("type-----------args:", args)
 observation, info = env.reset(seed=42)
 for i in range(1000):
     action = env.action_space.sample()
-    observation, reward, terminated, truncated, info = env.step(action)
+    robust_input = {
+        "action": action,
+        "robust_type": "action",
+        "robust_config": args,
+    }
+    observation, reward, terminated, truncated, info = env.step(robust_input)
     # print("reward----------:", reward)
     env.render() # render environments
     if terminated or truncated:

@@ -1,12 +1,9 @@
 import numpy as np
 
-from robust_gymnasium import utils
-from robust_gymnasium.envs.mujoco.mujoco_py_env import MuJocoPyEnv
-from robust_gymnasium.spaces import Box
+from gymnasium import utils
+from gymnasium.envs.mujoco.mujoco_py_env import MuJocoPyEnv
+from gymnasium.spaces import Box
 
-import random
-from robust_gymnasium.configs.robust_setting import get_config
-args = get_config().parse_args()
 
 class AntEnv(MuJocoPyEnv, utils.EzPickle):
     metadata = {
@@ -28,19 +25,6 @@ class AntEnv(MuJocoPyEnv, utils.EzPickle):
         utils.EzPickle.__init__(self, **kwargs)
 
     def step(self, a):
-        mu = args.noise_mu
-        sigma = args.noise_sigma
-        if args.noise_factor == "action":
-            if args.noise_type == "gauss":
-                a = a + random.gauss(mu, sigma)  # robust setting
-            elif args.noise_type == "shift":
-                a = a + args.noise_shift
-            else:
-                a = a
-                print('\033[0;31m "No action robust learning! Using the original action" \033[0m')
-        else:
-            a = a
-
         xposbefore = self.get_body_com("torso")[0]
         self.do_simulation(a, self.frame_skip)
         xposafter = self.get_body_com("torso")[0]
@@ -57,33 +41,13 @@ class AntEnv(MuJocoPyEnv, utils.EzPickle):
             np.isfinite(state).all() and state[2] >= 0.2 and state[2] <= 1.0
         )
         terminated = not not_terminated
-        if args.noise_factor == "state":
-            if args.noise_type == "gauss":
-                observation = self._get_obs() + random.gauss(mu, sigma)  # robust setting
-            elif args.noise_type == "shift":
-                observation = self._get_obs() + args.noise_shift
-            else:
-                observation = self._get_obs()
-                print('\033[0;31m "No state robust learning! Using the original state" \033[0m')
-        else:
-            observation = self._get_obs()
+        ob = self._get_obs()
 
         if self.render_mode == "human":
             self.render()
         # truncation=False as the time limit is handled by the `TimeLimit` wrapper added during `make`
-        if args.noise_factor == "reward":
-            if args.noise_type == "gauss":
-                reward = reward + random.gauss(mu, sigma)  # robust setting
-            elif args.noise_type == "shift":
-                reward = reward + args.noise_shift
-            else:
-                reward = reward
-                print('\033[0;31m "No reward robust learning! Using the original reward" \033[0m')
-        else:
-            reward = reward
-
         return (
-            observation,
+            ob,
             reward,
             terminated,
             False,

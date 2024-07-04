@@ -30,6 +30,7 @@ class SingleArmEnv(ManipulationEnv):
         """
         super()._check_robot_configuration(robots)
         if type(robots) is list:
+            # pass  # TODO: revise it for robust multi-robot settings
             assert len(robots) == 1, "Error: Only one robot should be inputted for this task!"
 
     @property

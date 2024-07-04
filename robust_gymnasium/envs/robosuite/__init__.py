@@ -13,6 +13,8 @@ from robust_gymnasium.envs.robosuite.environments.manipulation.two_arm_peg_in_ho
 from robust_gymnasium.envs.robosuite.environments.manipulation.two_arm_handover import TwoArmHandover
 from robust_gymnasium.envs.robosuite.environments.manipulation.two_arm_transport import TwoArmTransport
 
+from robust_gymnasium.envs.robosuite.environments.manipulation.multi_robust_door import MultiRobustDoor
+
 from robust_gymnasium.envs.robosuite.environments import ALL_ENVIRONMENTS
 from robust_gymnasium.envs.robosuite.controllers import ALL_CONTROLLERS, load_controller_config
 from robust_gymnasium.envs.robosuite.robots import ALL_ROBOTS

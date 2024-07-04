@@ -6,11 +6,11 @@ Author: @Kallinteris-Andreas
 import mujoco
 import numpy as np
 
-import robust_gymnasium
+import gymnasium
 
 
 def get_state(
-    env: robust_gymnasium.envs.mujoco.MujocoEnv,
+    env: gymnasium.envs.mujoco.MujocoEnv,
     state_type: mujoco.mjtState = mujoco.mjtState.mjSTATE_FULLPHYSICS,
 ):
     """Gets the state of `env`.
@@ -27,7 +27,7 @@ def get_state(
 
 
 def set_state(
-    env: robust_gymnasium.envs.mujoco.MujocoEnv,
+    env: gymnasium.envs.mujoco.MujocoEnv,
     state: np.ndarray,
     state_type: mujoco.mjtState = mujoco.mjtState.mjSTATE_FULLPHYSICS,
 ):
@@ -50,7 +50,7 @@ def set_state(
 
 
 def check_mujoco_reset_state(
-    env: robust_gymnasium.envs.mujoco.MujocoEnv,
+    env: gymnasium.envs.mujoco.MujocoEnv,
     seed=1234,
     state_type: mujoco.mjtState = mujoco.mjtState.mjSTATE_INTEGRATION,
 ):

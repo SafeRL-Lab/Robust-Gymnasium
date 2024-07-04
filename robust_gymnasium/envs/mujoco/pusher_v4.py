@@ -1,13 +1,10 @@
 import mujoco
 import numpy as np
 
-from robust_gymnasium import utils
-from robust_gymnasium.envs.mujoco import MujocoEnv
-from robust_gymnasium.spaces import Box
+from gymnasium import utils
+from gymnasium.envs.mujoco import MujocoEnv
+from gymnasium.spaces import Box
 
-import random
-from robust_gymnasium.configs.robust_setting import get_config
-args = get_config().parse_args()
 
 DEFAULT_CAMERA_CONFIG = {
     "trackbodyid": -1,
@@ -28,7 +25,7 @@ class PusherEnv(MujocoEnv, utils.EzPickle):
     def __init__(self, **kwargs):
         if mujoco.__version__ >= "3.0.0":
             raise ImportError(
-                "`Pusher-v4` is only supported on `mujoco<3`, for more information https://github.com/Farama-Foundation/robust_gymnasium/issues/950"
+                "`Pusher-v4` is only supported on `mujoco<3`, for more information https://github.com/Farama-Foundation/Gymnasium/issues/950"
             )
         utils.EzPickle.__init__(self, **kwargs)
 
@@ -43,18 +40,6 @@ class PusherEnv(MujocoEnv, utils.EzPickle):
         )
 
     def step(self, a):
-        mu = args.noise_mu
-        sigma = args.noise_sigma
-        if args.noise_factor == "action":
-            if args.noise_type == "gauss":
-                a = a + random.gauss(mu, sigma)  # robust setting
-            elif args.noise_type == "shift":
-                a = a + args.noise_shift
-            else:
-                a = a
-                print('\033[0;31m "No action entropy learning! Using the original action" \033[0m')
-        else:
-            a = a
         vec_1 = self.get_body_com("object") - self.get_body_com("tips_arm")
         vec_2 = self.get_body_com("object") - self.get_body_com("goal")
 
@@ -67,30 +52,10 @@ class PusherEnv(MujocoEnv, utils.EzPickle):
         if self.render_mode == "human":
             self.render()
 
-        # ob = self._get_obs() + random.gauss(mu, sigma)  # robust setting
-        if args.noise_factor == "state":
-            if args.noise_type == "gauss":
-                observation = self._get_obs() + random.gauss(mu, sigma)  # robust setting
-            elif args.noise_type == "shift":
-                observation = self._get_obs() + args.noise_shift
-            else:
-                observation = self._get_obs()
-                print('\033[0;31m "No state entropy learning! Using the original state" \033[0m')
-        else:
-            observation = self._get_obs()
+        ob = self._get_obs()
         # truncation=False as the time limit is handled by the `TimeLimit` wrapper added during `make`
-        if args.noise_factor == "reward":
-            if args.noise_type == "gauss":
-                reward = reward + random.gauss(mu, sigma)  # robust setting
-            elif args.noise_type == "shift":
-                reward = reward + args.noise_shift
-            else:
-                reward = reward
-                print('\033[0;31m "No reward entropy learning! Using the original reward" \033[0m')
-        else:
-            reward = reward
         return (
-            observation,
+            ob,
             reward,
             False,
             False,

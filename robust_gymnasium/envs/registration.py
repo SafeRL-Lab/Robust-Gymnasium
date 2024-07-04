@@ -97,7 +97,6 @@ class EnvSpec:
     """
 
     id: str
-    args: field(default_factory=dict)
     entry_point: EnvCreator | str | None = field(default=None)
 
     # Environment attributes
@@ -537,7 +536,7 @@ def _find_spec(env_id: str) -> EnvSpec:
     return env_spec
 
 
-def load_env_creator(name: str, args) -> EnvCreator | VectorEnvCreator:
+def load_env_creator(name: str) -> EnvCreator | VectorEnvCreator:
     """Loads an environment with name of style ``"(import path):(environment name)"`` and returns the environment creation function, normally the environment class type.
 
     Args:
@@ -554,11 +553,11 @@ def load_env_creator(name: str, args) -> EnvCreator | VectorEnvCreator:
     # print("attr_name------------:", attr_name)
     # print("fn------------:", fn)
     # fn = fn(args)
-    # mod - -----------: < module 'robust_gymnasium.envs.mujoco.ant_v4'
+    # mod - -----------: < module 'robust_gymnasium.envs.robust_mujoco.ant_v4'
     # from '/home/shangding/mycode/robust_rl/robust_gymnasium/robust_gymnasium/envs/mujoco/ant_v4.py' >
-    # mod_name - -----------: robust_gymnasium.envs.mujoco.ant_v4
+    # mod_name - -----------: robust_gymnasium.envs.robust_mujoco.ant_v4
     # attr_name - -----------: AntEnv
-    # fn - -----------: <class 'robust_gymnasium.envs.mujoco.ant_v4.AntEnv'>
+    # fn - -----------: <class 'robust_gymnasium.envs.robust_mujoco.ant_v4.AntEnv'>
 
     return fn
 
@@ -639,7 +638,6 @@ def register(
 
     new_spec = EnvSpec(
         id=full_env_id,
-        args=args,
         entry_point=entry_point,
         reward_threshold=reward_threshold,
         nondeterministic=nondeterministic,
@@ -659,7 +657,6 @@ def register(
 
 def make(
     id: str | EnvSpec,
-    args,
     max_episode_steps: int | None = None,
     disable_env_checker: bool | None = None,
     **kwargs: Any,
@@ -715,7 +712,7 @@ def make(
         env_creator = env_spec.entry_point
     else:
         # Assume it's a string
-        env_creator = load_env_creator(env_spec.entry_point, args)
+        env_creator = load_env_creator(env_spec.entry_point)
 
     # Determine if to use the rendering
     render_modes: list[str] | None = None
@@ -788,7 +785,6 @@ def make(
     # Set the minimal env spec for the environment.
     env.unwrapped.spec = EnvSpec(
         id=env_spec.id,
-        args=args,
         entry_point=env_spec.entry_point,
         reward_threshold=env_spec.reward_threshold,
         nondeterministic=env_spec.nondeterministic,
@@ -837,7 +833,7 @@ def make(
                 f"{wrapper_spec.name} wrapper does not inherit from `robust_gymnasium.utils.RecordConstructorArgs`, therefore, the wrapper cannot be recreated."
             )
 
-        env = load_env_creator(wrapper_spec.entry_point, args)(env=env, **wrapper_spec.kwargs)
+        env = load_env_creator(wrapper_spec.entry_point)(env=env, **wrapper_spec.kwargs)
 
     # Add human rendering wrapper
     if apply_human_rendering:
@@ -1055,8 +1051,8 @@ def pprint_registry(
 
             if len(split_entry_point) >= 3:
                 # If namespace is of the format:
-                #  - robust_gymnasium.envs.mujoco.ant_v4:AntEnv
-                #  - robust_gymnasium.envs.mujoco:HumanoidEnv
+                #  - robust_gymnasium.envs.robust_mujoco.ant_v4:AntEnv
+                #  - robust_gymnasium.envs.robust_mujoco:HumanoidEnv
                 ns = split_entry_point[2]
             elif len(split_entry_point) > 1:
                 # If namespace is of the format - shimmy.atari_env

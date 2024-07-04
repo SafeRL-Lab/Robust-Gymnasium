@@ -80,7 +80,7 @@ nvidia-nccl-cu12==2.20.5
 nvidia-nvjitlink-cu12==12.5.40
 nvidia-nvtx-cu12==12.1.105
 # Editable install with no version control (omnirobust==0.1.0)
--e /home/shangding/mycode/robust_rl/omnirobust
+
 packaging==24.0
 pandas==2.0.3
 pettingzoo==1.24.3
@@ -107,7 +107,7 @@ qt-gui-py-common==0.4.2
 requests==2.32.3
 resource_retriever==1.12.6
 rich==13.7.1
--e git+ssh://git@github.com/SafeRL-Lab/Robust-Gymnasium.git@456269cb883f7cd3565beb17594932fd958a29d1#egg=robust_gymnasium
+
 rosbag==1.15.13
 rosboost-cfg==1.15.8
 rosclean==1.15.8

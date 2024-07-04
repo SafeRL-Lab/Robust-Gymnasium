@@ -1,7 +1,89 @@
 
+
+## Robust Gymnasium: A Unifying Robust Reinforcement Learning Benchmark
+
+ 
+ <div align=center>
+ <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/overview/gif-edit-overview.gif" width="850"/> 
+ </div>
+<div align=center>
+<center style="color:#000000;text-decoration:underline"> </center>
+ </div>
+ 
+
+
+<br/>
+
+
+This benchmark aims to advance robust reinforcement learning (RL) for real-world applications and domain adaptation. The benchmark provides a comprehensive set of tasks that cover various robustness requirements in the face of uncertainty on state, action, reward and environmental dynamics, and span diverse applications including control, robot manipulations, dexterous hand, and so on. 
+
+🔥 **Benchmark Features:** 
+
+- **High Modularity:** It is designed for flexible adaptation to a variety of research needs, featuring high modularity to support a wide range of experiments.
+- **Task Coverage:** It provides a comprehensive set of tasks to evaluate robustness across different RL scenarios.
+- **High Compatibility:** It can be seamless and compatible with a wide range of existing environments.
+- **Support Vectorized Environments:** It can be useful to enable parallel processing of multiple environments for efficient experimentation.
+- **Support for New Gym API:** It fully supports the latest standards in Gym API, facilitating easy integration and expansion.
+- **Support for Vision/Image Input:** Robust vision/image can be used as the observation input to train models (To be fine-tuned).
+- **LLMs Guide Robust Learning:** Leverage LLMs to set robust parameters (To be done).
+
+🔥 **Benchmark Tasks:**
+
+- **Robust MuJoCo Tasks:** Tackle complex simulations with enhanced robustness.
+- **Robust Box2D Tasks:** Engage with 2D physics environments designed for robustness evaluation.
+- **Robust Robot Manipulation Tasks:** Robust robotic manipulation with Kuka and Franka robots.
+- **Robust Safety Tasks:** Prioritize safety in robustness evaluation.
+- **Robust Android Hand Tasks:** Explore sophisticated hand manipulation challenges in robust settings.
+- **Robust Dexterous Tasks:** Advance the robust capabilities in dexterous robotics.
+- **Robust Fetch Manipulation Tasks:** Robust object manipulation with Fetch robots.
+- **Robust Robot Kitchen Tasks:** Robust manipulation in Kitchen environments with robots.
+- **Robust Maze Tasks:** Robust navigation robots.
+- **Robust Multi-Agent Tasks:** Facilitate robust coordination among multiple agents.
+
+Each of these robust tasks incorporates robust elements such as robust observations, actions, reward signals, and dynamics to evaluate the robustness of RL algorithms.
+
+🔥 **Our Vision:**
+We hope this benchmark serves as a useful platform for pushing the boundaries of RL in real-world problems --- promoting robustness and domain adaptation ability!
+
+Any suggestions and issues are welcome. If you have any questions, please propose an issue or pull request, or contact us directly via email at shangding.gu@berkeley.edu; we will respond to you in one week.
+
+----------
+**Content**
+<!-- - [Compare with Existing Platforms](#compare-with-existing-platforms) -->
+- [Demos](#demos)
+  * [Robust MuJoCo Tasks](#robust-mujoco-tasks)
+  * [Robust MuJoCo Variant Tasks](#robust-mujoco-variant-tasks)
+  * [Robust Robot Manipulation Tasks](#robust-robot-manipulation-tasks)
+  * [Robust Dexterous Hand and Maze Tasks](#robust-dexterous-hand-and-maze-tasks)
+- [Environments and Tasks](#environments-and-tasks)
+- [Robustness Factors & Interaction Modes with Environments](#robustness-factors-\&-interaction-modes-with-environments)
+- [Installation of the Environment](#installation-of-the-environments)
+- [Quick start](#testing-the-tasks)
+- [Tutorials](#tutorials)
+- [Tasks](#tasks)
+- [Citation](#citation)
+- [Acknowledgments](#acknowledgments)
+
+
+<!--
+----------
+
+## Compare with Existing Platforms
+| Robust RL Platforms  | High Modularity   | Task Coverage | Vectorized Environments | High Compatibility  | New Gym API  |
+| :---------: | :---------: | :---------: | :---------: | :---------: | :---------: |
+| [Robust Gymnasium](https://github.com/SafeRL-Lab/Robust-Gymnasium)                     | :heavy_check_mark:         | :heavy_check_mark:    | :heavy_check_mark: | :heavy_check_mark:  | :heavy_check_mark:  |
+| [RLLS](https://github.com/SuReLI/RRLS)                   | :x:         | :x:     |       :x:        | :x:   | :heavy_check_mark:  |
+
+-->
+
+
+--------------
+
+
 ## Demos
 
 
+### Robust MuJoCo Tasks
 <p align="center">
   <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/Ant-v4.gif" alt="Image 1" width="300" style="margin-right: 10px;"/>
   <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/HalfCheetah-v4.gif" alt="Image 2" width="300" style="margin-right: 10px;"/>
@@ -23,18 +105,168 @@
   These demonstrations are from version 4 of the MuJoCo tasks with robust settings.
 </p>
 
+
+### Robust MuJoCo Variant Tasks
+<p align="center">
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_mujoco_dynamics/Ant_variant/Ant_vriant_1%2000_00_00-00_00_30.gif" alt="Image 1" width="300" style="margin-right: 10px;"/>
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_mujoco_dynamics/Ant_variant/Ant_variant_2%2000_00_00-00_00_30.gif" alt="Image 2" width="300" style="margin-right: 10px;"/>
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_mujoco_dynamics/Ant_variant/Ant_variant_3%2000_00_00-00_00_30.gif" alt="Image 3" width="300" style="margin-right: 10px;"/>
+   
+   <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_mujoco_dynamics/Ant_variant/Ant_variant_4%2000_00_00-00_00_30.gif" alt="Image 1" width="300" style="margin-right: 10px;"/>
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_mujoco_dynamics/Ant_variant/Ant_variant_5%2000_00_00-00_00_30.gif" alt="Image 2" width="300" style="margin-right: 10px;"/>
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_mujoco_dynamics/Ant_variant/Ant_variant_6%2000_00_00-00_00_30.gif" alt="Image 3" width="300" style="margin-right: 10px;"/>
+
+  
+   <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_mujoco_dynamics/HalfCheetah_variant/HalfCheetah_variant_1%2000_00_00-00_00_30.gif" alt="Image 1" width="300" style="margin-right: 10px;"/>
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_mujoco_dynamics/HalfCheetah_variant/HalfCheetah_variant_2%2000_00_00-00_00_30.gif" alt="Image 2" width="300" style="margin-right: 10px;"/>
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_mujoco_dynamics/HalfCheetah_variant/HalfCheetah_variant_3%2000_00_00-00_00_30.gif" alt="Image 3" width="300" style="margin-right: 10px;"/> 
+  
+   <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_mujoco_dynamics/HalfCheetah_variant/HalfCheetah_variant_5%2000_00_00-00_00_30.gif" alt="Image 1" width="300" style="margin-right: 100px;"/>
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_mujoco_dynamics/HalfCheetah_variant/HalfCheetah_variant_6%2000_00_00-00_00_30.gif" alt="Image 2" width="300" style="margin-right: 10px;"/>
+</p>
+<p align="center">
+  These demonstrations are Robust MuJoCo variant tasks with robust settings.
+</p>
+
+
+
+
+
+
+### Robust Robot Manipulation Tasks
+<p align="center">
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/multi-robot-door-small.gif" alt="Image 1" width="280" style="margin-right: 10px;"/>  
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Nominal_task%2000_00_00-00_00_30.gif" alt="Image 1" width="310" style="margin-right: 10px;"/>
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_1%2000_00_00-00_00_30.gif" alt="Image 2" width="310" style="margin-right: 10px;"/>
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_2%2000_00_00-00_00_30.gif" alt="Image 3" width="300" style="margin-right: 10px;"/>
+   
+   <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_3%2000_00_00-00_00_30.gif" alt="Image 1" width="300" style="margin-right: 10px;"/>
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_4%2000_00_00-00_00_30.gif" alt="Image 2" width="300" style="margin-right: 10px;"/>
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_5%2000_00_00-00_00_30.gif" alt="Image 3" width="300" style="margin-right: 10px;"/>
+
+  
+   <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_6%2000_00_00-00_00_30.gif" alt="Image 1" width="300" style="margin-right: 10px;"/>
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_7%2000_00_00-00_00_30.gif" alt="Image 2" width="300" style="margin-right: 10px;"/>
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_8%2000_00_00-00_00_30.gif" alt="Image 3" width="300" style="margin-right: 10px;"/> 
+  
+   <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_9%2000_00_00-00_00_30.gif" alt="Image 1" width="300" style="margin-right: 100px;"/>
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_10%2000_00_00-00_00_30.gif" alt="Image 2" width="300" style="margin-right: 10px;"/>
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_11%2000_00_00-00_00_30.gif" alt="Image 1" width="300" style="margin-right: 100px;"/>
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_12%2000_00_00-00_00_30.gif" alt="Image 2" width="300" style="margin-right: 10px;"/>
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_13%2000_00_00-00_00_30.gif" alt="Image 1" width="300" style="margin-right: 100px;"/>
+</p>
+<p align="center">
+  These demonstrations are from robot manipulation tasks with robust settings.
+</p>
+
+### Robust Dexterous Hand and Maze Tasks
+<p align="center">
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_andoit_hand/Robust_androit_hand_2%2000_00_00-00_00_30.gif" alt="Image 1" width="310" style="margin-right: 10px;"/>  
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_andoit_hand/Robust_androit_hand_3%2000_00_00-00_00_30.gif" alt="Image 1" width="310" style="margin-right: 10px;"/>
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_andoit_hand/androit_hand_1%2000_00_00-00_00_30.gif" alt="Image 2" width="310" style="margin-right: 10px;"/>
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_andoit_hand/robust_andoit_hand_4%2000_00_00-00_00_30.gif" alt="Image 3" width="300" style="margin-right: 10px;"/>
+   
+   <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_dexterous_hand/robust_dexterous_hand_1%2000_00_00-00_00_30.gif" alt="Image 1" width="300" style="margin-right: 10px;"/>
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_dexterous_hand/robust_dexterous_hand_2%2000_00_00-00_00_30.gif" alt="Image 2" width="300" style="margin-right: 10px;"/>
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_dexterous_hand/robust_dexterous_hand_4%2000_00_00-00_00_30.gif" alt="Image 3" width="300" style="margin-right: 10px;"/>
+
+  
+   <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_dexterous_hand/robust_dexterous_hand_5%2000_00_00-00_00_30.gif" alt="Image 1" width="300" style="margin-right: 10px;"/>
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_dexterous_hand/robust_dexterous_hand_6%2000_00_00-00_00_30.gif" alt="Image 2" width="300" style="margin-right: 10px;"/>
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_fetch/robust_fetch_1%2000_00_00-00_00_30.gif" alt="Image 3" width="300" style="margin-right: 10px;"/> 
+  
+   <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_fetch/robust_fetch_2%2000_00_00-00_00_30.gif" alt="Image 1" width="300" style="margin-right: 100px;"/>
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_fetch/robust_fetch_4%2000_00_00-00_00_30.gif" alt="Image 2" width="300" style="margin-right: 10px;"/>
+  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_maze/robust_maze_1%2000_00_00-00_00_30.gif" alt="Image 1" width="300" style="margin-right: 100px;"/>
+</p>
+<p align="center">
+  These demonstrations are from dexterous hand and maze tasks with robust settings.
+</p>
+
+----------
+
+## Environments and Tasks
+<details>
+<summary><b><big>Details of Robust MuJoCo Tasks</big></b></summary>
+
+| Environments | Description | Demo     |
+|  :----:  | :----:  | :----:  |
+| Robust Ant Tasks|  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/Ant-v4.gif" width="250"/>    |
+| Robust HalhCheetah Tasks| | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/HalfCheetah-v4.gif" align="middle" width="250"/>    |
+|Robust Hopper Tasks|  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/Hopper-v4.gif" align="middle" width="250"/>    |
+|Robust Pusher Tasks|  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/Pusher-v4.gif" align="middle" width="250"/>    |
+|Robust Reacher Tasks|  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/Reacher-v4.gif" align="middle" width="250"/>    |
+|Robust Swimmer Tasks |  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/Swimmer-v4.gif" align="middle" width="250"/>    |
+|Robust Walker Tasks |  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/Walker2d-v4.gif" align="middle" width="250"/>    |
+|Robust Humanoid Tasks |  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/humanoid.gif" align="middle" width="250"/>    |
+|Robust HumanoidStandup Tasks| | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/humanoidStandup-v4.gif" align="middle" width="250"/>    |
+|Robust Invert-Double Tasks |  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/inver-double.gif" align="middle" width="250"/>    |
+|Robust Invert Tasks |  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/invert.gif" align="middle" width="250"/>    |
+</details>
+
+
+<details>
+<summary><b><big>Details of Robust Robot Manipulation Tasks</big></b></summary>
+
+| Environments | Description | Demo     |
+|  :----:  | :----:  | :----:  |
+|Multi-Robot Door Tasks|  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/multi-robot-door-small.gif" width="250"/>    |
+|Nominal Door Tasks|  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Nominal_task%2000_00_00-00_00_30.gif" width="250"/>    |
+| Shifted Door Task 1| | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_1%2000_00_00-00_00_30.gif" align="middle" width="250"/>    |
+|Shifted Door Task 2|  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_2%2000_00_00-00_00_30.gif" align="middle" width="250"/>    |
+|Shifted Door Task 3|  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_3%2000_00_00-00_00_30.gif" align="middle" width="250"/>    |
+|Shifted Door Task 4|  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_4%2000_00_00-00_00_30.gif" align="middle" width="250"/>    |
+|Shifted Door Task 5 |  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_5%2000_00_00-00_00_30.gif" align="middle" width="250"/>    |
+|Shifted Door Task 6 |  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_6%2000_00_00-00_00_30.gif" align="middle" width="250"/>    |
+|Shifted Door Task 7 |  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_7%2000_00_00-00_00_30.gif" align="middle" width="250"/>    |
+|Shifted Door Task 8| | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_8%2000_00_00-00_00_30.gif" align="middle" width="250"/>    |
+|Shifted Door Task 9 |  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_9%2000_00_00-00_00_30.gif" align="middle" width="250"/>    |
+|Shifted Door Task 10 |  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_10%2000_00_00-00_00_30.gif" align="middle" width="250"/>    |
+|Shifted Door Task 11 |  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_11%2000_00_00-00_00_30.gif" align="middle" width="250"/>    |
+|Shifted Door Task 12 |  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_12%2000_00_00-00_00_30.gif" align="middle" width="250"/>    |
+|Shifted Door Task 13|  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_13%2000_00_00-00_00_30.gif" align="middle" width="250"/>    |
+</details>
+
+<details>
+<summary><b><big>Details of Robust Dexterous Hand and Maze Tasks</big></b></summary>
+  
+TBD
+</details>
+
+<details>
+<summary><b><big>Details of Robust Safety Tasks</big></b></summary>
+  
+TBD
+</details>
+
+<details>
+<summary><b><big>Details of Robust MuJoCo Variant Tasks</big></b></summary>
+  
+TBD
+</details>
+
+---------------
+
+## Robustness Factors & Interaction Modes with Environments
+
+1. **From standard RL to robust RL**
+ 
+2. **Factors of uncertainty**
+In this benchmark, we consider an extensive set of factors that the uncertainty or perturbation of them in the original environments could let algorithms fail catastrophically 
+
+3. **Interactive modes between the factors and the environments**
 ---------------
 
 We are currently developing our environments on an Ubuntu system. The operating system version is 20.04.3 LTS.
 
-## Setting Up the Environment
+## Installation of the Environments
 
 1. **Create an environment (requires [Conda installation](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)):**
 
-   Use the following command to create a new Conda environment named `robustgymnasium` with Python 3.10:
+   Use the following command to create a new Conda environment named `robustgymnasium` with Python 3.11:
 
    ```bash
-   conda create -n robustgymnasium  python=3.10
+   conda create -n robustgymnasium  python=3.11
    ```
 
    Activate the newly created environment:
@@ -51,108 +283,231 @@ We are currently developing our environments on an Ubuntu system. The operating 
    pip install -r requirements.txt
    pip install -e .
    ```
-
+---------------
 ## Testing the Tasks
 
-To run the tests, navigate to the `examples` directory and execute the test script:
+To run the tests, navigate to the `examples` directory and Test. te the test script, e.g.,
 
 ```bash
-cd examples/mujoco/ or cd examples/safety_mujoco/
+cd examples/robust_action/mujoco/ 
 chmod +x test.sh
 ./test.sh
 ```
 
 Ensure you follow these steps to set up and test the environment properly. Adjust paths and versions as necessary based on your specific setup requirements.
 
----
+If you met some issues, please check the [existing solutions for the reported issues](https://github.com/SafeRL-Lab/Robust-Gymnasium/issues?q=is%3Aissue+is%3Aclosed), which could help you address your issue.
+
+---------------
+
+## Tutorials
+
+Here, we provide a step-by-step tutorial for users to create and use a domain-shifted/noisy task by choosing any environment/task combined with any uncertainty factor to perturb some original environment.
+
+## Prior robust reinforcement learning works
+
+A non-exhaustive list is [here](https://roomy-oil-412.notion.site/Literature-review-robust-RL-22f85f11fdcb4b9c9bc2889c9fac5143).
 
 
 
+--------------
 
 ## Tasks
+
+<!-- 
 - [x] Robust Single Agent Tasks
 - [x] Robust Boxd2d Tasks
-- [x] Safe Robust Single Agent Tasks
-- [ ] Robust Multi-Agent Tasks
-- [ ] Image Robust Tasks
+- [x] Safe Robust MuJoCo Tasks
+- [x] Safe Robust Manipulation Tasks
+- [x] Domain Randomization
+- [x] Robust Multi-Agent Tasks
+- [x] Robust Maze Tasks
+- [x] Robust Dexterous Tasks
+-->
 
-### Single Robust Agent Tasks
+Tasks: Random, Adversary, Semantic Tasks (Robot Manipulation Tasks).
+
+<details>
+<summary><b><big> Robust MuJoCo Tasks </big></b></summary>
+
+| Tasks\Robust type | Robust State | Robust Action | Robust Reward | Robust Dynamics |
+|:-------------:|:--------------:|:--------------:|:--------------:|:--------------:|
+| Ant-v2-v3-v4-v5         |    :white_check_mark:     | :white_check_mark:          |:white_check_mark:          |:white_check_mark:          |
+| HalfCheetah-v2-v3-v4-v5     | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |:white_check_mark:          |
+| Hopper-v2-v3-v4-v5     | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |:white_check_mark:          |
+| Walker2d-v2-v3-v4-v5     | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |:white_check_mark:          |
+| Swimmer-v2-v3-v4-v5     | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |:white_check_mark:          |
+| Humanoid-v2-v3-v4-v5     | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |:white_check_mark:          |
+| HumanoidStandup-v2-v3-v4-v5     | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |:white_check_mark:          |
+| Pusher-v2-v3-v4-v5     | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |:white_check_mark:          |
+| Reacher-v2-v3-v4-v5     | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |:white_check_mark:          |
+| InvertedDoublePendulum-v2-v3-v4-v5     | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |:white_check_mark:          |
+| InvertedPendulum-v2-v3-v4-v5     | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |:white_check_mark:          |
+</details>
+
+
+
+<details>
+<summary><b><big>  Robust Boxd2d Tasks</big></b></summary>
+  
+| Tasks\Robust type | Robust State | Robust Action | Robust Reward |
+|:-------------:|:--------------:|:--------------:|:--------------:|
+| CarRacing-v2       |    :white_check_mark:     | :white_check_mark:          |:white_check_mark:          |
+| LunarLanderContinuous-v3    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| BipedalWalker-v3    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| LunarLander-v3 (Discrete Task)    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+</details>
+
+<details>
+<summary><b><big>  Robust Robot Manipulation Tasks</big></b></summary>
+  
+| Tasks\Robust type | Robust State | Robust Action | Robust Reward |
+|:-------------:|:--------------:|:--------------:|:--------------:|
+| RobustLift       |    :white_check_mark:     | :white_check_mark:          |:white_check_mark:          |
+| RobustDoor    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| RobustNutAssembly   | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| RobustPickPlace   | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| RobustStack   | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| RobustWipe   | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| RobustToolHang   | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| RobustTwoArmLift   | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| RobustTwoArmPegInHole  | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| RobustTwoArmHandover   | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| RobustTwoArmTransport | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| MultiRobustDoor   | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+</details>
+
+<details>
+<summary><b><big>  Robust Safety Tasks</big></b></summary>
+  
+| Tasks\Robust type | Robust State | Robust Action | Robust Reward |
+|:-------------:|:--------------:|:--------------:|:--------------:|
+| RobustSafetyAnt-v4         |    :white_check_mark:     | :white_check_mark:          |:white_check_mark:          |
+| RobustSafetyHalfCheetah-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| RobustSafetyHopper-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| RobustSafetyWalker2d-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| RobustSafetySwimmer-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| RobustSafetyHumanoid-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| RobustSafetyHumanoidStandup-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| RobustSafetyPusher-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| RobustSafetyReacher-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+
+</details>
+
+<details>
+<summary><b><big>  Robust Androit Hand Tasks</big></b></summary>
+  
+| Tasks\Robust type | Robust State | Robust Action | Robust Reward |
+|:-------------:|:--------------:|:--------------:|:--------------:|
+| RobustAdroitHandDoor-v1         |    :white_check_mark:     | :white_check_mark:          |:white_check_mark:          |
+| RobustAdroitHandHammer-v1    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| RobustAdroitHandPen-v1   | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| RobustAdroitHandRelocate-v1    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+
+</details>
+
+
+
+<details>
+<summary><b><big>  Robust Dexterous Tasks</big></b></summary>
+  
+| Tasks\Robust type | Robust State | Robust Action | Robust Reward |
+|:-------------:|:--------------:|:--------------:|:--------------:|
+| RobustHandManipulateEgg_BooleanTouchSensors-v1         |    :white_check_mark:     | :white_check_mark:          |:white_check_mark:          |
+| RobustHandReach-v2    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| RobustHandManipulateBlock-v1   | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| RobustHandManipulateEgg-v1    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| RobustHandManipulatePen-v1   | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+
+</details>
+
+<details>
+<summary><b><big>  Robust Fetch Manipulation Tasks</big></b></summary>
+  
+| Tasks\Robust type | Robust State | Robust Action | Robust Reward |
+|:-------------:|:--------------:|:--------------:|:--------------:|
+| RobustFetchPush-v3         |    :white_check_mark:     | :white_check_mark:          |:white_check_mark:          |
+| RobustFetchReach-v3   | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| RobustFetchSlide-v3   | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| RobustFetchPickAndPlace-v3   | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+
+</details>
+
+<details>
+<summary><b><big>  Robust Robot Kitchen Tasks</big></b></summary>
+  
+| Tasks\Robust type | Robust State | Robust Action | Robust Reward |
+|:-------------:|:--------------:|:--------------:|:--------------:|
+| FrankaKitchen-v1        |    :white_check_mark:     | :white_check_mark:          |:white_check_mark:          |
+
+</details>
+
+<details>
+<summary><b><big>  Robust Maze Tasks</big></b></summary>
+  
+| Tasks\Robust type | Robust State | Robust Action | Robust Reward |
+|:-------------:|:--------------:|:--------------:|:--------------:|
+| AntMaze_UMaze-v4        |    :white_check_mark:     | :white_check_mark:          |:white_check_mark:          |
+| PointMaze_UMaze-v3       |    :white_check_mark:     | :white_check_mark:          |:white_check_mark:          |
+
+</details>
+
+
+<details>
+<summary><b><big> Robust Multi-Agent Tasks</big></b></summary>
 
 | Tasks\Robust type | Robust State | Robust Action | Robust Reward |
 |:-------------:|:--------------:|:--------------:|:--------------:|
-| Ant-v4         |    :white_check_mark:     | :white_check_mark:          |:white_check_mark:          |
-| HalfCheetah-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| Hopper-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| Walker2d-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| Swimmer-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| Humanoid-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| HumanoidStandup-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| Pusher-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| Reacher-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| InvertedDoublePendulum-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| InvertedPendulum-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-|  |   |  |  |
-| Ant-v2         |    :white_check_mark:     |    :white_check_mark:      |:white_check_mark:          |
-| HalfCheetah-v2    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| Hopper-v2    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| Walker2d-v2    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| Swimmer-v2    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| Humanoid-v2    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| HumanoidStandup-v2    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| Pusher-v2    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| Reacher-v2    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| InvertedDoublePendulum-v2    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| InvertedPendulum-v2    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-|  |   |  |  |
-| Ant-v3         |    :white_check_mark:     | :white_check_mark:          |:white_check_mark:          |
-| HalfCheetah-v3    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| Hopper-v3    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| Walker2d-v3    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| Swimmer-v3    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| Humanoid-v3    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| HumanoidStandup-v3    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| Pusher-v3    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| Reacher-v3    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| InvertedDoublePendulum-v3    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| InvertedPendulum-v3    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-|  |   |  |  |
-| Ant-v5         |    :white_check_mark:     | :white_check_mark:          |:white_check_mark:          |
-| HalfCheetah-v5    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| Hopper-v5    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| Walker2d-v5    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| Swimmer-v5    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| Humanoid-v5    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| HumanoidStandup-v5    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| Pusher-v5    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| Reacher-v5    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| InvertedDoublePendulum-v5    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| InvertedPendulum-v5    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| MA-Ant-2x4, 2x4d, 4x2, 4x1         |    :white_check_mark:     | :white_check_mark:          |:white_check_mark:          |
+| MA-HalfCheetah-2x3, 6x1    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| MA-Hopper-3x1    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| MA-Walker2d-2x3    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| MA-Swimmer-2x1    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| MA-Humanoid-9\|8    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| MA-HumanoidStandup-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| MA-Pusher-3p    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| MA-Reacher-2x1    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| Many-MA-Swimmer-10x2, 5x4, 6x1, 1x2    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| Many-MA-Ant-2x3, 3x1    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| CoupledHalfCheetah-p1p    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+</details>
 
 
-### Safety Robust Tasks
+
+<details>
+<summary><b><big>  Robust Humanoid Tasks</big></b></summary>
+  
 | Tasks\Robust type | Robust State | Robust Action | Robust Reward |
 |:-------------:|:--------------:|:--------------:|:--------------:|
-| SafetyAnt-v4         |    :white_check_mark:     | :white_check_mark:          |:white_check_mark:          |
-| SafetyHalfCheetah-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| SafetyHopper-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| SafetyWalker2d-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| SafetySwimmer-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| SafetyHumanoid-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| SafetyHumanoidStandup-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| SafetyPusher-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
-| SafetyReacher-v4    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| Robusth1hand-reach-v0         |    :white_check_mark:     | :white_check_mark:          |:white_check_mark:          |
+| Robusth1hand-push-v0    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| h1hand-truck-v0   | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+| Robusth1hand-slide-v0    | :white_check_mark:      | :white_check_mark:    | :white_check_mark:          |
+
+</details>
+
+
 
 ---------
 
 
+## Citation
+If you find the repository useful, please cite the study
+``` Bash
+@article{robustrl2024,
+  title={A unifying robust reinforcement learning benchmark},
+  author={Robust RL Team},
+  journal={Github},
+  year={2024}
+}
+```
 
-
-
+-------
 
 
 ## Acknowledgments
 
-We thank the contributors from [Gymnasium](https://github.com/Farama-Foundation/Gymnasium.git).
+We thank the contributors from [MuJoCo](https://github.com/google-deepmind/mujoco), [Gymnasium](https://github.com/Farama-Foundation/Gymnasium.git), [Humanoid-bench](https://github.com/carlosferrazza/humanoid-bench/tree/main) and [Robosuite](https://github.com/ARISE-Initiative/robosuite).
 
 
 

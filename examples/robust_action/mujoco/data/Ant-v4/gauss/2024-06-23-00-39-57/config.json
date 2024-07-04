@@ -1,0 +1,13 @@
+------------------ start ------------------
+gamma : 0.995
+env_name : Ant-v4
+noise_factor : robust_shape
+noise_type : gauss
+noise_mu : 0.0
+noise_sigma : 0.005
+robust_force_mu : 0.0
+robust_force_sigma : 0.005
+robust_shape_mu : 0.0
+robust_shape_sigma : 0.005
+noise_shift : 0.005
+------------------- end -------------------

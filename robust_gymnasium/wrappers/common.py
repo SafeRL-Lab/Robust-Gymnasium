@@ -141,6 +141,9 @@ class TimeLimit(
         self._elapsed_steps = 0
         return super().reset(seed=seed, options=options)
 
+    # def reset_robust(self, *args, **kwargs):
+    #     return self.env.reset_robust(*args, **kwargs)
+
     @property
     def spec(self) -> EnvSpec | None:
         """Modifies the environment spec to include the `max_episode_steps=self._max_episode_steps`."""
@@ -394,6 +397,9 @@ class OrderEnforcing(
         """Resets the environment with `kwargs`."""
         self._has_reset = True
         return super().reset(seed=seed, options=options)
+
+    # def reset_robust(self, *args, **kwargs):
+    #     return self.env.reset_robust(*args, **kwargs)
 
     def render(self) -> RenderFrame | list[RenderFrame] | None:
         """Renders the environment with `kwargs`."""

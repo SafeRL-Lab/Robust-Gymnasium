@@ -4,9 +4,9 @@ from typing import Any, Dict, Optional, Tuple, Union
 import numpy as np
 from numpy.typing import NDArray
 
-import robust_gymnasium as gym
-from robust_gymnasium import error, logger, spaces
-from robust_gymnasium.spaces import Space
+import gymnasium as gym
+from gymnasium import error, logger, spaces
+from gymnasium.spaces import Space
 
 
 try:

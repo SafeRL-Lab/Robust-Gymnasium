@@ -84,10 +84,10 @@ testing = [
 ]
 
 [project.urls]
-Homepage = "https://farama.org"
-Repository = "https://github.com/Farama-Foundation/robust_gymnasium"
-Documentation = "https://robust_gymnasium.farama.org"
-"Bug Report" = "https://github.com/Farama-Foundation/robust_gymnasium/issues"
+Homepage = "https://github.com/SafeRL-Lab"
+Repository = "https://github.com/SafeRL-Lab/Robust-Gymnasium"
+Documentation = "https://github.com/SafeRL-Lab/Robust-Gymnasium"
+"Bug Report" = "https://github.com/SafeRL-Lab/Robust-Gymnasium/issues"
 
 [tool.setuptools]
 include-package-data = true

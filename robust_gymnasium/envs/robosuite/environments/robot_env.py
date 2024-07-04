@@ -126,7 +126,7 @@ class RobotEnv(MujocoEnv):
         use_camera_obs=True,
         has_renderer=False,
         has_offscreen_renderer=True,
-        render_camera="frontview",
+        render_camera="frontview", #"frontview"
         render_collision_mesh=False,
         render_visual_mesh=True,
         render_gpu_device_id=-1,

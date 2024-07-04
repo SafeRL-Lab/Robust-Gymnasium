@@ -254,7 +254,7 @@ class DoorObject(MujocoXMLObject):
             xml_path_completion(xml_path), name=name, joints=None, obj_type="all", duplicate_collision_geoms=True
         )
 
-        handle_height_door = -0.025
+        handle_height_door =  -0.125 #  0.19 # -0.025
         if args.noise_factor == "handle_height_door":
             if args.noise_type == "gauss":
                 handle_height_door = handle_height_door + random.gauss(args.noise_mu, args.noise_sigma)  # robust setting
@@ -266,7 +266,7 @@ class DoorObject(MujocoXMLObject):
         else:
             handle_height_door = handle_height_door
 
-        handle_width_left_door = -0.175
+        handle_width_left_door = 0.1 # -0.175
         if args.noise_factor == "handle_width_left_door":
             if args.noise_type == "gauss":
                 handle_width_left_door = handle_width_left_door + random.gauss(args.noise_mu,
@@ -297,6 +297,7 @@ class DoorObject(MujocoXMLObject):
 
     def modify_xml(self, file_name, new_pos):
         # import xml file
+        # Robust RL
         tree = ET.parse(file_name)
         root = tree.getroot()
         # find the specified name and revise its values

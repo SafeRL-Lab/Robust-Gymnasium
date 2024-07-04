@@ -40,6 +40,8 @@ def make(env_name, *args, **kwargs):
                 env_name, ", ".join(REGISTERED_ENVS)
             )
         )
+    # print("*args------:", *args)
+    # print("**kwargs------:", **kwargs)
     return REGISTERED_ENVS[env_name](*args, **kwargs)
 
 
@@ -91,7 +93,7 @@ class MujocoEnv(metaclass=EnvMeta):
         self,
         has_renderer=False,
         has_offscreen_renderer=True,
-        render_camera="frontview",
+        render_camera="frontview", # frontview
         render_collision_mesh=False,
         render_visual_mesh=True,
         render_gpu_device_id=-1,
@@ -294,6 +296,7 @@ class MujocoEnv(metaclass=EnvMeta):
 
             # Set the camera angle for viewing
             if self.render_camera is not None:
+                # print(tessss)
                 camera_id = self.sim.model.camera_name2id(self.render_camera)
                 self.viewer.set_camera(camera_id)
 
@@ -364,7 +367,7 @@ class MujocoEnv(metaclass=EnvMeta):
 
         return observations
 
-    def step(self, action):
+    def step(self, robust_input):
         """
         Takes a step in simulation with control command @action.
         Args:
@@ -378,9 +381,18 @@ class MujocoEnv(metaclass=EnvMeta):
         Raises:
             ValueError: [Steps past episode termination]
         """
-
+        action = robust_input["action"]
+        args = robust_input["robust_config"]
         mu = args.noise_mu
         sigma = args.noise_sigma
+        if args.env_robosuite_robust == "Door":
+            # print("test-----")
+            # from robust_gymnasium.envs.robosuite.environments.manipulation.single_arm_env import SingleArmEnv
+            # from robust_gymnasium.envs.robosuite.environments.manipulation.door import Door
+            # robust_door = Door(SingleArmEnv)
+            # robust_door.table_offset = (-0.2, -0.35, 0.8) # (table_robot_left_distance, table_robot_back_distance, table_height)
+            pass
+
         if args.noise_factor == "action":
             if args.noise_type == "gauss":
                 action = action + random.gauss(mu, sigma)  # robust setting
@@ -388,7 +400,7 @@ class MujocoEnv(metaclass=EnvMeta):
                 action = action + args.noise_shift
             else:
                 action = action
-                print('\033[0;31m "No action entropy learning! Using the original action" \033[0m')
+                print('\033[0;31m "No action entropy robustness! Using the original action" \033[0m')
         else:
             action = action
 
@@ -415,24 +427,26 @@ class MujocoEnv(metaclass=EnvMeta):
         # Note: this is done all at once to avoid floating point inaccuracies
         self.cur_time += self.control_timestep
 
-        reward, done, info = self._post_action(action)
+        robust_setting_robosuite={"action": action, "robust_config": args}
+        reward, done, info = self._post_action(robust_setting_robosuite)
 
         if self.viewer is not None and self.renderer != "mujoco":
             self.viewer.update()
 
         observations = self.viewer._get_observations() if self.viewer_get_obs else self._get_observations()
-        # print("robosuite---observations--------:", observations)
+        # print("self.viewer_get_obs-------:", self.viewer_get_obs)
 
         if args.noise_factor == "state":
             if args.noise_type == "gauss":
-                observations = observations["object-state"] + random.gauss(mu, sigma)  # robust setting
+                observations["object-state"] = observations["object-state"] + random.gauss(mu, sigma)  # robust setting
             elif args.noise_type == "shift":
-                observations = observations["object-state"] + args.noise_shift
+                observations["object-state"] = observations["object-state"] + args.noise_shift
             else:
-                observations = observations
-                print('\033[0;31m "No state entropy learning! Using the original state" \033[0m')
+                observations["object-state"] = observations["object-state"]
+                print('\033[0;31m "No state robustness! Using the original state" \033[0m')
         else:
-            observations = observations
+            observations["object-state"] = observations["object-state"]
+
 
         if args.noise_factor == "reward":
             if args.noise_type == "gauss":
@@ -441,9 +455,11 @@ class MujocoEnv(metaclass=EnvMeta):
                 reward = reward + args.noise_shift
             else:
                 reward = reward
-                print('\033[0;31m "No reward entropy learning! Using the original reward" \033[0m')
+                print('\033[0;31m "No reward robustness! Using the original reward" \033[0m')
         else:
             reward = reward
+
+        # print("observations-------:", observations)
 
         return observations, reward, done, info
 

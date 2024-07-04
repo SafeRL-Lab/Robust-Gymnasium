@@ -1,0 +1,227 @@
+import mujoco
+import numpy as np
+
+from robust_gymnasium import utils
+from robust_gymnasium.envs.robust_mujoco import MujocoEnv
+from robust_gymnasium.spaces import Box
+
+import xml.etree.ElementTree as ET
+from os import path
+
+import random
+from robust_gymnasium.configs.robust_setting import get_config
+args = get_config().parse_args()
+
+DEFAULT_CAMERA_CONFIG = {
+    "trackbodyid": -1,
+    "distance": 4.0,
+}
+
+
+class PusherEnv(MujocoEnv, utils.EzPickle):
+    metadata = {
+        "render_modes": [
+            "human",
+            "rgb_array",
+            "depth_array",
+        ],
+        "render_fps": 20,
+    }
+
+    def __init__(self, **kwargs):
+        if mujoco.__version__ >= "3.0.0":
+            raise ImportError(
+                "`Pusher-v4` is only supported on `mujoco<3`, for more information https://github.com/Farama-Foundation/robust_gymnasium/issues/950"
+            )
+        utils.EzPickle.__init__(self, **kwargs)
+
+        observation_space = Box(low=-np.inf, high=np.inf, shape=(23,), dtype=np.float64)
+        MujocoEnv.__init__(
+            self,
+            "pusher.xml",
+            5,
+            observation_space=observation_space,
+            default_camera_config=DEFAULT_CAMERA_CONFIG,
+            **kwargs,
+        )
+
+        self.xml_file = "pusher.xml"
+        self.xml_file_original = "pusher_original.xml"
+
+    def step(self, robust_input):
+        a = robust_input["action"]
+        # action = robust_input["action"]
+        args = robust_input["robust_config"]
+        mu = args.noise_mu
+        sigma = args.noise_sigma
+
+        if args.noise_factor == "robust_force":
+            self.modify_xml(self.fullpath, args)
+        if args.noise_factor == "robust_shape":
+            self.modify_xml(self.fullpath, args)
+
+        if args.noise_factor == "action":
+            if args.noise_type == "gauss":
+                a = a + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                a = a + args.noise_shift
+            else:
+                a = a
+                print('\033[0;31m "No action entropy learning! Using the original action" \033[0m')
+        else:
+            a = a
+        vec_1 = self.get_body_com("object") - self.get_body_com("tips_arm")
+        vec_2 = self.get_body_com("object") - self.get_body_com("goal")
+
+        reward_near = -np.linalg.norm(vec_1)
+        reward_dist = -np.linalg.norm(vec_2)
+        reward_ctrl = -np.square(a).sum()
+        reward = reward_dist + 0.1 * reward_ctrl + 0.5 * reward_near
+
+        self.do_simulation(a, self.frame_skip)
+        if self.render_mode == "human":
+            self.render()
+
+        # ob = self._get_obs() + random.gauss(mu, sigma)  # robust setting
+        if args.noise_factor == "state":
+            if args.noise_type == "gauss":
+                observation = self._get_obs() + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                observation = self._get_obs() + args.noise_shift
+            else:
+                observation = self._get_obs()
+                print('\033[0;31m "No state entropy learning! Using the original state" \033[0m')
+        else:
+            observation = self._get_obs()
+        # truncation=False as the time limit is handled by the `TimeLimit` wrapper added during `make`
+        if args.noise_factor == "reward":
+            if args.noise_type == "gauss":
+                reward = reward + random.gauss(mu, sigma)  # robust setting
+            elif args.noise_type == "shift":
+                reward = reward + args.noise_shift
+            else:
+                reward = reward
+                print('\033[0;31m "No reward entropy learning! Using the original reward" \033[0m')
+        else:
+            reward = reward
+
+        fullpath_original = self.expand_model_path(self.xml_file_original)
+        info = {
+            "reward_dist": reward_dist,
+            "reward_ctrl": reward_ctrl,
+            "source_file_path": fullpath_original,
+            "target_file_path": self.fullpath,
+        }
+        if args.noise_factor == "robust_force" or "robust_shape":
+            self.replace_xml_content(fullpath_original, self.fullpath)
+        return (
+            observation,
+            reward,
+            False,
+            False,
+            info,
+        )
+
+    def expand_model_path(self, model_path):
+        """Expands the `model_path` to a full path if it starts with '~' or '.' or '/'."""
+        if model_path.startswith(".") or model_path.startswith("/"):
+            fullpath = model_path
+        elif model_path.startswith("~"):
+            fullpath = path.expanduser(model_path)
+        else:
+            fullpath = path.join(path.dirname(__file__), "assets", model_path)
+        if not path.exists(fullpath):
+            raise OSError(f"File {fullpath} does not exist")
+
+        return fullpath
+
+    def modify_xml(self, file_name, args):
+        tree = ET.parse(file_name)
+        root = tree.getroot()
+        if args.noise_factor == "robust_force":
+            hip_4_motor = root.find('.//motor[@joint="bthigh"]')
+            if hip_4_motor is not None:
+                gear_value = hip_4_motor.get('gear')
+                gear_value = float(gear_value)
+                if args.noise_type == "gauss":
+                    gear_value = gear_value + random.gauss(args.robust_force_mu, args.robust_force_sigma)  # robust setting
+                elif args.noise_type == "shift":
+                    gear_value = gear_value + args.noise_shift
+                else:
+                    gear_value = gear_value
+                    print('\033[0;31m "No robust_force entropy learning! Using the original action" \033[0m')
+                # print(f"The gear value for joint 'hip_4' is: {gear_value}") # gear="150"
+                hip_4_motor.set('gear', str(gear_value))
+                tree.write(file_name)
+            else:
+                print("No motor found for joint 'bthigh'")
+
+        if args.noise_factor == "robust_shape":
+            # find right_back_leg's geom
+            change_shape_mass = root.find(".//body[@name='r_forearm_roll_link']/geom")
+            if change_shape_mass is not None:
+                size_value = change_shape_mass.get('size')  # "0.046 .145"
+                size_value = float(size_value)
+                # print("size_value------:", size_value)
+                # size_floats = [float(x) for x in size_value.split()]
+                # size_value = size_floats[0]
+
+                size_value = float(size_value)
+                if args.noise_type == "gauss":
+                    size_value = size_value + random.gauss(args.robust_shape_mu,
+                                                           args.robust_shape_sigma)  # robust setting
+                elif args.noise_type == "shift":
+                    size_value = size_value + args.noise_shift
+                elif args.noise_type == "uniform":
+                    size_value = np.random.uniform(args.uniform_min_val, args.uniform_max_val)
+                    pass
+                else:
+                    size_value = size_value
+                change_shape_mass.set('size', str(size_value))
+                # print(f"The size of geom for 'right_back_leg' is: ", change_shape_mass.get('size'))
+                tree.write(file_name)
+            else:
+                print("No geom found for body 'bthigh'")
+
+    def replace_xml_content(self, source_file_path, target_file_path):
+        # read data from source file
+        with open(source_file_path, 'r', encoding='utf-8') as file:
+            source_content = file.read()
+
+        # write the data into the target file
+        with open(target_file_path, 'w', encoding='utf-8') as file:
+            file.write(source_content)
+
+    def reset_model(self):
+        qpos = self.init_qpos
+
+        self.goal_pos = np.asarray([0, 0])
+        while True:
+            self.cylinder_pos = np.concatenate(
+                [
+                    self.np_random.uniform(low=-0.3, high=0, size=1),
+                    self.np_random.uniform(low=-0.2, high=0.2, size=1),
+                ]
+            )
+            if np.linalg.norm(self.cylinder_pos - self.goal_pos) > 0.17:
+                break
+
+        qpos[-4:-2] = self.cylinder_pos
+        qpos[-2:] = self.goal_pos
+        qvel = self.init_qvel + self.np_random.uniform(
+            low=-0.005, high=0.005, size=self.model.nv
+        )
+        qvel[-4:] = 0
+        self.set_state(qpos, qvel)
+        return self._get_obs()
+
+    def _get_obs(self):
+        return np.concatenate(
+            [
+                self.data.qpos.flat[:7],
+                self.data.qvel.flat[:7],
+                self.get_body_com("tips_arm"),
+                self.get_body_com("object"),
+                self.get_body_com("goal"),
+            ]
+        )

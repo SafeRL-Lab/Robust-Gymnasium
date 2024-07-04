@@ -27,13 +27,18 @@ with open(json_path, 'w') as f:
 
 # env = gym.make("Ant-v4")
 # env = gym.make(args.env_name, args, render_mode="human") # render environments
-env = gym.make(args.env_name, args)
+env = gym.make(args.env_name)
 print("type-----------args:", args)
 
 observation, info = env.reset(seed=42)
 for i in range(1000):
     action = env.action_space.sample()
-    observation, reward, terminated, truncated, info = env.step(action)
+    robust_input = {
+        "action": action,
+        "robust_type": "state",
+        "robust_config": args,
+    }
+    observation, reward, terminated, truncated, info = env.step(robust_input)
     print("reward----------:", reward)
     # env.render() # render environments
     if terminated or truncated:
