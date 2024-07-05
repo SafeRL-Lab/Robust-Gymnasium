@@ -20,7 +20,7 @@ This benchmark aims to advance robust reinforcement learning (RL) for real-world
 🔥 **Benchmark Features:** 
 
 - **High Modularity:** It is designed for flexible adaptation to a variety of research needs, featuring high modularity to support a wide range of experiments.
-- **Task Coverage:** It provides a comprehensive set of tasks to evaluate robustness across different RL scenarios.
+- **Task Coverage:** It provides a comprehensive set of tasks to evaluate robustness across different RL scenarios (at least 170 tasks).
 - **High Compatibility:** It can be seamless and compatible with a wide range of existing environments.
 - **Support Vectorized Environments:** It can be useful to enable parallel processing of multiple environments for efficient experimentation.
 - **Support for New Gym API:** It fully supports the latest standards in Gym API, facilitating easy integration and expansion.
