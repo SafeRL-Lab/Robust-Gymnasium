@@ -252,10 +252,10 @@ TBD
 
 | Uncertainty modes\sources | Observation | Action | Reward | Environment/task |
 | --- | --- | --- | --- | --- |
-| Random | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |
-| Adversarial | to do | to do |  |  |
-| Uncertainty set |  |  |  | :white_check_mark: |
-| Semantic |  |  |  | :white_check_mark: |
+| Random | :white_check_mark: | :white_check_mark: | :white_check_mark: | \ |
+| Adversarial | to do | to do | \ | \ |
+| Uncertainty set | \ | \ | \ | :white_check_mark: |
+| Semantic | \ | \ | \ | :white_check_mark: |
 
 
 1. **From standard RL to robust RL**
