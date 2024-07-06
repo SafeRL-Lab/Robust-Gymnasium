@@ -56,7 +56,7 @@ Any suggestions and issues are welcome. If you have any questions, please propos
   * [Robust Robot Manipulation Tasks](#robust-robot-manipulation-tasks)
   * [Robust Dexterous Hand and Maze Tasks](#robust-dexterous-hand-and-maze-tasks)
 - [Environments and Tasks](#environments-and-tasks)
-- [Robustness Factors & Interaction Modes with Environments](#robustness-factors-\&-interaction-modes-with-environments)
+- [Sources and modes of uncertainty](#sources-and-modes-of-uncertainty)
 - [Installation of the Environment](#installation-of-the-environments)
 - [Quick start](#testing-the-tasks)
 - [Tutorials](#tutorials)
@@ -247,10 +247,10 @@ TBD
 
 ---------------
 
-## Robustness Factors & Interaction Modes with Environments
+## Sources and modes of uncertainty
 
 
-| Uncertainty modes\Robust sources | Observation | Action | Reward | Environment/task |
+| Uncertainty modes\sources | Observation | Action | Reward | Environment/task |
 | --- | --- | --- | --- | --- |
 | Random | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |
 | Adversarial | to do | to do |  |  |
