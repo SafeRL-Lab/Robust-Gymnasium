@@ -251,7 +251,7 @@ TBD
 
 
 | Uncertainty modes\sources | Observation | Action | Reward | Environment/task |
-| --- | --- | --- | --- | --- |
+|:--------:|:--------:|:--------:|:--------:|:--------:|
 | Random | :white_check_mark: | :white_check_mark: | :white_check_mark: | \ |
 | Adversarial | to do | to do | \ | \ |
 | Uncertainty set | \ | \ | \ | :white_check_mark: |
