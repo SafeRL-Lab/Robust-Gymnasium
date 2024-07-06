@@ -250,7 +250,7 @@ TBD
 ## Robustness Factors & Interaction Modes with Environments
 
 
-| Uncertainty modes\Robust sources | Observation | Action | Reward | Entire environment (reward +Dynamics) |
+| Uncertainty modes\Robust sources | Observation | Action | Reward | Environment/task |
 | --- | --- | --- | --- | --- |
 | Random | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |
 | Adversarial | to do | to do |  |  |
