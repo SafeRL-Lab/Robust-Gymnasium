@@ -249,6 +249,18 @@ TBD
 
 ## Robustness Factors & Interaction Modes with Environments
 
+<details>
+<summary><b><big> Robust MuJoCo Tasks </big></b></summary>
+
+| Uncertainty modes\Robust sources | Observation | Action | Reward | Entire environment (reward +Dynamics) |
+| --- | --- | --- | --- | --- |
+| Random | :white_check_mark: | :white_check_mark | :white_check_mark: |  |
+| Adversarial | to do | to do |  |  |
+| Uncertainty set |  |  |  | :white_check_mark: |
+| Semantic |  |  |  | :white_check_mark: |
+
+</details>
+
 1. **From standard RL to robust RL**
  
 2. **Factors of uncertainty**
