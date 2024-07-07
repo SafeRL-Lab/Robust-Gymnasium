@@ -50,6 +50,7 @@ Any suggestions and issues are welcome. If you have any questions, please propos
 ----------
 **Content**
 <!-- - [Compare with Existing Platforms](#compare-with-existing-platforms) -->
+- [Introduction](#introduction)
 - [Demos](#demos)
   * [Robust MuJoCo Tasks](#robust-mujoco-tasks)
   * [Robust MuJoCo Variant Tasks](#robust-mujoco-variant-tasks)
@@ -76,6 +77,18 @@ Any suggestions and issues are welcome. If you have any questions, please propos
 
 -->
 
+
+
+--------------
+
+## Introduction
+
+<div align=center>
+ <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/overview/gif-edit-overview.gif" width="850"/> 
+ </div>
+<div align=center>
+<center style="color:#000000;text-decoration:underline"> </center>
+ </div>
 
 --------------
 
