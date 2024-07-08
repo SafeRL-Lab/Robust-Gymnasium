@@ -84,12 +84,17 @@ Any suggestions and issues are welcome. If you have any questions, please propos
 ## Introduction
 
 <div align=center>
- <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/overview/gif-edit-overview.gif" width="850"/> 
+ <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/docs/imgs/world-model.png" width="850"/> 
  </div>
 <div align=center>
 <center style="color:#000000;text-decoration:underline"> </center>
  </div>
 
+Reinforcement learning (RL) problems can be simply represented by the interaction loops between an agent and an environment.
+
+Two parts
+- environments (tasks)
+- Perturbations/disturbers
 --------------
 
 
