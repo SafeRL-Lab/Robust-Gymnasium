@@ -90,6 +90,9 @@ Any suggestions and issues are welcome. If you have any questions, please propos
 <center style="color:#000000;text-decoration:underline"> </center>
  </div>
 
+Reinforcement learning (RL) problems can be simply represented by the interaction loops between an agent and an environment.
+
+
 --------------
 
 
