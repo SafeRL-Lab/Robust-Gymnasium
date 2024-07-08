@@ -83,6 +83,7 @@ Any suggestions and issues are welcome. If you have any questions, please propos
 
 ## Introduction
 
+<!-- A figure that shows the modules in our frameworks -->
 <div align=center>
  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/docs/imgs/world-model3.png" width="850"/> 
  </div>
@@ -90,14 +91,14 @@ Any suggestions and issues are welcome. If you have any questions, please propos
 <center style="color:#000000;text-decoration:underline"> </center>
  </div>
 
-Reinforcement learning (RL) problems can be simply represented by the interaction loops between an agent and an environment.
+### Reinforcement Learning against Uncertainty/Perturbation
+Reinforcement learning (RL) problems can be simply represented by the interaction loops between two modules --- an agent and an environment. The goal of the agent is to learn a policy that optimizes the long-term expected return obtained by interacting with the environment. While standard RL has been heavily investigated recently, its use can be significantly hampered in practice due to noise, malicious attacks, the sim-to-real gap, domain generalization requirements, or even combination of them.
+
+### The Framework of Robust Reinforcement Learning
 
 Two parts
 - environments (tasks)
 - Perturbations/disturbers
-
-
-A non-exhaustive list of prior robust reinforcement learning works can be found [here](https://roomy-oil-412.notion.site/Literature-review-robust-RL-22f85f11fdcb4b9c9bc2889c9fac5143).
 
 --------------
 
