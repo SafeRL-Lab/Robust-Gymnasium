@@ -92,7 +92,7 @@ Any suggestions and issues are welcome. If you have any questions, please propos
  </div>
 
 ### Reinforcement Learning against Uncertainty/Perturbation
-Reinforcement learning (RL) problems can be simply represented by the interaction loops between two modules --- an agent and an environment. The goal of the agent is to learn a policy that optimizes the long-term expected return obtained by interacting with the environment. While standard RL has been heavily investigated recently, its use can be significantly hampered in practice due to noise, malicious attacks, the sim-to-real gap, domain generalization requirements, or even combination of them.
+Reinforcement learning (RL) problems typically can be represented as that an agent seeks a policy that optimizes the long-term expected return through interacting with an environment. While standard RL has been heavily investigated recently, its use can be significantly hampered in practice due to noise, malicious attacks, the sim-to-real gap, domain generalization requirements, or even combination of them.
 
 ### The Framework of Robust Reinforcement Learning
 
