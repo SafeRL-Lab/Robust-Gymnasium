@@ -97,9 +97,8 @@ Two parts
 - Perturbations/disturbers
 
 
-### Prior robust reinforcement learning works
+A non-exhaustive list of prior robust reinforcement learning works can be found [here](https://roomy-oil-412.notion.site/Literature-review-robust-RL-22f85f11fdcb4b9c9bc2889c9fac5143).
 
-A non-exhaustive list is [here](https://roomy-oil-412.notion.site/Literature-review-robust-RL-22f85f11fdcb4b9c9bc2889c9fac5143).
 --------------
 
 
