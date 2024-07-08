@@ -95,6 +95,11 @@ Reinforcement learning (RL) problems can be simply represented by the interactio
 Two parts
 - environments (tasks)
 - Perturbations/disturbers
+
+
+### Prior robust reinforcement learning works
+
+A non-exhaustive list is [here](https://roomy-oil-412.notion.site/Literature-review-robust-RL-22f85f11fdcb4b9c9bc2889c9fac5143).
 --------------
 
 
@@ -331,9 +336,7 @@ If you met some issues, please check the [existing solutions for the reported is
 
 Here, we provide a step-by-step tutorial for users to create and use a domain-shifted/noisy task by choosing any environment/task combined with any uncertainty factor to perturb some original environment.
 
-## Prior robust reinforcement learning works
 
-A non-exhaustive list is [here](https://roomy-oil-412.notion.site/Literature-review-robust-RL-22f85f11fdcb4b9c9bc2889c9fac5143).
 
 
 
