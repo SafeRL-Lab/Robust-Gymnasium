@@ -92,7 +92,9 @@ Any suggestions and issues are welcome. If you have any questions, please propos
 
 Reinforcement learning (RL) problems can be simply represented by the interaction loops between an agent and an environment.
 
-
+Two parts
+- environments (tasks)
+- Perturbations/disturbers
 --------------
 
 
