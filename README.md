@@ -84,7 +84,7 @@ Any suggestions and issues are welcome. If you have any questions, please propos
 ## Introduction
 
 <div align=center>
- <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/overview/gif-edit-overview.gif" width="850"/> 
+ <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/docs/world-model.png" width="850"/> 
  </div>
 <div align=center>
 <center style="color:#000000;text-decoration:underline"> </center>
