@@ -103,7 +103,7 @@ We illustrate the framework of robust RL for single-agent problems for instance:
  </div>
 
 ### This Benchmark:
-This benchmark support various **1) environments/tasks** and **2) disruptors （perturbations to the interaction process)**. This allows users to design and evaluate different algorithms in different application scenarios when encountering diverse uncertainty issues. Switch to the sections below if you want to get a quick glance of which **environments** and **Perturbations** Robust-Gymnasium support.
+This benchmark support various 1) environments/tasks** and 2) disruptors （perturbations to the interaction process). This allows users to design and evaluate different algorithms in different application scenarios when encountering diverse uncertainty issues. Switch to the sections below if you want to get a quick glance of which **environments** and **Perturbations** Robust-Gymnasium support.
 - [Environments and Tasks](#environments-and-tasks)
 - [Sources and modes of uncertainty/perturbation](#sources-and-modes-of-uncertaintyperturbation)
 
