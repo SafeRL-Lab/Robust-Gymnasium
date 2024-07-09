@@ -50,17 +50,17 @@ Any suggestions and issues are welcome. If you have any questions, please propos
 **Content**
 <!-- - [Compare with Existing Platforms](#compare-with-existing-platforms) -->
 - [Introduction](#introduction)
-- [Demos](#demos)
-  * [Robust MuJoCo Tasks](#robust-mujoco-tasks)
-  * [Robust MuJoCo Variant Tasks](#robust-mujoco-variant-tasks)
-  * [Robust Robot Manipulation Tasks](#robust-robot-manipulation-tasks)
-  * [Robust Dexterous Hand and Maze Tasks](#robust-dexterous-hand-and-maze-tasks)
 - [Environments and Tasks](#environments-and-tasks)
 - [Sources and modes of uncertainty](#sources-and-modes-of-uncertainty)
 - [Installation of the Environment](#installation-of-the-environments)
 - [Quick start](#testing-the-tasks)
 - [Tutorials](#tutorials)
 - [Tasks](#tasks)
+- [Demos](#demos)
+  * [Robust MuJoCo Tasks](#robust-mujoco-tasks)
+  * [Robust MuJoCo Variant Tasks](#robust-mujoco-variant-tasks)
+  * [Robust Robot Manipulation Tasks](#robust-robot-manipulation-tasks)
+  * [Robust Dexterous Hand and Maze Tasks](#robust-dexterous-hand-and-maze-tasks)
 - [Citation](#citation)
 - [Acknowledgments](#acknowledgments)
 
@@ -105,6 +105,26 @@ We illustrate the framework of robust RL for single-agent problems for instance:
 ### This Benchmark:
 This benchmark support various 1) environments/tasks and 2) distuptor module with different modes and sources. This allows users to design and evaluate different algorithms in different application scenarios when encountering diverse uncertainty issues.
 
+
+---------------
+
+## Sources and modes of uncertainty
+
+
+| Uncertainty modes\sources | Observation | Action | Reward | Environment/task |
+|:--------:|:--------:|:--------:|:--------:|:--------:|
+| Random | :white_check_mark: | :white_check_mark: | :white_check_mark: | \ |
+| Adversarial | to do | to do | \ | \ |
+| Uncertainty set | \ | \ | \ | :white_check_mark: |
+| Semantic | \ | \ | \ | :white_check_mark: |
+
+
+1. **From standard RL to robust RL**
+ 
+2. **Factors of uncertainty**
+In this benchmark, we consider an extensive set of factors that the uncertainty or perturbation of them in the original environments could let algorithms fail catastrophically 
+
+3. **Interactive modes between the factors and the environments**
 
 
 --------------
@@ -275,25 +295,7 @@ TBD
 TBD
 </details>
 
----------------
 
-## Sources and modes of uncertainty
-
-
-| Uncertainty modes\sources | Observation | Action | Reward | Environment/task |
-|:--------:|:--------:|:--------:|:--------:|:--------:|
-| Random | :white_check_mark: | :white_check_mark: | :white_check_mark: | \ |
-| Adversarial | to do | to do | \ | \ |
-| Uncertainty set | \ | \ | \ | :white_check_mark: |
-| Semantic | \ | \ | \ | :white_check_mark: |
-
-
-1. **From standard RL to robust RL**
- 
-2. **Factors of uncertainty**
-In this benchmark, we consider an extensive set of factors that the uncertainty or perturbation of them in the original environments could let algorithms fail catastrophically 
-
-3. **Interactive modes between the factors and the environments**
 ---------------
 
 We are currently developing our environments on an Ubuntu system. The operating system version is 20.04.3 LTS.
