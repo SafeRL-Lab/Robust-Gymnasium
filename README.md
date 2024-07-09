@@ -293,7 +293,7 @@ Tasks: Random, Adversary, Semantic Tasks (Robot Manipulation Tasks).
 In this benchmark, we consider extensive perturbation/uncertainty events that possibly happen during every moments in the interacting process (See Figure 1) due to different:
 * **Sources:**
 * **Modes:**
-* **Frequency:**
+* **Frequency:** interactive modes that support step-wise interaction between disruptors, agents, and environments.
 
 
 | Uncertainty modes\sources | Observation | Action | Reward | Environment/task |
@@ -310,7 +310,6 @@ In this benchmark, we consider extensive perturbation/uncertainty events that po
 <p>Not all environments support all kinds of disruptors (perturbations). Please refer to [tasks overview](#environments-and-tasks) for more information.</p>
 </div>
 
-3. **Interactive modes between the factors and the environments**
 
 
 
