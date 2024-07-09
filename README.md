@@ -90,8 +90,8 @@ Reinforcement learning (RL) problems is formulated as that an agent seeks a poli
 ### The Framework of Robust Reinforcement Learning
 Robust RL problems typically consists of three modules
 * **An agent (a policy):** tries to learn a strategy $\pi$ (a policy) based on the observation from the environment to achieve optimal long-term return
-* **An environment:** a task that determine the agents' immediate reward $r(\cdot |s,a)$ and the physical or logical dynamics (transition function $`P_t( \cdot | s,a)`$)
-* <span style="color: orange;">**The disruptor module:**</span> represents the uncertainty/perturbation events that happens during any parts of the interaction process between the agent and environment. 
+* **An environment/task:** a task that determine the agents' immediate reward $r(\cdot |s,a)$ and the physical or logical dynamics (transition function $`P_t( \cdot | s,a)`$)
+* **The disruptor module:** represents the uncertainty/perturbation events that happens during any parts of the interaction process between the agent and environment.
 
 We illustrate the framework of robust RL for single-agent problems for instance:
 <!-- A figure that shows the modules in our frameworks -->
@@ -103,7 +103,7 @@ We illustrate the framework of robust RL for single-agent problems for instance:
  </div>
 
 ### This Benchmark:
-
+This benchmark support various 1) environments/tasks and 2) distuptor module with different modes and sources. This allows users to design and evaluate different algorithms in different application scenarios when encountering diverse uncertainty issues.
 
 
 
