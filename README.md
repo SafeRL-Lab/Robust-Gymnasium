@@ -296,12 +296,12 @@ In this benchmark, we consider extensive perturbation/uncertainty events that po
 * **Frequency:** interactive modes that support step-wise interaction between disruptors, agents, and environments.
 
 
-| Uncertainty modes\sources | Observation (state & reward) | Action  | Environment/task |
-|:--------:|:--------:|:--------:|:--------:|
-| Random | :white_check_mark: | :white_check_mark: | to do |
-| Adversarial | to do | to do | to do |
-| Fixed set | \ | \ | :white_check_mark: |
-| Semantic | \ | \ | :white_check_mark: |
+| Perturbation modes\sources | Observed state | Observed reward | Action  | Environment/task |
+|:--------:|:--------:|:--------:|:--------:|:--------:|
+| Random | :white_check_mark: | :white_check_mark: | :white_check_mark: | \ |
+| Adversarial | to do | \ | to do | \ |
+| Uncertainty set | \ | \ | \| :white_check_mark: |
+| Semantic | \ | \ |  \| :white_check_mark: |
 
 
  
