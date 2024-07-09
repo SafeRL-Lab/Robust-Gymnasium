@@ -107,7 +107,7 @@ This benchmark support various 1) environments/tasks and 2) distuptor module wit
 
 Switch to the sections below if you want to get a quick glance of which **environments** and **Perturbations** Robust-Gymnasium support.
 - [Environments and Tasks](#environments-and-tasks)
-- [Sources and modes of uncertainty/perturbation](#sources-and-modes-of-uncertainty/perturbation)
+- [Sources and modes of uncertainty/perturbation](#sources-and-modes-of-uncertainty-/-perturbation)
 
 ---------------
 
