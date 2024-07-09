@@ -305,7 +305,10 @@ In this benchmark, we consider extensive perturbation/uncertainty events that po
 
 
  
-
+<div style="border: 1px solid #DADADA; border-left: 4px solid #1E90FF; background-color: #F5F5F5; padding: 10px;">
+<strong>Note</strong>
+<p>Not all environments support all kinds of disruptors (perturbations). Please refer to [tasks overview](#environments-and-tasks) for more information</code>.</p>
+</div>
 
 3. **Interactive modes between the factors and the environments**
 
