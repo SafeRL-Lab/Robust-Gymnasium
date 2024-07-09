@@ -300,8 +300,8 @@ In this benchmark, we consider extensive perturbation/uncertainty events that po
 |:--------:|:--------:|:--------:|:--------:|:--------:|
 | Random | :white_check_mark: | :white_check_mark: | :white_check_mark: | \ |
 | Adversarial | to do | \ | to do | \ |
-| Uncertainty set | \ | \ | \| :white_check_mark: |
-| Semantic | \ | \ |  \| :white_check_mark: |
+| Uncertainty set | \ | \ | \ | :white_check_mark: |
+| Semantic | \ | \ |  \ | :white_check_mark: |
 
 
  
