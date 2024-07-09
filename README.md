@@ -107,7 +107,7 @@ This benchmark support various 1) environments/tasks** and 2) disruptors （pert
 - [Tasks](#tasks)
 - [Sources and modes of uncertainty/perturbation](#sources-and-modes-of-uncertaintyperturbation)
 
-
+Our current plan for the docs/readme and a non-exhaustive list of prior robust RL works can be found [here](https://roomy-oil-412.notion.site/Literature-review-robust-RL-22f85f11fdcb4b9c9bc2889c9fac5143?pvs=74)
 
 --------------
 
