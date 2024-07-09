@@ -82,13 +82,7 @@ Any suggestions and issues are welcome. If you have any questions, please propos
 
 ## Introduction
 
-<!-- A figure that shows the modules in our frameworks -->
-<div align=center>
- <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/docs/imgs/world-model3.png" width="850"/> 
- </div>
-<div align=center>
-<center style="color:#000000;text-decoration:underline"> </center>
- </div>
+
 
 ### Reinforcement Learning against Uncertainty/Perturbation
 Reinforcement learning (RL) problems is formulated as that an agent seeks a policy that optimizes the long-term expected return through interacting with an environment. While standard RL has been heavily investigated recently, its use can be significantly hampered in practice due to noise, malicious attacks, the sim-to-real gap, domain generalization requirements, or even a combination of those and more factors. Consequently, in addition to maximizing the cumulative rewards, robustness to unexpected uncertainty/perturbation emerges as another critical goal for RL, especially in high-stakes applications such as robotics, financial investments, autonomous driving, and so on. This leads to a surge of considerations of more robust RL algorithms for different problems, termed as robust RL, including but not limited to single-agent RL, safe RL, and multi-agent RL. 
@@ -99,7 +93,14 @@ Robust RL problems typically consists of three modules
 * **An environment:** a task that determine the agents' immediate reward $r(\cdot |s,a)$ and the physical or logical dynamics (transition function $`P_t( \cdot | s,a)`$)
 * **<span style="color:red;">The disruptor module</span>:** represents the uncertainty/perturbation events that happens during any parts of the interaction process between the agent and environment. 
 
-We take the robust RL for single-agent problems for illustration as above.
+We illustrate the framework of robust RL for single-agent problems for instance:
+<!-- A figure that shows the modules in our frameworks -->
+<div align=center>
+ <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/docs/imgs/world-model3.png" width="850"/> 
+ </div>
+<div align=center>
+<center style="color:#000000;text-decoration:underline"> </center>
+ </div>
 
 
 
