@@ -50,8 +50,8 @@ Any suggestions and issues are welcome. If you have any questions, please propos
 **Content**
 <!-- - [Compare with Existing Platforms](#compare-with-existing-platforms) -->
 - [Introduction](#introduction)
-- [Tasks](#tasks)
 - [Environments and Tasks](#environments-and-tasks)
+- [Detailed Environments and Tasks](#detailed-environments-and-tasks)
 - [Sources and modes of uncertainty](#sources-and-modes-of-uncertainty)
 - [Installation of the Environment](#installation-of-the-environments)
 - [Quick start](#testing-the-tasks)
@@ -107,36 +107,11 @@ This benchmark support various 1) environments/tasks** and 2) disruptors （pert
 - [Tasks](#tasks)
 - [Sources and modes of uncertainty/perturbation](#sources-and-modes-of-uncertaintyperturbation)
 
----------------
-
-## Sources and modes of uncertainty/perturbation
-
-In this benchmark, we consider extensive perturbation/uncertainty events that possibly happen during every moments in the interacting process (See Figure 1) due to different:
-* **Sources:**
-* **Modes:**
-* **Frequency:**
-
-
-| Uncertainty modes\sources | Observation | Action | Reward | Environment/task |
-|:--------:|:--------:|:--------:|:--------:|:--------:|
-| Random | :white_check_mark: | :white_check_mark: | :white_check_mark: | \ |
-| Adversarial | to do | to do | \ | \ |
-| Uncertainty set | \ | \ | \ | :white_check_mark: |
-| Semantic | \ | \ | \ | :white_check_mark: |
-
-
- 
-
-
-3. **Interactive modes between the factors and the environments**
-
-
-
 
 
 --------------
 
-## Tasks
+## Environments and Tasks
 
 <!-- 
 - [x] Robust Single Agent Tasks
@@ -311,9 +286,35 @@ Tasks: Random, Adversary, Semantic Tasks (Robot Manipulation Tasks).
 </details>
 
 
+---------------
+
+## Sources and modes of uncertainty/perturbation
+
+In this benchmark, we consider extensive perturbation/uncertainty events that possibly happen during every moments in the interacting process (See Figure 1) due to different:
+* **Sources:**
+* **Modes:**
+* **Frequency:**
+
+
+| Uncertainty modes\sources | Observation | Action | Reward | Environment/task |
+|:--------:|:--------:|:--------:|:--------:|:--------:|
+| Random | :white_check_mark: | :white_check_mark: | :white_check_mark: | \ |
+| Adversarial | to do | to do | \ | \ |
+| Uncertainty set | \ | \ | \ | :white_check_mark: |
+| Semantic | \ | \ | \ | :white_check_mark: |
+
+
+ 
+
+
+3. **Interactive modes between the factors and the environments**
+
+
+
+
 ----------
 
-## Environments and Tasks
+## Detailed Environments and Tasks
 <details>
 <summary><b><big>Details of Robust MuJoCo Tasks</big></b></summary>
 
