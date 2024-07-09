@@ -51,11 +51,11 @@ Any suggestions and issues are welcome. If you have any questions, please propos
 <!-- - [Compare with Existing Platforms](#compare-with-existing-platforms) -->
 - [Introduction](#introduction)
 - [Environments and Tasks](#environments-and-tasks)
-- [Detailed Environments and Tasks](#detailed-environments-and-tasks)
 - [Sources and modes of uncertainty](#sources-and-modes-of-uncertainty)
 - [Installation of the Environment](#installation-of-the-environments)
 - [Quick start](#testing-the-tasks)
 - [Tutorials](#tutorials)
+- [Detailed Environments and Tasks](#detailed-environments-and-tasks)
 - [Demos](#demos)
   * [Robust MuJoCo Tasks](#robust-mujoco-tasks)
   * [Robust MuJoCo Variant Tasks](#robust-mujoco-variant-tasks)
@@ -312,6 +312,60 @@ In this benchmark, we consider extensive perturbation/uncertainty events that po
 
 
 
+
+
+---------------
+
+We are currently developing our environments on an Ubuntu system. The operating system version is 20.04.3 LTS.
+
+## Installation of the Environments
+
+1. **Create an environment (requires [Conda installation](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)):**
+
+   Use the following command to create a new Conda environment named `robustgymnasium` with Python 3.11:
+
+   ```bash
+   conda create -n robustgymnasium  python=3.11
+   ```
+
+   Activate the newly created environment:
+
+   ```bash
+   conda activate robustgymnasium
+   ```
+
+2. **Install dependency packages:**
+
+   Install the necessary packages using pip. Make sure you are in the project directory where the `setup.py` file is located:
+
+   ```bash
+   pip install -r requirements.txt
+   pip install -e .
+   ```
+---------------
+## Testing the Tasks
+
+To run the tests, navigate to the `examples` directory and Test. te the test script, e.g.,
+
+```bash
+cd examples/robust_action/mujoco/ 
+chmod +x test.sh
+./test.sh
+```
+
+Ensure you follow these steps to set up and test the environment properly. Adjust paths and versions as necessary based on your specific setup requirements.
+
+If you met some issues, please check the [existing solutions for the reported issues](https://github.com/SafeRL-Lab/Robust-Gymnasium/issues?q=is%3Aissue+is%3Aclosed), which could help you address your issue.
+
+---------------
+
+## Tutorials
+
+Here, we provide a step-by-step tutorial for users to create and use a domain-shifted/noisy task by choosing any environment/task combined with any uncertainty factor to perturb some original environment.
+
+
+
+
 ----------
 
 ## Detailed Environments and Tasks
@@ -373,84 +427,6 @@ TBD
   
 TBD
 </details>
-
-
----------------
-
-We are currently developing our environments on an Ubuntu system. The operating system version is 20.04.3 LTS.
-
-## Installation of the Environments
-
-1. **Create an environment (requires [Conda installation](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)):**
-
-   Use the following command to create a new Conda environment named `robustgymnasium` with Python 3.11:
-
-   ```bash
-   conda create -n robustgymnasium  python=3.11
-   ```
-
-   Activate the newly created environment:
-
-   ```bash
-   conda activate robustgymnasium
-   ```
-
-2. **Install dependency packages:**
-
-   Install the necessary packages using pip. Make sure you are in the project directory where the `setup.py` file is located:
-
-   ```bash
-   pip install -r requirements.txt
-   pip install -e .
-   ```
----------------
-## Testing the Tasks
-
-To run the tests, navigate to the `examples` directory and Test. te the test script, e.g.,
-
-```bash
-cd examples/robust_action/mujoco/ 
-chmod +x test.sh
-./test.sh
-```
-
-Ensure you follow these steps to set up and test the environment properly. Adjust paths and versions as necessary based on your specific setup requirements.
-
-If you met some issues, please check the [existing solutions for the reported issues](https://github.com/SafeRL-Lab/Robust-Gymnasium/issues?q=is%3Aissue+is%3Aclosed), which could help you address your issue.
-
----------------
-
-## Tutorials
-
-Here, we provide a step-by-step tutorial for users to create and use a domain-shifted/noisy task by choosing any environment/task combined with any uncertainty factor to perturb some original environment.
-
-
-
-
-
-
-
-
----------
-
-
-## Citation
-If you find the repository useful, please cite the study
-``` Bash
-@article{robustrl2024,
-  title={A unifying robust reinforcement learning benchmark},
-  author={Robust RL Team},
-  journal={Github},
-  year={2024}
-}
-```
-
--------
-
-
-## Acknowledgments
-
-We thank the contributors from [MuJoCo](https://github.com/google-deepmind/mujoco), [Gymnasium](https://github.com/Farama-Foundation/Gymnasium.git), [Humanoid-bench](https://github.com/carlosferrazza/humanoid-bench/tree/main) and [Robosuite](https://github.com/ARISE-Initiative/robosuite).
 
 
 --------------
@@ -558,4 +534,30 @@ We thank the contributors from [MuJoCo](https://github.com/google-deepmind/mujoc
 <p align="center">
   These demonstrations are from dexterous hand and maze tasks with robust settings.
 </p>
+
+
+
+
+
+---------
+
+
+## Citation
+If you find the repository useful, please cite the study
+``` Bash
+@article{robustrl2024,
+  title={A unifying robust reinforcement learning benchmark},
+  author={Robust RL Team},
+  journal={Github},
+  year={2024}
+}
+```
+
+-------
+
+
+## Acknowledgments
+
+We thank the contributors from [MuJoCo](https://github.com/google-deepmind/mujoco), [Gymnasium](https://github.com/Farama-Foundation/Gymnasium.git), [Humanoid-bench](https://github.com/carlosferrazza/humanoid-bench/tree/main) and [Robosuite](https://github.com/ARISE-Initiative/robosuite).
+
 
