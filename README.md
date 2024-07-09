@@ -103,13 +103,18 @@ We illustrate the framework of robust RL for single-agent problems for instance:
  </div>
 
 ### This Benchmark:
-This benchmark support various **1) environments/tasks** and **2) distuptor module （perturbations to the interaction process)**. This allows users to design and evaluate different algorithms in different application scenarios when encountering diverse uncertainty issues. Switch to the sections below if you want to get a quick glance of which **environments** and **Perturbations** Robust-Gymnasium support.
+This benchmark support various **1) environments/tasks** and **2) disruptors （perturbations to the interaction process)**. This allows users to design and evaluate different algorithms in different application scenarios when encountering diverse uncertainty issues. Switch to the sections below if you want to get a quick glance of which **environments** and **Perturbations** Robust-Gymnasium support.
 - [Environments and Tasks](#environments-and-tasks)
 - [Sources and modes of uncertainty/perturbation](#sources-and-modes-of-uncertaintyperturbation)
 
 ---------------
 
 ## Sources and modes of uncertainty/perturbation
+
+In this benchmark, we consider extensive perturbation/uncertainty events that possibly happen during every moments in the interacting process (See Figure 1) due to different:
+* **Sources:**
+* **Modes:**
+* **Frequency:**
 
 
 | Uncertainty modes\sources | Observation | Action | Reward | Environment/task |
@@ -120,10 +125,8 @@ This benchmark support various **1) environments/tasks** and **2) distuptor modu
 | Semantic | \ | \ | \ | :white_check_mark: |
 
 
-1. **From standard RL to robust RL**
  
-2. **Factors of uncertainty**
-In this benchmark, we consider an extensive set of factors that the uncertainty or perturbation of them in the original environments could let algorithms fail catastrophically 
+
 
 3. **Interactive modes between the factors and the environments**
 
