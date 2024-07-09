@@ -105,6 +105,9 @@ We illustrate the framework of robust RL for single-agent problems for instance:
 ### This Benchmark:
 This benchmark support various 1) environments/tasks and 2) distuptor module with different modes and sources. This allows users to design and evaluate different algorithms in different application scenarios when encountering diverse uncertainty issues.
 
+Switch to the sections below if you want to get a quick glance of which **environments** and **disruptor** Robust-Gymnasium support.
+- [Environments and Tasks](#environments-and-tasks)
+- [Sources and modes of uncertainty](#sources-and-modes-of-uncertainty)
 
 ---------------
 
