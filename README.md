@@ -293,14 +293,14 @@ Before introducing the disruptor module, we recall that RL problem can be formul
 
 Considering this, in this benchmark, we consider extensive potential uncertainty/disturbance/generalizable events that happen in this process (including both training and testing phases) during any places, with any modes, and at any time. Those perturbation events can be generally categorized from three different perspectives:
 * **Sources:** which part is perturbed/attacked
-  - Observation
-  - Action
-  - Environment
+  * Observation
+  * Action
+  * Environment
 * **Modes:** what kind of perturbations are imposed
-  — Random
-  - Adversarial
-  - Set arbitrarily
-  - Semantic-domain-shifted
+  * Random
+  * Adversarial
+  * Set arbitrarily
+  * Semantic-domain-shifted
 * **Frequency:** when does the perturbation happen. interactive modes that support step-wise interaction between disruptors, agents, and environments.
 
 
