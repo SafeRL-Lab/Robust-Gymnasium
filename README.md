@@ -304,18 +304,11 @@ In this benchmark, we consider extensive potential uncertainty/disturbance/gener
 | Semantic Domain shift | \ | \ |  \ | :white_check_mark: |
 
 
- 
-<div style="border: 1px solid #DADADA; border-left: 4px solid #1E90FF; background-color: #F5F5F5; padding: 10px;">
-<strong>Note</strong>
-<p>Not all environments support all kinds of disruptors (perturbations). Please refer to [tasks overview](#environments-and-tasks) for more information.</p>
-</div>
 
-
-
-```bash
+<div style="background-color: #d4edda; padding: 10px; border-radius: 5px;">
   <strong style="color: #00b894; font-size: 16px;">&#x1F4A1; Tip</strong><br>
-  Not all environments support all kinds of disruptors (perturbations). Please refer to [task overview](#environments-and-tasks) for more information.
-```
+  Not all environments support all kinds of disruptors (perturbations). Please refer to [tasks overview](#environments-and-tasks) for more information.
+</div>
 
 
 
