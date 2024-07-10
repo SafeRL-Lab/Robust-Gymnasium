@@ -290,8 +290,8 @@ Tasks: Random, Adversary, Semantic Tasks (Robot Manipulation Tasks).
 
 ## Sources and modes of uncertainty/perturbation
 
-In this benchmark, we consider extensive potential uncertainty/disturbance/generalizable events that happen during any places, with any modes, at any time, in the interacting process ranging from training to the testing. Those perturbation events can be generally categorized due to different:
-* **Sources:**
+In this benchmark, we consider extensive potential uncertainty/disturbance/generalizable events that happen during any places, with any modes, at any time, in the interacting process ranging from training to the testing. Those perturbation events can be generally categorized from three different perspectives:
+* **Sources:** 
 * **Modes:**
 * **Frequency:** interactive modes that support step-wise interaction between disruptors, agents, and environments.
 
@@ -305,8 +305,8 @@ In this benchmark, we consider extensive potential uncertainty/disturbance/gener
 
 
 
-<div style="border: 1px solid #dfe6e9; border-left: 5px solid #00b894; background-color: #d4edda; padding: 10px; border-radius: 4px;">
-  <strong style="color: #00b894; font-size: 16px;">&#x1F4A1; Tip</strong><br>
+<div style="background-color: #d4edda; border-left: 5px solid #00b894; padding: 10px; border-radius: 4px;">
+  <strong style="color: #00b894;">&#x1F4A1; Tip</strong><br>
   Not all environments support all kinds of disruptors (perturbations). Please refer to [tasks overview](#environments-and-tasks) for more information.
 </div>
 
