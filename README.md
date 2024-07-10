@@ -312,10 +312,10 @@ In this benchmark, we consider extensive potential uncertainty/disturbance/gener
 
 
 
-<div style="border: 1px solid #dfe6e9; border-left: 5px solid #00b894; background-color: #eafaf1; padding: 10px; border-radius: 4px;">
+```bash
   <strong style="color: #00b894; font-size: 16px;">&#x1F4A1; Tip</strong><br>
-  Not all environments work with all algorithms. See the <a href="https://example.com/algorithm-overview" style="color: #0984e3;">algorithm overview</a> for more information.
-</div>
+  Not all environments support all kinds of disruptors (perturbations). Please refer to [task overview](#environments-and-tasks) for more information.
+```
 
 
 
