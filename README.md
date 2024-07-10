@@ -301,7 +301,7 @@ In this benchmark, we consider extensive perturbation/uncertainty events that po
 | Random | :white_check_mark: | :white_check_mark: | :white_check_mark: | to do |
 | Adversarial | to do | \ | to do | \ |
 | Set arbitrarily | \ | \ | \ | :white_check_mark: |
-| Semantic | \ | \ |  \ | :white_check_mark: |
+| Semantic Domain shift | \ | \ |  \ | :white_check_mark: |
 
 
  
