@@ -51,7 +51,7 @@ Any suggestions and issues are welcome. If you have any questions, please propos
 <!-- - [Compare with Existing Platforms](#compare-with-existing-platforms) -->
 - [Introduction](#introduction)
 - [Environments and Tasks](#environments-and-tasks)
-- [Sources and modes of uncertainty](#sources-and-modes-of-uncertainty)
+- [Disruptor Module --- Perturbation Events](#disruptor-module-perturbation-events)
 - [Installation of the Environment](#installation-of-the-environments)
 - [Quick start](#testing-the-tasks)
 - [Tutorials](#tutorials)
@@ -288,8 +288,8 @@ Tasks: Random, Adversary, Semantic Tasks (Robot Manipulation Tasks).
 
 ---------------
 
-## Sources and modes of uncertainty/perturbation
-
+## Disruptor Module --- perturbation events
+Before introducing the perturbation events (which parts of the process is perturbed. Typically, as we know that RL problems can be represeted by a process mainly three concepts: state, action, and the environment dynamics 
 In this benchmark, we consider extensive potential uncertainty/disturbance/generalizable events that happen during any places, with any modes, at any time, in the interacting process ranging from training to the testing. Those perturbation events can be generally categorized from three different perspectives:
 * **Sources:** 
 * **Modes:**
@@ -307,7 +307,7 @@ In this benchmark, we consider extensive potential uncertainty/disturbance/gener
 
 <div style="background-color: #d4edda; border-left: 5px solid #00b894; padding: 10px; border-radius: 4px;">
   <strong style="color: #00b894;">&#x1F4A1; Tip</strong><br>
-  Not all environments support all kinds of disruptors (perturbations). Please refer to [tasks overview](#environments-and-tasks) for more information.
+  Not all environments support all kinds of disruptors (perturbations). Please refer to the above section (Environments and Tasks) for more information.
 </div>
 
 
