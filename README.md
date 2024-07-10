@@ -293,7 +293,7 @@ Before introducing the disruptor module, we recall that RL problem can be formul
 
 Considering this, in this benchmark, we consider extensive potential uncertainty/disturbance/generalizable events that happen in this process (including both training and testing phases) during any places, with any modes, and at any time. Those perturbation events can be generally categorized from three different perspectives:
 - **Sources:** which component is perturbed/attacked.
-  * _Agent's observed state_: The agent observes a noisy/attacked 'state' $\widetilde{s}_t$ (diverge from the real state $s_t$ ) and use it as the input of its policy to determine the action. 
+  * <span style="color: blue;">Agent's observed state</span>: The agent observes a noisy/attacked 'state' $\widetilde{s}_t$ (diverge from the real state $s_t$ ) and use it as the input of its policy to determine the action. 
   * _Agent's observed reward_: The agent observes a noisy/attacked 'reward' $\widetilde{r}_t$ (differ from the real immediate reward ($r_t$) obtained from the environment) and construct their policy according to it.
   * _Action_: The action $a_t$ chosen by the agent is contaminated before sent to the environment. Namely, a perturbed action $\widetilde{a}_t$ serves as the input of the environment for the next step.
   * _Environment_: an environment includes both immediate reward function $r$ and dynamic function $P_t$. An agent may interact with a shifted or unstationary environment.
