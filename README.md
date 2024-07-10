@@ -91,7 +91,7 @@ Reinforcement learning (RL) problems is formulated as that an agent seeks a poli
 Robust RL problems typically consists of three modules
 * **An agent (a policy):** tries to learn a strategy $\pi$ (a policy) based on the observation from the environment to achieve optimal long-term return
 * **An environment/task:** a task that determine the agents' immediate reward $r(\cdot |s,a)$ and the physical or logical dynamics (transition function $`P_t( \cdot | s,a)`$)
-* **The disruptor module:** represents the uncertainty/perturbation events that happens during any parts of the interaction process between the agent and environment.
+* **The disruptor module:** represents the uncertainty/perturbation events that happens during any parts of the interaction process between the agent and environment, with different modes, sources, and frequencies.
 
 We illustrate the framework of robust RL for single-agent problems for instance:
 <!-- A figure that shows the modules in our frameworks -->
@@ -103,7 +103,7 @@ We illustrate the framework of robust RL for single-agent problems for instance:
  </div>
 
 ### This Benchmark:
-This benchmark support various 1) environments/tasks** and 2) disruptors （perturbations to the interaction process). This allows users to design and evaluate different algorithms in different application scenarios when encountering diverse uncertainty issues. Switch to the sections below if you want to get a quick glance of which **environments** and **Perturbations** Robust-Gymnasium support.
+This benchmark support various 1) environments/tasks** and 2) disruptors （perturbations to the interaction process). This allows users to design and evaluate different algorithms in different application scenarios when encountering diverse uncertainty issues. Switch to the sections below if you want to get a quick glance of which **environments** and **perturbations** that Robust-Gymnasium support.
 - [Tasks](#tasks)
 - [Sources and modes of uncertainty/perturbation](#sources-and-modes-of-uncertaintyperturbation)
 
@@ -290,7 +290,7 @@ Tasks: Random, Adversary, Semantic Tasks (Robot Manipulation Tasks).
 
 ## Sources and modes of uncertainty/perturbation
 
-In this benchmark, we consider extensive perturbation/uncertainty events that possibly happen during every moments in the interacting process (See Figure 1) due to different:
+In this benchmark, we consider extensive potential uncertainty/disturbance/generalizable events that happen during any places, with any modes, at any time, in the interacting process ranging from training to the testing. Those perturbation events can be generally categorized due to different:
 * **Sources:**
 * **Modes:**
 * **Frequency:** interactive modes that support step-wise interaction between disruptors, agents, and environments.
@@ -312,7 +312,10 @@ In this benchmark, we consider extensive perturbation/uncertainty events that po
 
 
 
-
+<div style="border: 1px solid #dfe6e9; border-left: 5px solid #00b894; background-color: #eafaf1; padding: 10px; border-radius: 4px;">
+  <strong style="color: #00b894; font-size: 16px;">&#x1F4A1; Tip</strong><br>
+  Not all environments work with all algorithms. See the <a href="https://example.com/algorithm-overview" style="color: #0984e3;">algorithm overview</a> for more information.
+</div>
 
 
 
