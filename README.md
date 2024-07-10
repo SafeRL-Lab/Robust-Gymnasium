@@ -291,26 +291,27 @@ Tasks: Random, Adversary, Semantic Tasks (Robot Manipulation Tasks).
 ## Disruptor Module for Perturbations
 Before introducing the disruptor module, we recall that RL problem can be formulated as a process involving several key concepts: an agent, state, action, reward, and an environment. Specifically, at each time $t$, the environment generate a state $s_t$ and a reward $r_t$ and send them to the agent, and the agent choose an action $a_t$ and send back to the environment to generate the next state $s_{t+1}$ conditioned on the current state $s_t$ and the action $a_t$.
 
-Considering this, in this benchmark, we consider extensive potential uncertainty/disturbance/generalizable events that happen in this process (including both training and testing phases) during any places, with any modes, and at any time. Those perturbation events can be generally categorized from three different perspectives:
-- **Sources:** which component is perturbed/attacked.
-  * <span style="color: blue;">Agent's observed state</span>: The agent observes a noisy/attacked 'state' $\widetilde{s}_t$ (diverge from the real state $s_t$ ) and use it as the input of its policy to determine the action. 
-  * _Agent's observed reward_: The agent observes a noisy/attacked 'reward' $\widetilde{r}_t$ (differ from the real immediate reward ($r_t$) obtained from the environment) and construct their policy according to it.
-  * _Action_: The action $a_t$ chosen by the agent is contaminated before sent to the environment. Namely, a perturbed action $\widetilde{a}_t$ serves as the input of the environment for the next step.
-  * _Environment_: an environment includes both immediate reward function $r$ and dynamic function $P_t$. An agent may interact with a shifted or unstationary environment.
-- **Modes:** what kind of perturbation is imposed on.
-  * Random
-  * Adversarial
-  * Set arbitrarily
-  * Semantic-domain-shifted
-- **Frequency:** when does the perturbation happen. We provide interactive modes that support step-wise interaction between disruptors, agents, and environments.
-
-
-| Perturbation modes\sources | Observed state | Observed reward | Action  | Environment/task |
+Considering this, in this benchmark, we consider extensive potential uncertainty/disturbance/generalizable events that happen in this process (including both training and testing phases) during any places, with any modes, and at any time, summarized in the following table. | Perturbation modes\sources | Observed state | Observed reward | Action  | Environment/task |
 |:--------:|:--------:|:--------:|:--------:|:--------:|
 | Random | :white_check_mark: | :white_check_mark: | :white_check_mark: | to do |
 | Adversarial | to do | \ | to do | \ |
 | Set arbitrarily | \ | \ | \ | :white_check_mark: |
 | Semantic Domain shift | \ | \ |  \ | :white_check_mark: |
+
+Those perturbation events can be generally categorized from three different perspectives:
+- **Sources:** which component is perturbed/attacked.
+  * **Agent's observed state**: The agent observes a noisy/attacked 'state' $\widetilde{s}_t$ (diverge from the real state $s_t$ ) and use it as the input of its policy to determine the action. 
+  * **Agent's observed reward**: The agent observes a noisy/attacked 'reward' $\widetilde{r}_t$ (differ from the real immediate reward ($r_t$) obtained from the environment) and construct their policy according to it.
+  * **Action**: The action $a_t$ chosen by the agent is contaminated before sent to the environment. Namely, a perturbed action $\widetilde{a}_t$ serves as the input of the environment for the next step.
+  * **Environment**: an environment includes both immediate reward function $r$ and dynamic function $P_t$. An agent may interact with a shifted or unstationary environment.
+- **Modes:** what kind of perturbation is imposed on.
+  * **Random**: the nominal variable will be added by some random noise following some distributions, such as Gaussian, or uniform distribution. This mode can be used to all perturbation sources.
+  * **Adversarial**: an adversarial attacker will choose the perturbed output within some admissible set to degrade the agent's performance. This mode can be used to the perturbations towards observation and action.
+  * **Set arbitrarily**: An environment can be set to any fixed one within some pre-scribed uncertainty set of the environments.  
+  * **Semantic-domain-shifted**: We offer some partially-similar environment/tasks while with some semantic diversity (such as different goals) for domain generalization or transfer learning tasks.
+- **Frequency:** when does the perturbation happen. Viewed through the lens of time, the perturbations can happen at different period during training and testing process, even with different frequency.
+We provide interactive modes that support step-wise varying interaction between disruptors, agents, and environments. So the user can choose to apply perturbations at any point in the dimension of time in any way. 
+
 
 
 
