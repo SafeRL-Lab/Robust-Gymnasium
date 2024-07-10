@@ -292,16 +292,17 @@ Tasks: Random, Adversary, Semantic Tasks (Robot Manipulation Tasks).
 Before introducing the disruptor module, we recall that RL problem can be formulated as a process involving several key concepts: an agent, state, action, reward, and an environment. Specifically, at each time $t$, the environment generate a state $s_t$ and a reward $r_t$ and send them to the agent, and the agent choose an action $a_t$ and send back to the environment to generate the next state $s_{t+1}$ conditioned on the current state $s_t$ and the action $a_t$.
 
 Considering this, in this benchmark, we consider extensive potential uncertainty/disturbance/generalizable events that happen in this process (including both training and testing phases) during any places, with any modes, and at any time. Those perturbation events can be generally categorized from three different perspectives:
-* **Sources:** which part is perturbed/attacked
-  * Observation
+* **Sources:** which component is perturbed/attacked.
+  * Agent's observed state
+  * Agent's observed reward
   * Action
   * Environment
-* **Modes:** what kind of perturbations are imposed
+* **Modes:** what kind of perturbation is imposed on.
   * Random
   * Adversarial
   * Set arbitrarily
   * Semantic-domain-shifted
-* **Frequency:** when does the perturbation happen. interactive modes that support step-wise interaction between disruptors, agents, and environments.
+* **Frequency:** when does the perturbation happen. We provide interactive modes that support step-wise interaction between disruptors, agents, and environments.
 
 
 | Perturbation modes\sources | Observed state | Observed reward | Action  | Environment/task |
