@@ -384,7 +384,7 @@ Here, we provide a step-by-step tutorial for users to create and use a domain-sh
 
 | Environments | Description | Demo     |
 |  :----:  | :----:  | :----:  |
-| Robust Ant Tasks|  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/Ant-v4.gif" width="250"/>    |
+| Robust Ant Tasks|   In the task, the robot observation, reward signal, action, joint force and mass (shape) could be randomly changed with a Gaussian distribution, uniform distribution, or a certain shift.| <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/Ant-v4.gif" width="250"/>    |
 | Robust HalhCheetah Tasks| | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/HalfCheetah-v4.gif" align="middle" width="250"/>    |
 |Robust Hopper Tasks|  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/Hopper-v4.gif" align="middle" width="250"/>    |
 |Robust Pusher Tasks|  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/Pusher-v4.gif" align="middle" width="250"/>    |
