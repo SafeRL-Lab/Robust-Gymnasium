@@ -1,5 +1,15 @@
 $$S = S + \epsilon_g \tag{1.1} $$
 
+$$
+\epsilon_g \in N(\mu, \sigma) \tag{1.2}
+$$
+
+$$S = S + \epsilon_u \tag{1.3} $$
+
+$$
+u \sim \mathcal{U}(a, b) \tag{1.4}
+$$
+
 ## Detailed Environments and Tasks
 
 
