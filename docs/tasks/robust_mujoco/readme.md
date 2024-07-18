@@ -1,4 +1,4 @@
-$$S = S + \epsilon_g \tag{1.1} \label{eq1-1} $$
+$$S = S + \epsilon_g \tag{1.1} $$
 
 ## Detailed Environments and Tasks
 
