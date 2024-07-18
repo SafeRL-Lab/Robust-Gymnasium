@@ -16,6 +16,46 @@ $$
 \epsilon_{sh} = c  \tag{1.6} 
 $$
 
+---------
+
+$$A = A + \epsilon_g \tag{2.1} $$
+
+$$
+\epsilon_g \in N(\mu, \sigma) \tag{2.2}
+$$
+
+$$A = A + \epsilon_u \tag{2.3} $$
+
+$$
+u \sim \mathcal{U}(a, b) \tag{2.4}
+$$
+
+$$A = A + \epsilon_{sh} \tag{2.5} $$
+
+$$
+\epsilon_{sh} = c  \tag{2.6} 
+$$
+
+---------
+
+$$R = R + \epsilon_g \tag{3.1} $$
+
+$$
+\epsilon_g \in N(\mu, \sigma) \tag{3.2}
+$$
+
+$$R = R + \epsilon_u \tag{3.3} $$
+
+$$
+u \sim \mathcal{U}(a, b) \tag{3.4}
+$$
+
+$$R = R + \epsilon_{sh} \tag{3.5} $$
+
+$$
+\epsilon_{sh} = c  \tag{3.6} 
+$$
+
 ## Detailed Environments and Tasks
 
 
