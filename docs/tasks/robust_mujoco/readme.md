@@ -1,4 +1,22 @@
 ## Detailed Environments and Tasks
+
+| Environments | Description | Demo     |
+|  :----:  | :----:  | :----:  |
+| Robust Ant Tasks|   In the task, the robot observation, reward signal, action, joint force and mass (shape) could be randomly changed with a Gaussian distribution, uniform distribution, or a certain shift.| <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/Ant-v4.gif" width="250"/>    |
+| Robust HalhCheetah Tasks| | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/HalfCheetah-v4.gif" align="middle" width="250"/>    |
+|Robust Hopper Tasks|  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/Hopper-v4.gif" align="middle" width="250"/>    |
+|Robust Pusher Tasks|  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/Pusher-v4.gif" align="middle" width="250"/>    |
+|Robust Reacher Tasks|  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/Reacher-v4.gif" align="middle" width="250"/>    |
+|Robust Swimmer Tasks |  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/Swimmer-v4.gif" align="middle" width="250"/>    |
+|Robust Walker Tasks |  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/Walker2d-v4.gif" align="middle" width="250"/>    |
+|Robust Humanoid Tasks |  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/humanoid.gif" align="middle" width="250"/>    |
+|Robust HumanoidStandup Tasks| | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/humanoidStandup-v4.gif" align="middle" width="250"/>    |
+|Robust Invert-Double Tasks |  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/inver-double.gif" align="middle" width="250"/>    |
+|Robust Invert Tasks |  | <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/invert.gif" align="middle" width="250"/>    |
+
+
+
+
 <details>
 <summary><b><big>Details of Robust MuJoCo Tasks</big></b></summary>
 
