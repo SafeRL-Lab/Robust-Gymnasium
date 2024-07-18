@@ -3,7 +3,7 @@ $$S = S + \epsilon_g \tag{1.1} $$
 ## Detailed Environments and Tasks
 
 
-In the equation $\eqref{eq1-1}$
+In the equation $(1.1)$
 
 | Environments | Description | Demo     |
 |  :----:  | :----:  | :----:  |
