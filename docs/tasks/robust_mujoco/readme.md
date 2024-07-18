@@ -10,6 +10,12 @@ $$
 u \sim \mathcal{U}(a, b) \tag{1.4}
 $$
 
+$$S = S + \epsilon_{sh} \tag{1.5} $$
+
+$$
+\epsilon_{sh} = c  \tag{1.6} 
+$$
+
 ## Detailed Environments and Tasks
 
 
