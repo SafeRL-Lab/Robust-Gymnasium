@@ -7,7 +7,7 @@ $$
 $$S = S + \epsilon_u \tag{1.3} $$
 
 $$
-u \sim \mathcal{U}(a, b) \tag{1.4}
+\epsilon_u \sim \mathcal{U}(a, b) \tag{1.4}
 $$
 
 $$S = S + \epsilon_{sh} \tag{1.5} $$
@@ -27,7 +27,7 @@ $$
 $$A = A + \epsilon_u \tag{2.3} $$
 
 $$
-u \sim \mathcal{U}(a, b) \tag{2.4}
+\epsilon_u \sim \mathcal{U}(a, b) \tag{2.4}
 $$
 
 $$A = A + \epsilon_{sh} \tag{2.5} $$
@@ -47,7 +47,7 @@ $$
 $$R = R + \epsilon_u \tag{3.3} $$
 
 $$
-u \sim \mathcal{U}(a, b) \tag{3.4}
+\epsilon_u \sim \mathcal{U}(a, b) \tag{3.4}
 $$
 
 $$R = R + \epsilon_{sh} \tag{3.5} $$
