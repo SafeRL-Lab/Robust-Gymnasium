@@ -37,7 +37,7 @@ def get_config():
                         help='robosuite door task: table height (default: 0.8)')
     parser.add_argument('--door-robot-table-distance', type=float, default=0.005, metavar='G',
                         help='robosuite door task: the distance between robot and table  (default: -0.55)')
-    parser.add_argument('--llm-guide', default="adversary", metavar='G',
+    parser.add_argument('--llm-guide', default="Non-adversary", metavar='G',
                         help='name of the llm guide robust type, e.g., adversary')
     parser.add_argument('--llm-disturb-interval', type=int, default=500, metavar='G',
                         help='llm disturb interval (default: 500)')
