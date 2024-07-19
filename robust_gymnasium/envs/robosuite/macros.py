@@ -32,7 +32,7 @@ IMAGE_CONVENTION = "opengl"  # Options are {"opengl", "opencv"}
 # so we skip concatenating all images together by default, unless this flag is set to True
 CONCATENATE_IMAGES = False
 
-MUJOCO_GPU_RENDERING = True
+MUJOCO_GPU_RENDERING = False
 
 # Spacemouse settings. Used by SpaceMouse class in robust_gymnasium.envs.robosuite/devices/spacemouse.py
 SPACEMOUSE_VENDOR_ID = 9583
