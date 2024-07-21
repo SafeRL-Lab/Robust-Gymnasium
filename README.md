@@ -56,7 +56,7 @@ Any suggestions and issues are welcome. If you have any questions, please propos
   * [Installation of the Environment](#installation-of-the-environments)
   * [Quick start](#testing-the-tasks)
 - [Detailed Environments and Tasks](#detailed-environments-and-tasks)
-- [Demos](#demos)
+- [Selected Demos](#selected-demos)
   * [Robust MuJoCo Tasks](#robust-mujoco-tasks)
   * [Robust MuJoCo Variant Tasks](#robust-mujoco-variant-tasks)
   * [Robust Robot Manipulation Tasks](#robust-robot-manipulation-tasks)
@@ -437,7 +437,7 @@ TBD
 --------------
 
 
-## Demos
+## Selected Demos
 
 
 ### Robust MuJoCo Tasks
