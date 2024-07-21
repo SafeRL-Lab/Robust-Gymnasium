@@ -293,8 +293,8 @@ Considering this, in this benchmark, we consider extensive potential uncertainty
 
 | Perturbation modes\sources | Observed state | Observed reward | Action  | Environment/task |
 |:--------:|:--------:|:--------:|:--------:|:--------:|
-| Random | :white_check_mark: | :white_check_mark: | :white_check_mark: | to do |
-| Adversarial | to do | \ | to do | \ |
+| Random | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| Adversarial | TBD | \ | TBD | \ |
 | Set arbitrarily | \ | \ | \ | :white_check_mark: |
 | Semantic Domain shift | \ | \ |  \ | :white_check_mark: |
 
