@@ -330,9 +330,9 @@ We provide interactive modes that support step-wise varying interaction between 
 
 Here, we provide a step-by-step tutorial for users to create and use a domain-shifted/noisy task by choosing any environment/task combined with any uncertainty factor to perturb some original environment.
 
----------------
-
 We are currently developing our environments on an Ubuntu system. The operating system version is 20.04.3 LTS.
+
+---------------
 
 ### Installation of the Environments
 
