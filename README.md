@@ -326,9 +326,15 @@ We provide interactive modes that support step-wise varying interaction between 
 
 ---------------
 
+## Tutorials
+
+Here, we provide a step-by-step tutorial for users to create and use a domain-shifted/noisy task by choosing any environment/task combined with any uncertainty factor to perturb some original environment.
+
+---------------
+
 We are currently developing our environments on an Ubuntu system. The operating system version is 20.04.3 LTS.
 
-## Installation of the Environments
+### Installation of the Environments
 
 1. **Create an environment (requires [Conda installation](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)):**
 
@@ -353,7 +359,7 @@ We are currently developing our environments on an Ubuntu system. The operating 
    pip install -e .
    ```
 ---------------
-## Testing the Tasks
+### Testing the Tasks
 
 To run the tests, navigate to the `examples` directory and Test. te the test script, e.g.,
 
@@ -366,15 +372,6 @@ chmod +x test.sh
 Ensure you follow these steps to set up and test the environment properly. Adjust paths and versions as necessary based on your specific setup requirements.
 
 If you met some issues, please check the [existing solutions for the reported issues](https://github.com/SafeRL-Lab/Robust-Gymnasium/issues?q=is%3Aissue+is%3Aclosed), which could help you address your issue.
-
----------------
-
-## Tutorials
-
-Here, we provide a step-by-step tutorial for users to create and use a domain-shifted/noisy task by choosing any environment/task combined with any uncertainty factor to perturb some original environment.
-
-
-
 
 ----------
 
