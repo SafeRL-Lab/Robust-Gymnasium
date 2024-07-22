@@ -20,4 +20,4 @@ Code Example
 
 .. code-block:: python
 
-    print("Hello, Sphinx!")
+    print("Hello, Robust RL!")
