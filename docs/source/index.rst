@@ -1,25 +1,22 @@
-:html_theme.sidebar_secondary.remove:
+Welcome to Robust Gymnasium's documentation!
+===================================
 
-.. title:: Welcome to Ray!
+**Lumache** (/lu'make/) is a Python library for cooks and food lovers
+that creates recipes mixing random ingredients.
+It pulls data from the `Open Food Facts database <https://world.openfoodfacts.org/>`_
+and offers a *simple* and *intuitive* API.
+
+Check out the :doc:`usage` section for further information, including
+how to :ref:`installation` the project.
+
+.. note::
+
+   This project is under active development.
+
+Contents
+--------
 
 .. toctree::
-   :hidden:
 
-   Overview <ray-overview/index>
-   Getting Started <ray-overview/getting-started>
-   Installation <ray-overview/installation>
-   Use Cases <ray-overview/use-cases>
-   Example Gallery <ray-overview/examples>
-   Ecosystem <ray-overview/ray-libraries>
-   Ray Core <ray-core/walkthrough>
-   Ray Data <data/data>
-   Ray Train <train/train>
-   Ray Tune <tune/index>
-   Ray Serve <serve/index>
-   Ray RLlib <rllib/index>
-   More Libraries <ray-more-libs/index>
-   Ray Clusters <cluster/getting-started>
-   Monitoring and Debugging <ray-observability/index>
-   Developer Guides <ray-contribute/index>
-   Glossary <ray-references/glossary>
-   Security <ray-security/index>
+   usage
+   api
