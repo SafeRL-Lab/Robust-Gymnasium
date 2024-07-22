@@ -1,5 +1,5 @@
 """
-Lumache - Python library for cooks and food lovers.
+Robust Gymnasium - A unifying robust reinforcement learning benchmark..
 """
 
 __version__ = "0.1.0"
