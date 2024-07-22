@@ -1,4 +1,4 @@
-Welcome to Robust Gymnasium's Documentation!
+Welcome to Robust Gymnasium!
 =======================================
 
 Introduction
