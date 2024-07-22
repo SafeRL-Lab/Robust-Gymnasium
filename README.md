@@ -23,7 +23,6 @@ This benchmark aims to advance robust reinforcement learning (RL) for real-world
 - **High Compatibility:** It can be seamless and compatible with a wide range of existing environments.
 - **Support Vectorized Environments:** It can be useful to enable parallel processing of multiple environments for efficient experimentation.
 - **Support for New Gym API:** It fully supports the latest standards in Gym API, facilitating easy integration and expansion.
-- **Support for Vision/Image Input:** Robust vision/image can be used as the observation input to train models (To be fine-tuned).
 - **LLMs Guide Robust Learning:** Leverage LLMs to set robust parameters (LLMs as adversary policies).
 
 🔥 **Benchmark Tasks:**
