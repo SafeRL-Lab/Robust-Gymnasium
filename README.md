@@ -54,7 +54,6 @@ Any suggestions and issues are welcome. If you have any questions, please propos
 - [Tutorials](#tutorials)
   * [Installation of the Environment](#installation-of-the-environments)
   * [Quick start](#testing-the-tasks)
-- [Detailed Environments and Tasks](#detailed-environments-and-tasks)
 - [Selected Demos](#selected-demos)
   * [Robust MuJoCo Tasks](#robust-mujoco-tasks)
   * [Robust MuJoCo Variant Tasks](#robust-mujoco-variant-tasks)
