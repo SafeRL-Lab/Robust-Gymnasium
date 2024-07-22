@@ -1,20 +1,29 @@
 Welcome to Robust Gymnasium!
 ===================================
 
-**Robust Gymnasium** (/lu'make/) is a unifying robust reinforcement learning benchmark.
+**Robust Gymnasium** is a unifying robust reinforcement learning benchmark.
 
 
-Check out the :doc:`usage` section for further information, including
-how to :ref:`installation` the project.
+Installation
+------------
 
-.. note::
+You can simply install Robust Gymnasium with the following commands:
 
-   This project is under active development.
+.. code-block:: bash
 
-Contents
---------
+    $ git clone git@github.com:SafeRL-Lab/Robust-Gymnasium.git
+    $ pip install -e .
+    $ pip install -r requirements.txt
 
-.. toctree::
 
-   usage
-   api
+
+If no error occurs, you have successfully installed Robust Gymnasium.
+
+Robust Gymnasium is still under development, you can also check out the documents in stable version through `robust gymnasium <https://github.com/SafeRL-Lab/Robust-Gymnasium/tree/main>`_.
+
+Indices and tables
+------------------
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
