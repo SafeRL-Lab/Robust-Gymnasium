@@ -1,4 +1,4 @@
-Welcome to Robust Gymnasium's documentation!
+Welcome to Robust Gymnasium!
 ===================================
 
 **Robust Gymnasium** (/lu'make/) is a unifying robust reinforcement learning benchmark.
