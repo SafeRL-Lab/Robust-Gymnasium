@@ -7,7 +7,7 @@ def get_config():
                         help='discount factor (default: 0.995)')
     parser.add_argument('--env-name', default="Ant-v4", metavar='G',
                         help='name of the environment to run')
-    parser.add_argument('--env-seed', type=int, default=543, metavar='G',
+    parser.add_argument('--seed', type=int, default=543, metavar='G',
                         help='env seed (default: 543)')
     parser.add_argument('--noise-factor', default="state", metavar='G',
                         help='name of noise factor, such as state, action, reward, cost, force (dynamics), shape (mass), dynamics')
