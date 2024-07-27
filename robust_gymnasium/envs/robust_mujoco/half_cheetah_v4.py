@@ -146,7 +146,7 @@ class HalfCheetahEnv(MujocoEnv, utils.EzPickle):
         if self.render_mode == "human":
             self.render()
         # truncation=False as the time limit is handled by the `TimeLimit` wrapper added during `make`
-        if args.noise_factor == "robust_force" or "robust_shape":
+        if args.noise_factor == "robust_force" or args.noise_factor == "robust_shape":
             self.replace_xml_content(fullpath_original, self.fullpath)
         return observation, reward, terminated, False, info
 
