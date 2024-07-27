@@ -94,7 +94,7 @@ class InvertedPendulumEnv(MujocoEnv, utils.EzPickle):
             "target_file_path": self.fullpath,
         }
         # truncation=False as the time limit is handled by the `TimeLimit` wrapper added during `make`
-        if args.noise_factor == "robust_force" or "robust_shape":
+        if args.noise_factor == "robust_force" or args.noise_factor == "robust_shape":
             self.replace_xml_content(fullpath_original, self.fullpath)
         return ob, reward, terminated, False, info
 
