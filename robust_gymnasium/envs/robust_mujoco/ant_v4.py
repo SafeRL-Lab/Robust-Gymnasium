@@ -220,7 +220,7 @@ class AntEnv(MujocoEnv, utils.EzPickle):
 
         # self.modify_xml(xml_path_completion(xml_path), str(handle_width_left_door) + ' 0 ' + str(handle_height_door))  # <body name="latch" pos="-0.175 0 -0.025">
 
-        if args.noise_factor == "robust_force" or "robust_shape":
+        if args.noise_factor == "robust_force" or args.noise_factor == "robust_shape":
             self.replace_xml_content(fullpath_original, self.fullpath)
 
         # print("observation-----:", observation)
