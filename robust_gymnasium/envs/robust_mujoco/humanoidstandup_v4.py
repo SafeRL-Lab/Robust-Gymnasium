@@ -123,7 +123,7 @@ class HumanoidStandupEnv(MujocoEnv, utils.EzPickle):
             "source_file_path": fullpath_original,
             "target_file_path": self.fullpath,
         }
-        if args.noise_factor == "robust_force" or "robust_shape":
+        if args.noise_factor == "robust_force" or args.noise_factor == "robust_shape":
             self.replace_xml_content(fullpath_original, self.fullpath)
         return (
             observation,
