@@ -138,7 +138,7 @@ class SwimmerEnv(MujocoEnv, utils.EzPickle):
                 print('\033[0;31m "No reward entropy learning! Using the original reward" \033[0m')
         else:
             reward = reward
-        if args.noise_factor == "robust_force" or "robust_shape":
+        if args.noise_factor == "robust_force" or args.noise_factor == "robust_shape":
             self.replace_xml_content(fullpath_original, self.fullpath)
         return observation, reward, False, False, info
 
