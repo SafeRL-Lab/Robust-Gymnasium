@@ -351,12 +351,33 @@ class AntRandomEnv(MujocoEnv, utils.EzPickle):
         is_healthy = np.isfinite(state).all() and min_z <= state[2] <= max_z
         return is_healthy
 
+    def reset_robust(self, robust_args):
+        # gravity = 9.81
+        # wind = 0
+        gravity = robust_args.gravity
+        wind = robust_args.wind
+        self.model.opt.gravity[:] = np.array([0., 0., -gravity])
+        self.model.opt.wind[:] = np.array([-wind, 0., 0.])
+        state = self.reset(seed=robust_args.seed)
+        return state
+
     def step(self, robust_input):
+
+        # print("test------reset---")
         # action = action["action"]
+
         action = robust_input["action"]
         args = robust_input["robust_config"]
         mu = args.noise_mu
         sigma = args.noise_sigma
+
+        if args.robust_res:
+            # print("robust_res---:", args.robust_res)
+            state = self.reset_robust(args)
+            return state, 0, 0, 0, {"T": True}
+
+
+
         if args.noise_factor == "action":
             if args.noise_type == "gauss":
                 action = action + random.gauss(mu, sigma)  # robust setting
@@ -408,15 +429,20 @@ class AntRandomEnv(MujocoEnv, utils.EzPickle):
                 print('\033[0;31m "No reward robust learning! Using the original reward" \033[0m')
         else:
             reward = reward
+        # print("args.noise_type------:", args.noise_type)
+
+
         return observation, reward, terminated, False, info
 
-    if "Non_stationary" in args.noise_type:
-        if terminated:
-            gravity = 9.81
-            wind = 0
-            self.model.opt.gravity[:] = np.array([0., 0., -gravity])
-            self.model.opt.wind[:] = np.array([-wind, 0., 0.])
-            self.reset()
+    # if "Non_stationary" in args.noise_type:
+    #
+    #     if terminated:
+    #         gravity = 9.81
+    #         wind = 0
+    #         self.model.opt.gravity[:] = np.array([0., 0., -gravity])
+    #         self.model.opt.wind[:] = np.array([-wind, 0., 0.])
+    #         self.reset()
+
 
     def _get_rew(self, x_velocity: float, action):
         forward_reward = x_velocity * self._forward_reward_weight
