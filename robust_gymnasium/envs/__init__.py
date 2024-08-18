@@ -1821,14 +1821,14 @@ def register_robotics_envs():
 
         register(
             id='AntTransfer-v5',
-            entry_point='robust_gymnasium.envs.robust_nonstationary_env.random_ant_v5:AntTransferEnv',
+            entry_point='robust_gymnasium.envs.robust_nonstationary_env.transfer_ant_v5:AntTransferEnv',
             max_episode_steps=1000,
             reward_threshold=6000.0,
         )
 
         register(
             id='AntRandom-v5',
-            entry_point='robust_gymnasium.envs.robust_nonstationary_env.transfer_ant_v5:AntRandomEnv',
+            entry_point='robust_gymnasium.envs.robust_nonstationary_env.random_ant_v5:AntRandomEnv',
             max_episode_steps=1000,
             reward_threshold=6000.0,
         )
