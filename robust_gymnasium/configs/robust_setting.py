@@ -9,8 +9,8 @@ def get_config():
                         help='name of the environment to run')
     parser.add_argument('--seed', type=int, default=543, metavar='G',
                         help='env seed (default: 543)')
-    parser.add_argument('--noise-factor', default="state", metavar='G',
-                        help='name of noise factor, such as state, action, reward, cost, force (dynamics), shape (mass), dynamics')
+    parser.add_argument('--noise-factor', default="Non-state", metavar='G',
+                        help='name of noise factor, such as state, action, reward, cost, robust_force (dynamics), robust_shape (mass), dynamics')
     parser.add_argument('--noise-type', default="gauss", metavar='G',
                         help='name of the noise type, e.g., gauss, shift, uniform, Non_stationary')
     parser.add_argument('--noise-mu', type=float, default=0.0, metavar='G',
@@ -41,6 +41,9 @@ def get_config():
                         help='name of the llm guide robust type, e.g., adversary')
     parser.add_argument('--llm-disturb-interval', type=int, default=500, metavar='G',
                         help='llm disturb interval (default: 500)')
+
+    parser.add_argument("--task", type=str, default="Ant-v4")
+    parser.add_argument("--resume-path", type=str, default=None)
 
 
 
