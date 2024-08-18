@@ -41,6 +41,13 @@ def get_config():
                         help='name of the llm guide robust type, e.g., adversary')
     parser.add_argument('--llm-disturb-interval', type=int, default=500, metavar='G',
                         help='llm disturb interval (default: 500)')
+    
+    parser.add_argument('--gravity', type=float, default=9.81, metavar='G',  # 0.04-0.045
+                        help='gravity (default: 9.81)')
+    parser.add_argument('--wind', type=float, default=0, metavar='G',  # 0.04-0.045
+                        help='wind (default: 0)')
+    parser.add_argument('--robust-res', type=str2bool, default=False,
+                        help='robust reset (default: True)')
 
     parser.add_argument("--task", type=str, default="Ant-v4")
     parser.add_argument("--resume-path", type=str, default=None)
