@@ -285,12 +285,36 @@ class Walker2dRandomEnv(MujocoEnv, utils.EzPickle):
         observation = np.concatenate((position, velocity)).ravel()
         return observation
 
+    def reset_robust(self, robust_args):
+        # gravity = 9.81
+        # wind = 0
+        torso_len = robust_args.torso_len
+        foot_len = robust_args.foot_len
+        # self.model.opt.gravity[:] = np.array([0., 0., -gravity])
+        # self.model.opt.wind[:] = np.array([-wind, 0., 0.])
+
+        self.model.body_pos[1][2] = 1.05 + torso_len
+        self.model.body_pos[2][2] = -torso_len
+        self.model.body_pos[5][2] = -torso_len
+        self.model.geom_size[1][1] = torso_len
+        self.model.geom_size[4][1] = foot_len
+        self.model.geom_size[7][1] = foot_len
+
+        state = self.reset(seed=robust_args.seed)
+        return state
+
     def step(self, robust_input):
         # action = action["action"]
         action = robust_input["action"]
         args = robust_input["robust_config"]
         mu = args.noise_mu
         sigma = args.noise_sigma
+
+        if args.robust_res:
+            # print("robust_res---:", args.robust_res)
+            state = self.reset_robust(args)
+            return state, 0, 0, 0, {"T": True}
+
         if args.noise_factor == "action":
             if args.noise_type == "gauss":
                 action = action + random.gauss(mu, sigma)  # robust setting
@@ -339,17 +363,17 @@ class Walker2dRandomEnv(MujocoEnv, utils.EzPickle):
         else:
             reward = reward
 
-        if "Non_stationary" in args.noise_type:
-            if terminated:
-                torso_len = 0.2
-                foot_len = 0.1
-                self.model.body_pos[1][2] = 1.05 + torso_len
-                self.model.body_pos[2][2] = -torso_len
-                self.model.body_pos[5][2] = -torso_len
-                self.model.geom_size[1][1] = torso_len
-                self.model.geom_size[4][1] = foot_len
-                self.model.geom_size[7][1] = foot_len
-                self.reset()
+        # if "Non_stationary" in args.noise_type:
+        #     if terminated:
+        #         torso_len = 0.2
+        #         foot_len = 0.1
+        #         self.model.body_pos[1][2] = 1.05 + torso_len
+        #         self.model.body_pos[2][2] = -torso_len
+        #         self.model.body_pos[5][2] = -torso_len
+        #         self.model.geom_size[1][1] = torso_len
+        #         self.model.geom_size[4][1] = foot_len
+        #         self.model.geom_size[7][1] = foot_len
+        #         self.reset()
 
         return observation, reward, terminated, False, info
 
