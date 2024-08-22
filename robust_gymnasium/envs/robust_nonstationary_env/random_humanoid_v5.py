@@ -474,12 +474,28 @@ class HumanoidRandomEnv(MujocoEnv, utils.EzPickle):
             )
         )
 
+    def reset_robust(self, robust_args):
+        # gravity = 9.81
+        # wind = 0
+        gravity = robust_args.gravity
+        wind = robust_args.wind
+        self.model.opt.gravity[:] = np.array([0., 0., -gravity])
+        self.model.opt.wind[:] = np.array([-wind, 0., 0.])
+        state = self.reset(seed=robust_args.seed)
+        return state
+
     def step(self, robust_input):
         # action = action["action"]
         action = robust_input["action"]
         args = robust_input["robust_config"]
         mu = args.noise_mu
         sigma = args.noise_sigma
+
+        if args.robust_res:
+            # print("robust_res---:", args.robust_res)
+            state = self.reset_robust(args)
+            return state, 0, 0, 0, {"T": True}
+
         if args.noise_factor == "action":
             if args.noise_type == "gauss":
                 action = action + random.gauss(mu, sigma)  # robust setting
@@ -534,14 +550,14 @@ class HumanoidRandomEnv(MujocoEnv, utils.EzPickle):
         else:
             reward = reward
 
-        if "Non_stationary" in args.noise_type:
-            if terminated:
-                gravity = 9.81
-                wind = 0
-                self.model.opt.gravity[:] = np.array([0., 0., -gravity])
-                self.model.opt.wind[:] = np.array([-wind, 0., 0.])
-                self.reset()
-                print("reset--------test!")
+        # if "Non_stationary" in args.noise_type:
+        #     if terminated:
+        #         gravity = 9.81
+        #         wind = 0
+        #         self.model.opt.gravity[:] = np.array([0., 0., -gravity])
+        #         self.model.opt.wind[:] = np.array([-wind, 0., 0.])
+        #         self.reset()
+        #         print("reset--------test!")
 
 
         return observation, reward, terminated, False, info
