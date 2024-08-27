@@ -88,18 +88,25 @@ class BaseRobotEnv(GoalEnv):
         ), f'Expected value: {int(np.round(1.0 / self.dt))}, Actual value: {self.metadata["render_fps"]}'
 
         self.action_space = spaces.Box(-1.0, 1.0, shape=(n_actions,), dtype="float32")
-        self.observation_space = spaces.Dict(
-            dict(
-                desired_goal=spaces.Box(
-                    -np.inf, np.inf, shape=obs["achieved_goal"].shape, dtype="float64"
-                ),
-                achieved_goal=spaces.Box(
-                    -np.inf, np.inf, shape=obs["achieved_goal"].shape, dtype="float64"
-                ),
-                observation=spaces.Box(
-                    -np.inf, np.inf, shape=obs["observation"].shape, dtype="float64"
-                ),
-            )
+        # print("n_actions----: ", n_actions)
+        # print("obs.shape---: ", obs["observation"].shape[0])
+        # TODO:
+        # self.observation_space = spaces.Dict(
+        #     dict(
+        #         desired_goal=spaces.Box(
+        #             -np.inf, np.inf, shape=obs["achieved_goal"].shape, dtype="float64"
+        #         ),
+        #         achieved_goal=spaces.Box(
+        #             -np.inf, np.inf, shape=obs["achieved_goal"].shape, dtype="float64"
+        #         ),
+        #         observation=spaces.Box(
+        #             -np.inf, np.inf, shape=obs["observation"].shape, dtype="float64"
+        #         ),
+        #     )
+        # )
+
+        self.observation_space = spaces.Box(
+            low=-np.inf, high=np.inf, shape=(obs["observation"].shape[0],), dtype=np.float64
         )
 
         self.render_mode = render_mode
@@ -155,6 +162,7 @@ class BaseRobotEnv(GoalEnv):
         if self.render_mode == "human":
             self.render()
         obs = self._get_obs()
+        # print("self._get_obs()---:", self._get_obs())
 
         info = {
             "is_success": self._is_success(obs["achieved_goal"], self.goal),
@@ -186,8 +194,10 @@ class BaseRobotEnv(GoalEnv):
                 print('\033[0;31m "No action entropy learning! Using the original action" \033[0m')
         else:
             reward = reward
+        # print("self.goal---:", self.goal)
+        # print("achieved_goal---: ", obs["achieved_goal"])
 
-        return obs, reward, terminated, truncated, info
+        return obs["observation"], reward, terminated, truncated, info
 
     def reset(
         self,
@@ -221,7 +231,7 @@ class BaseRobotEnv(GoalEnv):
         if self.render_mode == "human":
             self.render()
 
-        return obs, {}
+        return obs["observation"], {}
 
     # Extension methods
     # ----------------------------
