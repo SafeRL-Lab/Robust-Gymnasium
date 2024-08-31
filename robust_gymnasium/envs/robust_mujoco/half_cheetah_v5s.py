@@ -225,10 +225,10 @@ class HalfCheetahEnv(MujocoEnv, utils.EzPickle):
         control_cost = self._ctrl_cost_weight * np.sum(np.square(action))
         return control_cost
 
-    def step(self, action):
+    def step(self, robust_input):
         # action = action["action"]
-        # action = robust_input["action"]
-        # args = robust_input["robust_config"]
+        action = robust_input["action"]
+        args = robust_input["robust_config"]
         mu = args.noise_mu
         sigma = args.noise_sigma
         if args.noise_factor == "action":

@@ -469,6 +469,13 @@ register(
 )
 
 register(
+    id="MA-HalfCheetah",
+    entry_point="robust_gymnasium.envs.robust_ma_mujoco.mujoco_multi:MultiAgentMujocoEnv",
+    max_episode_steps=1000,
+    reward_threshold=4800.0,
+)
+
+register(
     id="Hopper-v5s",
     entry_point="robust_gymnasium.envs.robust_mujoco.hopper_v5s:HopperEnv",
     max_episode_steps=1000,
