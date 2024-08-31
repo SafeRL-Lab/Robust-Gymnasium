@@ -24,6 +24,7 @@ import robust_gymnasium
 import numpy as np
 import pettingzoo
 from robust_gymnasium.wrappers import TimeLimit
+from numpy.typing import NDArray
 
 import robust_gymnasium.envs.robust_ma_mujoco.many_segment_ant as many_segment_ant
 import robust_gymnasium.envs.robust_ma_mujoco.many_segment_swimmer as many_segment_swimmer
@@ -61,7 +62,7 @@ _MUJOCO_GYM_ENVIROMENTS = [
 ]
 
 
-class MultiAgentMujocoEnv(pettingzoo.utils.env.ParallelEnv):
+class MultiAgentMujocoEnv(pettingzoo.utils.env.ParallelEnv, robust_gymnasium.Env[NDArray[np.float64], NDArray[np.float32]]):
     """Class for multi agent factorizing mujoco environments.
 
     Doc can be found at (https://robotics.farama.org/envs/mamujoco/)
@@ -118,6 +119,7 @@ class MultiAgentMujocoEnv(pettingzoo.utils.env.ParallelEnv):
 
             Raises: NotImplementedError: When the scenario is not supported (not part of of the valid values).
         """
+        
         # Create underlying single agent environment
         if gym_env is None:
             self.single_agent_env = self._create_base_gym_env(
@@ -183,15 +185,15 @@ class MultiAgentMujocoEnv(pettingzoo.utils.env.ParallelEnv):
         self.observation_factorization = self.create_observation_mapping()
 
         # Create observation and action spaces
-        self.observation_spaces, self.action_spaces = {}, {}
+        self.observation_space, self.action_space = {}, {}
         for agent_id, partition in enumerate(self.agent_action_partitions):
-            self.action_spaces[self.possible_agents[agent_id]] = robust_gymnasium.spaces.Box(
+            self.action_space[self.possible_agents[agent_id]] = robust_gymnasium.spaces.Box(
                 low=self.single_agent_env.action_space.low[0],
                 high=self.single_agent_env.action_space.high[0],
                 shape=(len(partition),),
                 dtype=np.float32,
             )
-            self.observation_spaces[
+            self.observation_space[
                 self.possible_agents[agent_id]
             ] = robust_gymnasium.spaces.Box(
                 low=-np.inf,
@@ -199,6 +201,8 @@ class MultiAgentMujocoEnv(pettingzoo.utils.env.ParallelEnv):
                 shape=(len(self._get_obs_agent(agent_id)),),
                 dtype=self.single_agent_env.observation_space.dtype,
             )
+        self.observation_space = robust_gymnasium.spaces.Dict(self.observation_space)
+        self.action_space = robust_gymnasium.spaces.Dict(self.action_space)
 
     def _create_base_gym_env(
         self, scenario: str, agent_conf: str, render_mode: str, **kwargs
@@ -558,13 +562,13 @@ class MultiAgentMujocoEnv(pettingzoo.utils.env.ParallelEnv):
             local_index[agent] = self._get_obs_agent(agent_id, mujoco_data)
         return local_index
 
-    def observation_space(self, agent: str) -> robust_gymnasium.spaces.Box:
-        """See [pettingzoo.utils.env.ParallelEnv.observation_space](https://pettingzoo.farama.org/api/parallel/#pettingzoo.utils.env.ParallelEnv.observation_space)."""
-        return self.observation_spaces[agent]
+    # def observation_space(self, agent: str) -> robust_gymnasium.spaces.Box:
+    #     """See [pettingzoo.utils.env.ParallelEnv.observation_space](https://pettingzoo.farama.org/api/parallel/#pettingzoo.utils.env.ParallelEnv.observation_space)."""
+    #     return self.observation_spaces[agent]
 
-    def action_space(self, agent: str) -> robust_gymnasium.spaces.Box:
-        """See [pettingzoo.utils.env.ParallelEnv.action_space](https://pettingzoo.farama.org/api/parallel/#pettingzoo.utils.env.ParallelEnv.action_space)."""
-        return self.action_spaces[agent]
+    # def action_space(self, agent: str) -> robust_gymnasium.spaces.Box:
+    #     """See [pettingzoo.utils.env.ParallelEnv.action_space](https://pettingzoo.farama.org/api/parallel/#pettingzoo.utils.env.ParallelEnv.action_space)."""
+    #     return self.action_spaces[agent]
 
     def state(self) -> np.ndarray:
         """See [pettingzoo.utils.env.ParallelEnv.state](https://pettingzoo.farama.org/api/parallel/#pettingzoo.utils.env.ParallelEnv.state)."""

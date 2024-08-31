@@ -5,7 +5,7 @@ def get_config():
     parser = argparse.ArgumentParser(description='Robust env example')
     parser.add_argument('--gamma', type=float, default=0.995, metavar='G',
                         help='discount factor (default: 0.995)')
-    parser.add_argument('--env-name', default="Ant-v4", metavar='G',
+    parser.add_argument('--env-name', default="HalfCheetah-v5s", metavar='G',
                         help='name of the environment to run')
     parser.add_argument('--seed', type=int, default=543, metavar='G',
                         help='env seed (default: 543)')
@@ -46,10 +46,10 @@ def get_config():
                         help='gravity (default: 9.81)')
     parser.add_argument('--wind', type=float, default=0, metavar='G',  # 0.04-0.045
                         help='wind (default: 0)')
-    parser.add_argument('--robust-res', type=str2bool, default=False,
+    parser.add_argument('--robust-res', type=bool, default=False,
                         help='robust reset (default: True)')
 
-    parser.add_argument("--task", type=str, default="Ant-v4")
+    parser.add_argument("--task", type=str, default="HalfCheetah-v5s")
     parser.add_argument("--resume-path", type=str, default=None)
 
 
