@@ -160,6 +160,7 @@ class MultiAgentMujocoEnv(pettingzoo.utils.env.ParallelEnv, robust_gymnasium.Env
             for agent_id in range(len(self.agent_action_partitions))
         ]
         self.agents = self.possible_agents
+        self.n_agents = len(self.possible_agents)
 
         # load the observation categories (from init arguments or generate them)
         if local_categories is None:
@@ -179,9 +180,8 @@ class MultiAgentMujocoEnv(pettingzoo.utils.env.ParallelEnv, robust_gymnasium.Env
                     mujoco_edges,
                     k=self.agent_obsk,
                 )
-                for agent_id in range(self.num_agents)
+                for agent_id in range(self.n_agents)
             ]
-
         self.observation_factorization = self.create_observation_mapping()
 
         # Create observation and action spaces
