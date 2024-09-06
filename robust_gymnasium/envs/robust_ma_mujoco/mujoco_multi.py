@@ -252,7 +252,7 @@ class MultiAgentMujocoEnv(pettingzoo.utils.env.ParallelEnv, robust_gymnasium.Env
             raise NotImplementedError("Custom env not implemented!")
 
     def step(
-        self, actions: dict[str, np.ndarray]
+        self, robust_input: dict[str, dict]
     ) -> tuple[
         dict[str, np.ndarray],
         dict[str, np.ndarray],
@@ -270,62 +270,45 @@ class MultiAgentMujocoEnv(pettingzoo.utils.env.ParallelEnv, robust_gymnasium.Env
         Returns:
             see pettingzoo.utils.env.ParallelEnv.step() doc
         """
-        # actions = robust_input["action"]
-        # actions = robust_input
-        # args = robust_input["robust_config"]
-        if args.noise_factor == "action":
-            if args.noise_type == "gauss":
-                for key in actions:
-                    actions[key] += random.gauss(args.noise_mu, args.noise_sigma)  # robust setting
-            elif args.noise_type == "shift":
-                for key in actions:
-                    actions[key] += args.noise_shift
-            else:
-                actions = actions
-                print('\033[0;31m "No action entropy learning! Using the original action" \033[0m')
-        else:
-            actions = actions
+        actions = robust_input["action"]
+        args = robust_input["robust_config"]
+        
+        # if args.noise_factor == "action":
+        #     if args.noise_type == "gauss":
+        #         for key in actions:
+        #             actions[key] += random.gauss(args.noise_mu, args.noise_sigma)  # robust setting
+        #     elif args.noise_type == "shift":
+        #         for key in actions:
+        #             actions[key] += args.noise_shift
+        #     else:
+        #         actions = actions
+        #         print('\033[0;31m "No action entropy learning! Using the original action" \033[0m')
+        # else:
+        #     actions = actions
 
+        global_action = self.map_local_actions_to_global_action(actions)
+        
+        global_robust_input = {
+            "action": global_action,
+            "robust_type": "action",
+            "robust_config": args,
+        }
+    
         _, reward_n, is_terminal_n, is_truncated_n, info_n = self.single_agent_env.step(
-            self.map_local_actions_to_global_action(actions)
+            global_robust_input
         )
 
         rewards, terminations, truncations, info = {}, {}, {}, {}
+        # rewards, terminations, truncations, info = reward_n, is_terminal_n, is_truncated_n, {}
         observations = self._get_obs()
         for agents in self.possible_agents:
             rewards[agents] = reward_n
             terminations[agents] = is_terminal_n
             truncations[agents] = is_truncated_n
-            info[agents] = info_n
+            # info[agents] = info_n
 
         if is_terminal_n or is_truncated_n:
             self.agents = []
-
-        if args.noise_factor == "state":
-            if args.noise_type == "gauss":
-                for key in observations:
-                    observations[key] += random.gauss(args.noise_mu, args.noise_sigma)  # robust setting
-            elif args.noise_type == "shift":
-                for key in observations:
-                    observations[key] += args.noise_shift
-            else:
-                observations = observations
-                print('\033[0;31m "No action entropy learning! Using the original action" \033[0m')
-        else:
-            observations = observations
-
-        if args.noise_factor == "state":
-            if args.noise_type == "gauss":
-                for key in rewards:
-                    rewards[key] += random.gauss(args.noise_mu, args.noise_sigma)  # robust setting
-            elif args.noise_type == "shift":
-                for key in rewards:
-                    rewards[key] += args.noise_shift
-            else:
-                rewards = rewards
-                print('\033[0;31m "No action entropy learning! Using the original action" \033[0m')
-        else:
-            rewards = rewards
 
         return observations, rewards, terminations, truncations, info
 
@@ -621,9 +604,10 @@ class MultiAgentMujocoEnv(pettingzoo.utils.env.ParallelEnv, robust_gymnasium.Env
         """
         _, info_n = self.single_agent_env.reset(seed=seed, options=options)
         info = {}
-        for agent in self.possible_agents:
-            info[agent] = info_n
+        # for agent in self.possible_agents:
+        #     info[agent] = info_n
         self.agents = self.possible_agents
+        # print("reset obs: ", self._get_obs())
         return self._get_obs(), info
 
     def render(self):
