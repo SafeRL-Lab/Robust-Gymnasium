@@ -198,7 +198,7 @@ class MultiAgentMujocoEnv(pettingzoo.utils.env.ParallelEnv, robust_gymnasium.Env
             ] = robust_gymnasium.spaces.Box(
                 low=-np.inf,
                 high=np.inf,
-                shape=(len(self._get_obs_agent(agent_id)),),
+                shape=(len(self._get_obs_agent(agent_id)) + self.n_agents,),
                 dtype=self.single_agent_env.observation_space.dtype,
             )
         self.observation_space = robust_gymnasium.spaces.Dict(self.observation_space)
@@ -562,7 +562,11 @@ class MultiAgentMujocoEnv(pettingzoo.utils.env.ParallelEnv, robust_gymnasium.Env
         # dev NOTE: ignores `self.single_agent_env._get_obs()` and builds observations using obsk.build_obs()
         observations = {}
         for agent_id, agent in enumerate(self.possible_agents):
-            observations[agent] = self._get_obs_agent(agent_id)
+            agent_id_feats = np.zeros(self.n_agents, dtype=np.float32)
+            agent_id_feats[agent_id] = 1.0
+            agent_obs = self._get_obs_agent(agent_id)
+            observations[agent] = np.concatenate([agent_obs, agent_id_feats])
+            # observations[agent] = self._get_obs_agent(agent_id)
         return observations
 
     def _get_obs_agent(self, agent_id: int, data=None) -> np.ndarray:
