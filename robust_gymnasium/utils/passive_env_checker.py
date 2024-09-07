@@ -231,11 +231,25 @@ def env_step_passive_checker(env, action):
         obs, reward, terminated, truncated, info = result
 
         # np.bool is actual python bool not np boolean type, therefore bool_ or bool8
-        if not isinstance(terminated, (bool, np.bool_)):
+        # exit()
+        if isinstance(terminated, dict):
+            for k, v in terminated.items():
+                if not isinstance(v, (bool, np.bool_)):
+                    logger.warn(
+                        f"Expects `terminated` signal to be a boolean, actual type: {type(v)}"
+                    )  
+        elif not isinstance(terminated, (bool, np.bool_)):
             logger.warn(
                 f"Expects `terminated` signal to be a boolean, actual type: {type(terminated)}"
             )
-        if not isinstance(truncated, (bool, np.bool_)):
+        
+        if isinstance(truncated, dict):
+            for k, v in truncated.items():
+                if not isinstance(v, (bool, np.bool_)):
+                    logger.warn(
+                        f"Expects `truncated` signal to be a boolean, actual type: {type(v)}"
+                    )
+        elif not isinstance(truncated, (bool, np.bool_)):
             logger.warn(
                 f"Expects `truncated` signal to be a boolean, actual type: {type(truncated)}"
             )
@@ -246,7 +260,21 @@ def env_step_passive_checker(env, action):
 
     check_obs(obs, env.observation_space, "step")
 
-    if not (
+    if isinstance(reward, dict):
+        for k, v in reward.items():
+            if not (
+                np.issubdtype(type(v), np.integer)
+                or np.issubdtype(type(v), np.floating)
+            ):
+                logger.warn(
+                    f"The reward returned by `step()` must be a float, int, np.integer or np.floating, actual type: {type(v)}"
+                )
+            else:
+                if np.isnan(v):
+                    logger.warn("The reward is a NaN value.")
+                if np.isinf(v):
+                    logger.warn("The reward is an inf value.")
+    elif not (
         np.issubdtype(type(reward), np.integer)
         or np.issubdtype(type(reward), np.floating)
     ):

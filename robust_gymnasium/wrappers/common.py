@@ -120,9 +120,14 @@ class TimeLimit(
         """
         observation, reward, terminated, truncated, info = self.env.step(action)
         self._elapsed_steps += 1
-
+        
         if self._elapsed_steps >= self._max_episode_steps:
-            truncated = True
+            if isinstance(truncated, dict):
+                # multi-agent case
+                for k in truncated.keys():
+                    truncated[k] = True
+            else:
+                truncated = True
 
         return observation, reward, terminated, truncated, info
 
