@@ -210,7 +210,7 @@ class MultiAgentMujocoEnv(pettingzoo.utils.env.ParallelEnv, robust_gymnasium.Env
         """Creates the single agent environments that is to be factorized."""
         # load the underlying single agent Gymansium MuJoCo Environment in `self.single_agent_env`
         if scenario in _MUJOCO_GYM_ENVIROMENTS:
-            return robust_gymnasium.make(f"{scenario}-v5s", **kwargs, render_mode=render_mode)
+            return robust_gymnasium.make(f"{scenario}-v5", **kwargs, render_mode=render_mode)
         elif scenario in ["ManySegmentAnt"]:
             try:
                 n_segs = int(agent_conf.split("x")[0]) * int(agent_conf.split("x")[1])
@@ -294,13 +294,13 @@ class MultiAgentMujocoEnv(pettingzoo.utils.env.ParallelEnv, robust_gymnasium.Env
             "robust_config": args,
         }
     
-        _, reward_n, is_terminal_n, is_truncated_n, info_n = self.single_agent_env.step(
+        obs_n, reward_n, is_terminal_n, is_truncated_n, info_n = self.single_agent_env.step(
             global_robust_input
         )
 
         rewards, terminations, truncations, info = {}, {}, {}, {}
         # rewards, terminations, truncations, info = reward_n, is_terminal_n, is_truncated_n, {}
-        observations = self._get_obs()
+        observations = self._get_obs(obs_n)
         for agents in self.possible_agents:
             rewards[agents] = reward_n
             terminations[agents] = is_terminal_n
@@ -557,14 +557,14 @@ class MultiAgentMujocoEnv(pettingzoo.utils.env.ParallelEnv, robust_gymnasium.Env
         """See [pettingzoo.utils.env.ParallelEnv.state](https://pettingzoo.farama.org/api/parallel/#pettingzoo.utils.env.ParallelEnv.state)."""
         return self.single_agent_env.unwrapped._get_obs()
 
-    def _get_obs(self) -> dict[str, np.ndarray]:
+    def _get_obs(self, env_obs) -> dict[str, np.ndarray]:
         """Returns: all agent's observations in a dict[str, ActionType]."""
         # dev NOTE: ignores `self.single_agent_env._get_obs()` and builds observations using obsk.build_obs()
         observations = {}
         for agent_id, agent in enumerate(self.possible_agents):
             agent_id_feats = np.zeros(self.n_agents, dtype=np.float32)
             agent_id_feats[agent_id] = 1.0
-            agent_obs = self._get_obs_agent(agent_id)
+            agent_obs = env_obs.copy()
             observations[agent] = np.concatenate([agent_obs, agent_id_feats])
             # observations[agent] = self._get_obs_agent(agent_id)
         return observations
@@ -606,13 +606,13 @@ class MultiAgentMujocoEnv(pettingzoo.utils.env.ParallelEnv, robust_gymnasium.Env
         Returns:
             Initial observations and info
         """
-        _, info_n = self.single_agent_env.reset(seed=seed, options=options)
+        obs_n, info_n = self.single_agent_env.reset(seed=seed, options=options)
         info = {}
         # for agent in self.possible_agents:
         #     info[agent] = info_n
         self.agents = self.possible_agents
         # print("reset obs: ", self._get_obs())
-        return self._get_obs(), info
+        return self._get_obs(obs_n), info
 
     def render(self):
         """Renders the MuJoCo environment using the mechanism of the single agent Gymnasium-MuJoCo.
