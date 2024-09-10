@@ -198,7 +198,7 @@ class MultiAgentMujocoEnv(pettingzoo.utils.env.ParallelEnv, robust_gymnasium.Env
             ] = robust_gymnasium.spaces.Box(
                 low=-np.inf,
                 high=np.inf,
-                shape=(len(self._get_obs_agent(agent_id)) + self.n_agents,),
+                shape=(len(self.single_agent_env.unwrapped._get_obs()) + self.n_agents,),
                 dtype=self.single_agent_env.observation_space.dtype,
             )
         self.observation_space = robust_gymnasium.spaces.Dict(self.observation_space)
