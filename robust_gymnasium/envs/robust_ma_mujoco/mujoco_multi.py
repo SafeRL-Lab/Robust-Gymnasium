@@ -81,6 +81,7 @@ class MultiAgentMujocoEnv(pettingzoo.utils.env.ParallelEnv, robust_gymnasium.Env
         scenario: str,
         agent_conf: str | None,
         agent_obsk: int | None = 1,
+        attacked_agents: str = "all",
         agent_factorization: dict[str, any] | None = None,
         local_categories: list[list[str]] | None = None,
         global_categories: tuple[str, ...] | None = None,
@@ -203,14 +204,20 @@ class MultiAgentMujocoEnv(pettingzoo.utils.env.ParallelEnv, robust_gymnasium.Env
             )
         self.observation_space = robust_gymnasium.spaces.Dict(self.observation_space)
         self.action_space = robust_gymnasium.spaces.Dict(self.action_space)
-
+        
+        if attacked_agents == "all":
+            self.attacked_agents = self.possible_agents
+        else:
+            self.attacked_agents = attacked_agents.split(",")
+        print("attacked_agents: ", self.attacked_agents)
+        
     def _create_base_gym_env(
         self, scenario: str, agent_conf: str, render_mode: str, **kwargs
     ) -> robust_gymnasium.envs.mujoco.mujoco_env.MujocoEnv:
         """Creates the single agent environments that is to be factorized."""
         # load the underlying single agent Gymansium MuJoCo Environment in `self.single_agent_env`
         if scenario in _MUJOCO_GYM_ENVIROMENTS:
-            return robust_gymnasium.make(f"{scenario}-v5", **kwargs, render_mode=render_mode)
+            return robust_gymnasium.make(f"{scenario}-v5s", **kwargs, render_mode=render_mode)
         elif scenario in ["ManySegmentAnt"]:
             try:
                 n_segs = int(agent_conf.split("x")[0]) * int(agent_conf.split("x")[1])
@@ -273,40 +280,44 @@ class MultiAgentMujocoEnv(pettingzoo.utils.env.ParallelEnv, robust_gymnasium.Env
         actions = robust_input["action"]
         args = robust_input["robust_config"]
         
-        # if args.noise_factor == "action":
-        #     if args.noise_type == "gauss":
-        #         for key in actions:
-        #             actions[key] += random.gauss(args.noise_mu, args.noise_sigma)  # robust setting
-        #     elif args.noise_type == "shift":
-        #         for key in actions:
-        #             actions[key] += args.noise_shift
-        #     else:
-        #         actions = actions
-        #         print('\033[0;31m "No action entropy learning! Using the original action" \033[0m')
-        # else:
-        #     actions = actions
+        if args.noise_factor == "action":
+            for key in actions.keys():
+                if key in self.attacked_agents:
+                    if args.noise_type == "gauss":
+                            actions[key] += random.gauss(args.noise_mu, args.noise_sigma)  # robust setting
+                    elif args.noise_type == "shift":
+                            actions[key] += args.noise_shift
 
         global_action = self.map_local_actions_to_global_action(actions)
-        
-        global_robust_input = {
-            "action": global_action,
-            "robust_type": "action",
-            "robust_config": args,
-        }
     
         obs_n, reward_n, is_terminal_n, is_truncated_n, info_n = self.single_agent_env.step(
-            global_robust_input
+            global_action
         )
 
         rewards, terminations, truncations, info = {}, {}, {}, {}
-        # rewards, terminations, truncations, info = reward_n, is_terminal_n, is_truncated_n, {}
         observations = self._get_obs(obs_n)
         for agents in self.possible_agents:
             rewards[agents] = reward_n
             terminations[agents] = is_terminal_n
             truncations[agents] = is_truncated_n
             # info[agents] = info_n
-
+        
+        if args.noise_factor == "state":
+            for key in observations.keys():
+                if key in self.attacked_agents:
+                    if args.noise_type == "gauss":
+                        observations[key] += random.gauss(args.noise_mu, args.noise_sigma)  # robust setting
+                    elif args.noise_type == "shift":
+                        observations[key] += args.noise_shift
+        
+        if args.noise_factor == "reward":
+            for key in rewards.keys():
+                if key in self.attacked_agents:
+                    if args.noise_type == "gauss":
+                        rewards[key] += random.gauss(args.noise_mu, args.noise_sigma)  # robust setting
+                    elif args.noise_type == "shift":
+                        rewards[key] += args.noise_shift
+        
         if is_terminal_n or is_truncated_n:
             self.agents = []
 
