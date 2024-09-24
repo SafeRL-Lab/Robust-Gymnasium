@@ -240,15 +240,25 @@ class AntEnv(MujocoEnv, utils.EzPickle):
         # print("observation-----:", observation)
         if args.llm_guide == "adversary":
             self.llm_disturb_iteration += 1
-            if self.llm_disturb_iteration % args.llm_disturb_interval == 0:
-                prompt = "This is about a robust reinforcement learning setting; we want you as an adversary policy. If the current reward exceeds the previous reward value, please input some observation noise to disturb the environment and improve the learning algorithm's robustness. " \
+            if args.llm_guide_type == "stochastic":
+                if self.llm_disturb_iteration % args.llm_disturb_interval == 0:
+                    prompt = "This is about a robust reinforcement learning setting; we want you as an adversary policy. If the current reward exceeds the previous reward value, please input some observation noises to disturb the environment and improve the learning algorithm's robustness. " \
                          "the current reward:" + str(reward) + ", the previous reward is" + str(self.previous_reward) \
                          + "please slightly revise the current environment state values:" + str(
                     observation) + ", just output the revised state with its original format" \
                                    "do not output any other things."
-                prompt_state = gpt_call(prompt)
-                # print("prompt_state-----:", prompt_state)
-                observation = prompt_state
+                    prompt_state = gpt_call(prompt)
+                    observation = prompt_state
+            elif args.llm_guide_type == "uniform":
+                if self.llm_disturb_iteration % args.llm_disturb_interval == 0:
+                    prompt = "This is about a robust reinforcement learning setting; we want you as an adversary policy. If the current reward exceeds the previous reward value, please input some observation noises to disturb the environment and improve the learning algorithm's robustness. " \
+                         "The noises should subject the uniform distribution:" +str(random.uniform(args.uniform_low, args.uniform_high))+ ", the current reward:" + str(reward) + ", the previous reward is" + str(self.previous_reward) \
+                         + "please slightly revise the current environment state values:" + str(
+                    observation) + ", just output the revised state with its original format" \
+                                   "do not output any other things."
+                    prompt_state = gpt_call(prompt)
+                    observation = prompt_state
+            
 
             self.previous_reward = reward
 
