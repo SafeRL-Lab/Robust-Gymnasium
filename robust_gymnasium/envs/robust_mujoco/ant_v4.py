@@ -149,6 +149,8 @@ class AntEnv(MujocoEnv, utils.EzPickle):
                 action = action + random.gauss(mu, sigma)  # robust setting
             elif args.noise_type == "shift":
                 action = action + args.noise_shift
+            elif args.noise_type =="uniform":
+                observation = action + random.uniform(args.uniform_low, args.uniform_high)
             else:
                 action = action
                 print('\033[0;31m "No action entropy learning! Using the original action" \033[0m')
@@ -176,6 +178,8 @@ class AntEnv(MujocoEnv, utils.EzPickle):
                 observation = self._get_obs() + random.gauss(mu, sigma)  # robust setting
             elif args.noise_type == "shift":
                 observation = self._get_obs() + args.noise_shift
+            elif args.noise_type =="uniform":
+                observation = self._get_obs() + random.uniform(args.uniform_low, args.uniform_high)
             else:
                 observation = self._get_obs()
                 print('\033[0;31m "No state entropy learning! Using the original state" \033[0m')
@@ -208,6 +212,8 @@ class AntEnv(MujocoEnv, utils.EzPickle):
                 reward = reward + random.gauss(mu, sigma)  # robust setting
             elif args.noise_type == "shift":
                 reward = reward + args.noise_shift
+            elif args.noise_type =="uniform":
+                observation = reward + random.uniform(args.uniform_low, args.uniform_high)
             else:
                 reward = reward
                 print('\033[0;31m "No reward entropy learning! Using the original reward" \033[0m')
