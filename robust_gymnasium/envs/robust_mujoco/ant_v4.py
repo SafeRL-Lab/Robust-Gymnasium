@@ -5,8 +5,8 @@ from robust_gymnasium.envs.robust_mujoco import MujocoEnv
 from robust_gymnasium.spaces import Box
 import xml.etree.ElementTree as ET
 import random
-from robust_gymnasium.configs.robust_setting import get_config
-args = get_config().parse_args()
+# from robust_gymnasium.configs.robust_setting import get_config
+# args = get_config().parse_args()
 
 from robust_gymnasium.envs.llm_guide_robust.gpt_collect import gpt_call
 
@@ -142,18 +142,21 @@ class AntEnv(MujocoEnv, utils.EzPickle):
         if args.noise_factor == "robust_force":
             self.modify_xml(self.fullpath, args)
         if args.noise_factor == "robust_shape":
+            # print("test------------------", args.noise_sigma)
             self.modify_xml(self.fullpath, args)
 
         if args.noise_factor == "action":
-            if args.noise_type == "gauss":
-                action = action + random.gauss(mu, sigma)  # robust setting
-            elif args.noise_type == "shift":
-                action = action + args.noise_shift
-            elif args.noise_type =="uniform":
-                observation = action + random.uniform(args.uniform_low, args.uniform_high)
+            self.llm_disturb_iteration += 1
+            if self.llm_disturb_iteration % args.llm_disturb_interval == 0:
+                if args.noise_type == "gauss":
+                    action = action + random.gauss(mu, sigma)  # robust setting
+                elif args.noise_type == "shift":
+                    action = action + args.noise_shift  
+                elif args.noise_type =="uniform":
+                    action = action + random.uniform(args.uniform_low, args.uniform_high)
             else:
                 action = action
-                print('\033[0;31m "No action entropy learning! Using the original action" \033[0m')
+                # print('\033[0;31m "No action entropy learning! Using the original action" \033[0m')
         else:
             action = action
 
@@ -174,15 +177,18 @@ class AntEnv(MujocoEnv, utils.EzPickle):
         terminated = self.terminated
 
         if args.noise_factor == "state":
-            if args.noise_type == "gauss":
-                observation = self._get_obs() + random.gauss(mu, sigma)  # robust setting
-            elif args.noise_type == "shift":
-                observation = self._get_obs() + args.noise_shift
-            elif args.noise_type =="uniform":
-                observation = self._get_obs() + random.uniform(args.uniform_low, args.uniform_high)
+            self.llm_disturb_iteration += 1
+            if self.llm_disturb_iteration % args.llm_disturb_interval == 0:
+                if args.noise_type == "gauss":
+                    observation = self._get_obs() + random.gauss(mu, sigma)  # robust setting
+                elif args.noise_type == "shift":
+                    observation = self._get_obs() + args.noise_shift
+                elif args.noise_type =="uniform":
+                    observation = observation + random.uniform(args.uniform_low, args.uniform_high)
             else:
                 observation = self._get_obs()
-                print('\033[0;31m "No state entropy learning! Using the original state" \033[0m')
+                # print('\033[0;31m "No state entropy learning! Using the original state" \033[0m')           
+            
         else:
             observation = self._get_obs()
 
@@ -208,15 +214,17 @@ class AntEnv(MujocoEnv, utils.EzPickle):
         reward = rewards - costs
 
         if args.noise_factor == "reward":
-            if args.noise_type == "gauss":
-                reward = reward + random.gauss(mu, sigma)  # robust setting
-            elif args.noise_type == "shift":
-                reward = reward + args.noise_shift
-            elif args.noise_type =="uniform":
-                observation = reward + random.uniform(args.uniform_low, args.uniform_high)
+            self.llm_disturb_iteration += 1
+            if self.llm_disturb_iteration % args.llm_disturb_interval == 0:
+                if args.noise_type == "gauss":
+                    reward = reward + random.gauss(mu, sigma)  # robust setting
+                elif args.noise_type == "shift":
+                    reward = reward + args.noise_shift
+                elif args.noise_type =="uniform":
+                    reward = reward + random.uniform(args.uniform_low, args.uniform_high)
             else:
                 reward = reward
-                print('\033[0;31m "No reward entropy learning! Using the original reward" \033[0m')
+                # print('\033[0;31m "No reward entropy learning! Using the original reward" \033[0m')
         else:
             reward = reward
 
@@ -301,6 +309,7 @@ class AntEnv(MujocoEnv, utils.EzPickle):
 
                 size_value = float(size_value)
                 if args.noise_type == "gauss":
+                    # print("test--------------", args.robust_shape_sigma)
                     size_value = size_value + random.gauss(args.robust_shape_mu,
                                                            args.robust_shape_sigma)  # robust setting
                 elif args.noise_type == "shift":
