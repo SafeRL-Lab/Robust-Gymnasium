@@ -59,7 +59,6 @@ We hope this benchmark serves as a useful platform for pushing the boundaries of
   * [Robust MuJoCo Variant Tasks](#robust-mujoco-variant-tasks)
   * [Robust Robot Manipulation Tasks](#robust-robot-manipulation-tasks)
   * [Robust Dexterous Hand and Maze Tasks](#robust-dexterous-hand-and-maze-tasks)
-- [Citation](#citation)
 - [Acknowledgments](#acknowledgments)
 
 
