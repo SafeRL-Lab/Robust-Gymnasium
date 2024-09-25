@@ -43,7 +43,7 @@ Each of these robust tasks incorporates robust elements such as robust observati
 🔥 **Our Vision:**
 We hope this benchmark serves as a useful platform for pushing the boundaries of RL in real-world problems --- promoting robustness and domain adaptation ability!
 
-Any suggestions and issues are welcome. If you have any questions, please propose an issue or pull request, or contact us directly via email at shangding.gu@berkeley.edu; we will respond to you in **one week**.
+
 
 ----------
 **Content**
@@ -480,21 +480,6 @@ If you met some issues, please check the [existing solutions for the reported is
 
 
 
----------
-
-
-## Citation
-If you find the repository useful, please cite the study
-``` Bash
-@article{robustrl2024,
-  title={Robust Gymnasium: A unifying robust reinforcement learning benchmark},
-  author={Robust RL Team},
-  journal={Github},
-  year={2024}
-}
-```
-
--------
 
 
 ## Acknowledgments
