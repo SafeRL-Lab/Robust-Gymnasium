@@ -3,12 +3,6 @@
 ## Robust Gymnasium: A Unifying Robust Reinforcement Learning Benchmark
 
  
- <div align=center>
- <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/overview/gif-edit-overview.gif" width="850"/> 
- </div>
-<div align=center>
-<center style="color:#000000;text-decoration:underline"> </center>
- </div>
  
 
 <br/>
@@ -323,7 +317,7 @@ We provide interactive modes that support step-wise varying interaction between 
 
 ## Tutorials
 
-Here, we provide a step-by-step tutorial for users to create and use a domain-shifted/noisy task by choosing any environment/task combined with any uncertainty factor to perturb some original environment, see the [link](https://robust-gymnasium.readthedocs.io/en/latest/).
+Here, we provide a step-by-step tutorial for users to create and use a domain-shifted/noisy task by choosing any environment/task combined with any uncertainty factor to perturb some original environment.
 
 We are currently developing our environments on an Ubuntu system. The operating system version is 20.04.3 LTS.
 
@@ -372,108 +366,6 @@ If you met some issues, please check the [existing solutions for the reported is
 
 
 
-## Selected Demos
-
-
-### Robust MuJoCo Tasks
-<p align="center">
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/Ant-v4.gif" alt="Image 1" width="300" style="margin-right: 10px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/HalfCheetah-v4.gif" alt="Image 2" width="300" style="margin-right: 10px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/Hopper-v4.gif" alt="Image 3" width="300" style="margin-right: 10px;"/>
-   
-   <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/Pusher-v4.gif" alt="Image 1" width="300" style="margin-right: 10px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/Reacher-v4.gif" alt="Image 2" width="300" style="margin-right: 10px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/Swimmer-v4.gif" alt="Image 3" width="300" style="margin-right: 10px;"/>
-
-  
-   <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/Walker2d-v4.gif" alt="Image 1" width="300" style="margin-right: 10px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/humanoid.gif" alt="Image 2" width="300" style="margin-right: 10px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/humanoidStandup-v4.gif" alt="Image 3" width="300" style="margin-right: 10px;"/> 
-  
-   <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/inver-double.gif" alt="Image 1" width="300" style="margin-right: 100px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/invert.gif" alt="Image 2" width="300" style="margin-right: 10px;"/>
-</p>
-<p align="center">
-  These demonstrations are from version 4 of the MuJoCo tasks with robust settings.
-</p>
-
-
-### Robust MuJoCo Variant Tasks
-<p align="center">
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_mujoco_dynamics/Ant_variant/Ant_vriant_1%2000_00_00-00_00_30.gif" alt="Image 1" width="300" style="margin-right: 10px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_mujoco_dynamics/Ant_variant/Ant_variant_2%2000_00_00-00_00_30.gif" alt="Image 2" width="300" style="margin-right: 10px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_mujoco_dynamics/Ant_variant/Ant_variant_3%2000_00_00-00_00_30.gif" alt="Image 3" width="300" style="margin-right: 10px;"/>
-   
-   <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_mujoco_dynamics/Ant_variant/Ant_variant_4%2000_00_00-00_00_30.gif" alt="Image 1" width="300" style="margin-right: 10px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_mujoco_dynamics/Ant_variant/Ant_variant_5%2000_00_00-00_00_30.gif" alt="Image 2" width="300" style="margin-right: 10px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_mujoco_dynamics/Ant_variant/Ant_variant_6%2000_00_00-00_00_30.gif" alt="Image 3" width="300" style="margin-right: 10px;"/>
-
-  
-   <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_mujoco_dynamics/HalfCheetah_variant/HalfCheetah_variant_1%2000_00_00-00_00_30.gif" alt="Image 1" width="300" style="margin-right: 10px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_mujoco_dynamics/HalfCheetah_variant/HalfCheetah_variant_2%2000_00_00-00_00_30.gif" alt="Image 2" width="300" style="margin-right: 10px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_mujoco_dynamics/HalfCheetah_variant/HalfCheetah_variant_3%2000_00_00-00_00_30.gif" alt="Image 3" width="300" style="margin-right: 10px;"/> 
-  
-   <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_mujoco_dynamics/HalfCheetah_variant/HalfCheetah_variant_5%2000_00_00-00_00_30.gif" alt="Image 1" width="300" style="margin-right: 100px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_mujoco_dynamics/HalfCheetah_variant/HalfCheetah_variant_6%2000_00_00-00_00_30.gif" alt="Image 2" width="300" style="margin-right: 10px;"/>
-</p>
-<p align="center">
-  These demonstrations are Robust MuJoCo variant tasks with robust settings.
-</p>
-
-
-
-
-
-
-### Robust Robot Manipulation Tasks
-<p align="center">
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/multi-robot-door-small.gif" alt="Image 1" width="280" style="margin-right: 10px;"/>  
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Nominal_task%2000_00_00-00_00_30.gif" alt="Image 1" width="310" style="margin-right: 10px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_1%2000_00_00-00_00_30.gif" alt="Image 2" width="310" style="margin-right: 10px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_2%2000_00_00-00_00_30.gif" alt="Image 3" width="300" style="margin-right: 10px;"/>
-   
-   <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_3%2000_00_00-00_00_30.gif" alt="Image 1" width="300" style="margin-right: 10px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_4%2000_00_00-00_00_30.gif" alt="Image 2" width="300" style="margin-right: 10px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_5%2000_00_00-00_00_30.gif" alt="Image 3" width="300" style="margin-right: 10px;"/>
-
-  
-   <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_6%2000_00_00-00_00_30.gif" alt="Image 1" width="300" style="margin-right: 10px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_7%2000_00_00-00_00_30.gif" alt="Image 2" width="300" style="margin-right: 10px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_8%2000_00_00-00_00_30.gif" alt="Image 3" width="300" style="margin-right: 10px;"/> 
-  
-   <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_9%2000_00_00-00_00_30.gif" alt="Image 1" width="300" style="margin-right: 100px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_10%2000_00_00-00_00_30.gif" alt="Image 2" width="300" style="margin-right: 10px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_11%2000_00_00-00_00_30.gif" alt="Image 1" width="300" style="margin-right: 100px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_12%2000_00_00-00_00_30.gif" alt="Image 2" width="300" style="margin-right: 10px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_manipulations/robust_door/Shifted_task_13%2000_00_00-00_00_30.gif" alt="Image 1" width="300" style="margin-right: 100px;"/>
-</p>
-<p align="center">
-  These demonstrations are from robot manipulation tasks with robust settings.
-</p>
-
-### Robust Dexterous Hand and Maze Tasks
-<p align="center">
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_andoit_hand/Robust_androit_hand_2%2000_00_00-00_00_30.gif" alt="Image 1" width="310" style="margin-right: 10px;"/>  
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_andoit_hand/Robust_androit_hand_3%2000_00_00-00_00_30.gif" alt="Image 1" width="310" style="margin-right: 10px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_andoit_hand/androit_hand_1%2000_00_00-00_00_30.gif" alt="Image 2" width="310" style="margin-right: 10px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_andoit_hand/robust_andoit_hand_4%2000_00_00-00_00_30.gif" alt="Image 3" width="300" style="margin-right: 10px;"/>
-   
-   <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_dexterous_hand/robust_dexterous_hand_1%2000_00_00-00_00_30.gif" alt="Image 1" width="300" style="margin-right: 10px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_dexterous_hand/robust_dexterous_hand_2%2000_00_00-00_00_30.gif" alt="Image 2" width="300" style="margin-right: 10px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_dexterous_hand/robust_dexterous_hand_4%2000_00_00-00_00_30.gif" alt="Image 3" width="300" style="margin-right: 10px;"/>
-
-  
-   <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_dexterous_hand/robust_dexterous_hand_5%2000_00_00-00_00_30.gif" alt="Image 1" width="300" style="margin-right: 10px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_dexterous_hand/robust_dexterous_hand_6%2000_00_00-00_00_30.gif" alt="Image 2" width="300" style="margin-right: 10px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_fetch/robust_fetch_1%2000_00_00-00_00_30.gif" alt="Image 3" width="300" style="margin-right: 10px;"/> 
-  
-   <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_fetch/robust_fetch_2%2000_00_00-00_00_30.gif" alt="Image 1" width="300" style="margin-right: 100px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_fetch/robust_fetch_4%2000_00_00-00_00_30.gif" alt="Image 2" width="300" style="margin-right: 10px;"/>
-  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/robust_maze/robust_maze_1%2000_00_00-00_00_30.gif" alt="Image 1" width="300" style="margin-right: 100px;"/>
-</p>
-<p align="center">
-  These demonstrations are from dexterous hand and maze tasks with robust settings.
-</p>
 
 
 
