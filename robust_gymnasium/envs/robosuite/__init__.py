@@ -1,5 +1,14 @@
 from robust_gymnasium.envs.robosuite.environments.base import make
 
+# causal environments
+from robust_gymnasium.envs.robosuite.environments.causal.lift_causal import LiftCausal
+from robust_gymnasium.envs.robosuite.environments.causal.stack_causal import StackCausal
+from robust_gymnasium.envs.robosuite.environments.causal.wipe_causal import WipeCausal
+from robust_gymnasium.envs.robosuite.environments.causal.door_causal import DoorCausal
+from robust_gymnasium.envs.robosuite.environments.causal.assembly_causal import AssemblyCausal
+from robust_gymnasium.envs.robosuite.environments.causal.pickplace_causal import PickPlaceCausal
+
+
 # Manipulation environments
 from robust_gymnasium.envs.robosuite.environments.manipulation.lift import Lift
 from robust_gymnasium.envs.robosuite.environments.manipulation.stack import Stack
