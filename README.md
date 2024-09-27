@@ -81,17 +81,17 @@ Reinforcement learning (RL) problems is formulated as that an agent seeks a poli
 ### The Framework of Robust Reinforcement Learning
 Robust RL problems typically consists of three modules
 * **An agent (a policy):** tries to learn a strategy $\pi$ (a policy) based on the observation from the environment to achieve optimal long-term return
-* **An environment/task:** a task that determine the agents' immediate reward $r(\cdot |s,a)$ and the physical or logical dynamics (transition function $P(\cdot |s,a)$)
+* **An environment/task:** a task that determine the agents' immediate reward $r(\cdot |s,a)$ and the physical or logical dynamics
 * **The disruptor module:** represents the uncertainty/perturbation events that happens during any parts of the interaction process between the agent and environment, with different modes, sources, and frequencies.
 
-We illustrate the framework of robust RL for single-agent problems for instance:
-<!-- A figure that shows the modules in our frameworks -->
+<!--We illustrate the framework of robust RL for single-agent problems for instance:
+ A figure that shows the modules in our frameworks
 <div align=center>
  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/docs/imgs/world-model3.png" width="850"/> 
  </div>
 <div align=center>
 <center style="color:#000000;text-decoration:underline"> </center>
- </div>
+ </div> -->
 
 ### This Benchmark:
 This benchmark support various 1) environments/tasks and 2) disruptors （perturbations to the interaction process). This allows users to design and evaluate different algorithms in different application scenarios when encountering diverse uncertainty issues. Switch to the sections below if you want to get a quick glance of which **environments** and **perturbations** that Robust-Gymnasium support.
