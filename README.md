@@ -1,6 +1,6 @@
 
 
-## Robust Gymnasium: A Unifying Robust Reinforcement Learning Benchmark
+## Robust Gymnasium: A Unified Modular Benchmark for Robust Reinforcement Learning
 
  
  
