@@ -1,6 +1,6 @@
 
 
-## Robust Gymnasium: A Unifying Robust Reinforcement Learning Benchmark
+## Robust Gymnasium: A Unified Modular Benchmark for Robust Reinforcement Learning
 
  
  <div align=center>
@@ -487,7 +487,7 @@ If you met some issues, please check the [existing solutions for the reported is
 If you find the repository useful, please cite the study
 ``` Bash
 @article{robustrl2024,
-  title={Robust Gymnasium: A unifying robust reinforcement learning benchmark},
+  title={Robust Gymnasium: A Unified Modular Benchmark for Robust Reinforcement Learning},
   author={Robust RL Team},
   journal={Github},
   year={2024}
