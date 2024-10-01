@@ -8,7 +8,7 @@
 <br/>
 
 
-This benchmark aims to advance robust reinforcement learning (RL) for real-world applications and domain adaptation. The benchmark provides a comprehensive set of tasks that cover various robustness requirements in the face of uncertainty on state, action, reward and environmental dynamics, and span diverse applications including control, robot manipulations, dexterous hand, and so on (This repository is under actively development. We appreciate any constructive comments and suggestions). 
+This benchmark aims to advance robust reinforcement learning (RL) for real-world applications and domain adaptation. The benchmark provides a comprehensive set of tasks that cover various robustness requirements in the face of uncertainty on state, action, reward and environmental dynamics, and span diverse applications including control, robot manipulations, dexterous hand, and so on. 
 
 🔥 **Benchmark Features:** 
 
