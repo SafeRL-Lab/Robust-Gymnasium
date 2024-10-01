@@ -360,7 +360,7 @@ chmod +x test.sh
 
 Ensure you follow these steps to set up and test the environment properly. Adjust paths and versions as necessary based on your specific setup requirements.
 
-If you met some issues, please check the [existing solutions for the reported issues](https://github.com/SafeRL-Lab/Robust-Gymnasium/issues?q=is%3Aissue+is%3Aclosed), which could help you address your issue.
+
 
 ----------
 
