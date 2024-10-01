@@ -261,7 +261,7 @@ class AntEnv(MujocoEnv, utils.EzPickle):
             elif args.llm_guide_type == "region_constraint":
                 if self.llm_disturb_iteration % args.llm_disturb_interval == 0:
                     prompt = "This is about a robust reinforcement learning setting; we want you as an adversary policy. If the current reward exceeds the previous reward value, please input some observation noises to disturb the environment and improve the learning algorithm's robustness. " \
-                         "The noises should be in this area:" +str((args.uniform_low, args.uniform_high))+ ", the current reward:" + str(reward) + ", the previous reward is" + str(self.previous_reward) \
+                         "The noises should be in this area:" +str((args.region_low, args.region_high))+ ", the current reward:" + str(reward) + ", the previous reward is" + str(self.previous_reward) \
                          + "please slightly revise the current environment state values:" + str(
                     observation) + ", just output the revised state with its original format" \
                                    "do not output any other things."
