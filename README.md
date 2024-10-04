@@ -94,13 +94,22 @@ Robust RL problems typically consists of three modules
 We illustrate the framework of robust RL for single-agent problems for instance:
 <!-- A figure that shows the modules in our frameworks -->
 <div align=center>
- <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/docs/imgs/world-model3.png" width="850"/> 
+ <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/docs/imgs/overview-framework2.png" width="850"/> 
  </div>
 <div align=center>
 <center style="color:#000000;text-decoration:underline"> </center>
  </div>
 
 ### This Benchmark:
+
+<!-- A figure that shows the modules in our frameworks -->
+<div align=center>
+ <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/docs/imgs/tasks-illustration2.png" width="850"/> 
+ </div>
+<div align=center>
+<center style="color:#000000;text-decoration:underline"> </center>
+ </div>
+ 
 This benchmark support various 1) environments/tasks and 2) disruptors （perturbations to the interaction process). This allows users to design and evaluate different algorithms in different application scenarios when encountering diverse uncertainty issues. Switch to the sections below if you want to get a quick glance of which **environments** and **perturbations** that Robust-Gymnasium support.
 - [Environments and Tasks](#environments-and-tasks)
 - [Disruptor Module for Perturbations](#disruptor-module-for-perturbations)
