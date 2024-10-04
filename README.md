@@ -100,7 +100,7 @@ We illustrate the framework of robust RL for single-agent problems for instance:
 <center style="color:#000000;text-decoration:underline"> </center>
  </div>
 
-### This Benchmark:
+### Robust-Gymnasium: A Unified Modular Benchmark
 
 <!-- A figure that shows the modules in our frameworks -->
 <div align=center>
