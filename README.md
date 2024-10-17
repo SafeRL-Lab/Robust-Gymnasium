@@ -18,7 +18,7 @@
 -->
 
 <div align=center>
- <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/docs/imgs/logo-git-ac.png" width="250"/> 
+ <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/docs/imgs/logo-git-ac.png" width="280"/> 
  </div>
 <div align=center>
 <center style="color:#000000;text-decoration:underline"> </center>
