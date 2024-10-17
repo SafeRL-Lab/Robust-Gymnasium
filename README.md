@@ -1,10 +1,12 @@
+
+<!-- 
  <div align=center>
  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/docs/imgs/logo-git.png" width="250"/> 
  </div>
 <div align=center>
 <center style="color:#000000;text-decoration:underline"> </center>
  </div>
-<!-- <div align="center">
+<div align="center">
     <p>Robust Gymnasium: A Unified Modular Benchmark for Robust Reinforcement Learning</p>
 </div> -->
 
