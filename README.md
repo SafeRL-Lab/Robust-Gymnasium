@@ -15,9 +15,8 @@
 <div align=center>
 <center style="color:#000000;text-decoration:underline"> </center>
  </div>
--->
 
-<div align=center>
+ <div align=center>
  <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/docs/imgs/logo-git-ac.png" width="280"/> 
  </div>
 <div align=center>
@@ -25,6 +24,27 @@
  </div>
  
 ## Robust Gymnasium: A Unified Modular Benchmark for Robust Reinforcement Learning
+-->
+
+<div align="center">
+  <a href="https://github.com/openreasoner/openr/">
+    <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/docs/imgs/logo-git-ac.png" alt="Logo" width="280">
+  </a>
+  
+<h1 align="center" style="font-size: 30px;"><strong><em>Robust Gymnasium</em></strong>: A Unified Modular Benchmark for Robust Reinforcement Learning</h1>
+<p align="center">
+    <a href="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/docs/source/Robust_RL_benchmark.pdf">Paper</a>
+    ·
+    <a href="https://robust-rl.com/">Homepage</a>
+    ·
+    <a href="https://github.com/SafeRL-Lab/Robust-Gymnasium">Code</a>
+    ·
+    <a href="https://github.com/SafeRL-Lab/Robust-Gymnasium/issues">Issue</a>
+  </p>
+</div>
+
+
+ 
 
  
  <div align=center>
