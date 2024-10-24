@@ -35,7 +35,7 @@
 <p align="center">
     <a href="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/docs/source/Robust_RL_benchmark.pdf">Paper</a>
     ·
-    <a href="https://robust-rl.com/">Homepage</a>
+    <a href="https://robust-rl.com/">Website</a>
     ·
     <a href="https://github.com/SafeRL-Lab/Robust-Gymnasium">Code</a>
     ·
