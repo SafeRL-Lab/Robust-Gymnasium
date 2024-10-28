@@ -27,7 +27,7 @@
 -->
 
 <div align="center">
-  <a href="https://github.com/openreasoner/openr/">
+  <a href="https://github.com/SafeRL-Lab/Robust-Gymnasium">
     <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/docs/imgs/logo-git-ac.png" alt="Logo" width="280">
   </a>
   
