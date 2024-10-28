@@ -11,6 +11,8 @@ import random
 from robust_gymnasium.configs.robust_setting import get_config
 args = get_config().parse_args()
 
+from robust_gymnasium.envs.llm_guide_robust.gpt_collect import gpt_call
+
 DEFAULT_CAMERA_CONFIG = {
     "trackbodyid": 2,
     "distance": 4.0,
@@ -88,6 +90,8 @@ class Walker2dEnv(MujocoEnv, utils.EzPickle):
         )
         self.xml_file = "walker2d.xml"
         self.xml_file_original = "walker2d_original.xml"
+        self.previous_reward = 0
+        self.llm_disturb_iteration = 0
 
     @property
     def healthy_reward(self):
@@ -200,6 +204,39 @@ class Walker2dEnv(MujocoEnv, utils.EzPickle):
 
         if args.noise_factor == "robust_force" or args.noise_factor == "robust_shape":
             self.replace_xml_content(fullpath_original, self.fullpath)
+        
+        if args.llm_guide == "adversary":
+            self.llm_disturb_iteration += 1
+            if args.llm_guide_type == "stochastic":
+                if self.llm_disturb_iteration % args.llm_disturb_interval == 0:
+                    prompt = "This is about a robust reinforcement learning setting; we want you as an adversary policy. If the current reward exceeds the previous reward value, please input some observation noises to disturb the environment and improve the learning algorithm's robustness. " \
+                         "the current reward:" + str(reward) + ", the previous reward is" + str(self.previous_reward) \
+                         + "please slightly revise the current environment state values:" + str(
+                    observation) + ", just output the revised state with its original format" \
+                                   "do not output any other things."
+                    prompt_state = gpt_call(prompt)
+                    observation = prompt_state
+            elif args.llm_guide_type == "uniform":
+                if self.llm_disturb_iteration % args.llm_disturb_interval == 0:
+                    prompt = "This is about a robust reinforcement learning setting; we want you as an adversary policy. If the current reward exceeds the previous reward value, please input some observation noises to disturb the environment and improve the learning algorithm's robustness. " \
+                         "The noises should subject the uniform distribution:" +str((args.uniform_low, args.uniform_high))+ ", the current reward:" + str(reward) + ", the previous reward is" + str(self.previous_reward) \
+                         + "please slightly revise the current environment state values:" + str(
+                    observation) + ", just output the revised state with its original format" \
+                                   "do not output any other things."
+                    prompt_state = gpt_call(prompt)
+                    observation = prompt_state
+            elif args.llm_guide_type == "region_constraint":
+                if self.llm_disturb_iteration % args.llm_disturb_interval == 0:
+                    prompt = "This is about a robust reinforcement learning setting; we want you as an adversary policy. If the current reward exceeds the previous reward value, please input some observation noises to disturb the environment and improve the learning algorithm's robustness. " \
+                         "The noises should be in this area:" +str((args.region_low, args.region_high))+ ", the current reward:" + str(reward) + ", the previous reward is" + str(self.previous_reward) \
+                         + "please slightly revise the current environment state values:" + str(
+                    observation) + ", just output the revised state with its original format" \
+                                   "do not output any other things."
+                    prompt_state = gpt_call(prompt)
+                    observation = prompt_state
+
+            self.previous_reward = reward
+            
         return observation, reward, terminated, False, info
 
     def expand_model_path(self, model_path):
