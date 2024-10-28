@@ -5,9 +5,6 @@ from robust_gymnasium.envs.robust_mujoco import MujocoEnv
 from robust_gymnasium.spaces import Box
 import xml.etree.ElementTree as ET
 import random
-# from robust_gymnasium.configs.robust_setting import get_config
-# args = get_config().parse_args()
-
 from robust_gymnasium.envs.llm_guide_robust.gpt_collect import gpt_call
 
 DEFAULT_CAMERA_CONFIG = {
