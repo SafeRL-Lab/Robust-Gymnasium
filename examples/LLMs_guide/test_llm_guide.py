@@ -43,11 +43,9 @@ with open(json_path, 'w') as f:
         f.writelines(eachArg + ' : ' + str(value) + '\n')
     f.writelines('------------------- end -------------------')
 
-# env = gym.make("Ant-v4")
+
 env = gym.make(args.env_name) # render_mode="human",  render environments: human, rgb_array, or depth_array.
-# env.reset_robust()
-# env = gym.make(args.env_name, args)
-print("type-----------args:", args)
+
 
 def replace_xml_content(source_file_path, target_file_path):
     # read data from source file
@@ -69,10 +67,7 @@ try:
             "robust_config": args,
         }
 
-        observation, reward, terminated, truncated, info = env.step(robust_input)
-        # print("observation-------:", observation)
-        # print("reward----------:", reward)
-        # env.render()  # render environments
+        observation, reward, terminated, truncated, info = env.step(robust_input)       
         if terminated or truncated:
             observation, info = env.reset()
 
