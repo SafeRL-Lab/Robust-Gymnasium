@@ -47,8 +47,7 @@ for i in range(10000):
         "robust_type": "state",
         "robust_config": args,
     }
-    observation, reward, terminated, truncated, info = env.step(robust_input)
-    # print("reward----------:", reward)
+    observation, reward, terminated, truncated, info = env.step(robust_input)    
     env.render() # render environments
     if terminated or truncated:
         observation, info = env.reset()
