@@ -25,7 +25,6 @@ with open(json_path, 'w') as f:
         f.writelines(eachArg + ' : ' + str(value) + '\n')
     f.writelines('------------------- end -------------------')
 
-# env = gym.make("Ant-v4")
 # env = gym.make(args.env_name, args, render_mode="human") # render environments
 env = gym.make(args.env_name)
 print("type-----------args:", args)
