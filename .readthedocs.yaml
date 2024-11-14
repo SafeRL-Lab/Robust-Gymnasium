@@ -7,10 +7,11 @@ build:
   jobs:
     post_create_environment:
       - python -m pip install sphinx_rtd_theme
+      - python -m pip install sphinx-book-theme
 
 python:
   install:
     - requirements: docs/requirements-doc.txt
 
 sphinx:
-  configuration: docs/source/conf.py
+  configuration: docs/conf.py
