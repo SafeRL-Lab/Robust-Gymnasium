@@ -1,0 +1,31 @@
+/* 调整导航栏链接字体大小 */
+.wy-nav-side .current a {
+    font-size: 28px; /* 可以根据需求更改为所需的大小 */
+}
+
+
+/* 调整整个导航栏的字体大小 */
+.wy-menu-vertical {
+    font-size: 14px;  /* 可以根据需要调整大小 */
+}
+
+/* 如果需要单独调整不同级别的导航项 */
+.wy-menu-vertical li.toctree-l1 > a {
+    font-size: 16px;
+}
+
+.wy-menu-vertical li.toctree-l2 > a {
+    font-size: 14px;
+}
+
+.wy-menu-vertical li.toctree-l3 > a {
+    font-size: 13px;
+}
+
+/* 调整 caption 的字体大小 */
+.wy-menu-vertical p.caption {
+    font-size: 16px;  /* 可以根据需要调整大小 */
+    font-weight: bold;  /* 保持粗体效果 */
+    color: #555;  /* 可以调整颜色 */
+    margin: 4px 0;  /* 可以调整上下间距 */
+}
