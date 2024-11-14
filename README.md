@@ -383,6 +383,8 @@ We are currently developing our environments on an Ubuntu system. The operating 
 
 ---------------
 
+<!-- Intro: https://robust-gymnasium.readthedocs.io/en/latest/-->
+
 ### Installation of the Environments
 
 1. **Create an environment (requires [Conda installation](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)):**
