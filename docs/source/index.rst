@@ -21,9 +21,6 @@ If no error occurs, you have successfully installed Robust Gymnasium.
 
 Robust Gymnasium is still under development, you can also check out the documents in stable version through `robust gymnasium <https://github.com/SafeRL-Lab/Robust-Gymnasium/tree/main>`_.
 
-Indices and tables
-------------------
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+
+
