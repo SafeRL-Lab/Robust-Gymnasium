@@ -33,7 +33,7 @@
   
 <h1 align="center" style="font-size: 30px;"><strong><em>Robust Gymnasium</em></strong>: A Unified Modular Benchmark for Robust Reinforcement Learning</h1>
 <p align="center">
-    <a href="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/docs/source/Robust_RL_benchmark.pdf">Paper</a>
+    <a href="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/docs/_static/paper/Robust_RL_benchmark-git.pdf">Paper</a>
     ·
     <a href="https://robust-rl.com/">Website</a>
     ·
