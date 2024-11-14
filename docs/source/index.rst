@@ -1,7 +1,18 @@
 Welcome to Robust Gymnasium!
 ===================================
 
-**Robust Gymnasium** is a unifying robust reinforcement learning benchmark.
+
+
+.. _sample-image:
+
+.. figure:: https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/demos/overview/gif-edit-overview.gif
+   :width: 50%
+   :align: center
+   
+
+ 
+
+**Robust Gymnasium** is a unified modular robust reinforcement learning benchmark.
 
 
 Installation
