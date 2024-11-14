@@ -1,5 +1,6 @@
 absl-py==2.1.0
 actionlib==1.13.2
+sphinx-book-theme
 angles==1.9.13
 beautifulsoup4==4.12.3
 bondpy==1.8.6
