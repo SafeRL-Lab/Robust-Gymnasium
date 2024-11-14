@@ -28,7 +28,7 @@
 
 <div align="center">
   <a href="https://github.com/SafeRL-Lab/Robust-Gymnasium">
-    <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/docs/imgs/logo-git-ac.png" alt="Logo" width="280">
+    <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/docs/_static/images/logo-git-ac.png" alt="Logo" width="280"> 
   </a>
   
 <h1 align="center" style="font-size: 30px;"><strong><em>Robust Gymnasium</em></strong>: A Unified Modular Benchmark for Robust Reinforcement Learning</h1>
@@ -138,7 +138,7 @@ Robust RL problems typically consists of three modules
 We illustrate the framework of robust RL for single-agent problems for instance:
 <!-- A figure that shows the modules in our frameworks -->
 <div align=center>
- <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/docs/imgs/overview-framework2.png" width="850"/> 
+ <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/docs/_static/images/overview-framework2.png" width="850"/> 
  </div>
 <div align=center>
 <center style="color:#000000;text-decoration:underline"> </center>
@@ -148,7 +148,7 @@ We illustrate the framework of robust RL for single-agent problems for instance:
 
 <!-- A figure that shows the modules in our frameworks -->
 <div align=center>
- <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/docs/imgs/tasks-illustration2.png" width="850"/> 
+ <img src="https://github.com/SafeRL-Lab/Robust-Gymnasium/blob/main/docs/_static/images/tasks-illustration2.png" width="850"/> 
  </div>
 <div align=center>
 <center style="color:#000000;text-decoration:underline"> </center>
