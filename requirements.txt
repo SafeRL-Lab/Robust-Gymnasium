@@ -41,3 +41,6 @@ jax>=0.4.30
 
 # for LLMs
 openai
+
+sphinx
+sphinx-book-theme
