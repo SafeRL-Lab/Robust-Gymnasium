@@ -47,7 +47,7 @@ Reinforcement learning problems are formulated such that an agent seeks a policy
 Robust RL problems typically consist of three modules:
 
 - **An agent (a policy)**: tries to learn a strategy π (a policy) based on the observation from the environment to achieve optimal long-term return.
-- **An environment/task**: a task that determines the agents' immediate reward \( r(· \mid s, a) \) and the physical or logical dynamics (transition function \( P(· \mid s, a) \)).
+- **An environment/task**: a task that determines the agents' immediate reward \( r(· | s, a) \) and the physical or logical dynamics (transition function \( P(· | s, a) \)).
 - **The disruptor module**: represents the uncertainty/perturbation events that happen during any parts of the interaction process between the agent and environment, with different modes, sources, and frequencies.
 
 We illustrate the framework of robust RL for single-agent problems for instance:
