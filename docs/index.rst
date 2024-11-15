@@ -17,10 +17,10 @@ Driven by inherent uncertainty and the sim-to-real gap, robust reinforcement lea
 
 .. image:: _static/images/gif-edit-overview.gif
    :alt: racecar
-   :width: 500
+   :width: 95%
    :align: center
+.. centered:: `Robust Gymnasium: A Unified Modular Benchmark for Robust Reinforcement Learning`
 
-Robust Gymnasium: A Unified Modular Benchmark for Robust Reinforcement Learning.
 
 .. toctree::
    :hidden:
