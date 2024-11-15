@@ -8,7 +8,7 @@ Overview
 This benchmark aims to advance robust reinforcement learning (RL) for real-world applications and domain adaptation. The benchmark provides a comprehensive set of tasks that cover various robustness requirements in the face of uncertainty on state, action, reward and environmental dynamics, and span diverse applications including control, robot manipulations, dexterous hand, and so on (This repository is under actively development. We appreciate any constructive comments and suggestions).
 
 .. figure:: ../_static/images/overview-framework2.png
-   :width: 90%
+   :width: 98%
    :align: center
 
 🔥 Benchmark Features:
@@ -53,7 +53,7 @@ Robust RL problems typically consist of three modules:
 We illustrate the framework of robust RL for single-agent problems for instance:
 
 .. figure:: ../_static/images/tasks-illustration2.png
-   :width: 90%
+   :width: 98%
    :align: center
 
 🔥 Our Vision: 
