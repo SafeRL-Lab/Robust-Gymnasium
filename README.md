@@ -381,7 +381,6 @@ We provide interactive modes that support step-wise varying interaction between 
 
 Here, we provide a step-by-step tutorial for users to create and use a domain-shifted/noisy task by choosing any environment/task combined with any uncertainty factor to perturb some original environment, see the [link](https://robust-gymnasium.readthedocs.io/en/latest/).
 
-We are currently developing our environments on an Ubuntu system. The operating system version is 20.04.3 LTS.
 
 ---------------
 
@@ -390,6 +389,7 @@ We are currently developing our environments on an Ubuntu system. The operating 
 ### Installation of the Environments
 
 1. **Create an environment (requires [Conda installation](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)):**
+We are currently developing our environments on an Ubuntu system. The operating system version in our server is 20.04.3 LTS.
 
    Use the following command to create a new Conda environment named `robustgymnasium` with Python 3.11:
 
@@ -403,7 +403,7 @@ We are currently developing our environments on an Ubuntu system. The operating 
    conda activate robustgymnasium
    ```
 
-2. **Install dependency packages:**
+3. **Install dependency packages:**
 
    Install the necessary packages using pip. Make sure you are in the project directory where the `setup.py` file is located:
 
