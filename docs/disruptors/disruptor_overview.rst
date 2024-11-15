@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    link back this repository and cite this work.
 
-Disruptor Module for Perturbations
+Overview of Disruptor Module for Perturbations
 ===================================
 
 Before introducing the disruptor module, we recall that the RL problem can be formulated as a process involving several key concepts: an agent, state, action, reward, and an environment. Specifically, at each time :math:`t`, the environment generates a state :math:`s_t` and a reward :math:`r_t`, and sends them to the agent, and the agent chooses an action :math:`a_t` and sends it back to the environment to generate the next state :math:`s_{t+1}` conditioned on the current state :math:`s_t` and the action :math:`a_t`.
