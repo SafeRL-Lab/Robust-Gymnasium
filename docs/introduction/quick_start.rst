@@ -1,4 +1,4 @@
-.. Robust Gymnasium documentation master file, created by
+.. Robust Gymnasium documentation master file, created by Robust RL Team
    sphinx-quickstart on Thu Nov 14 19:51:51 2024.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
@@ -7,7 +7,7 @@ Quick Start
 --------------------------------
 
 Installation of the Environments
-**********************
+**********************************
 
 1. Create an environment (requires `Conda installation <https://conda.io/projects/conda/en/latest/user-guide/install/index.html>`_):
 
