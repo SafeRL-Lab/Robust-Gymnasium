@@ -49,8 +49,9 @@ Driven by inherent uncertainty and the sim-to-real gap, robust reinforcement lea
 
 .. toctree::
    :hidden:
-   :caption: Disruptor
+   :caption: Disruptors
 
+   disruptors/disruptor_overview
    disruptors/Gaussian_attack/index
    disruptors/Uniform_attack/index
    disruptors/LLM_attack/index
