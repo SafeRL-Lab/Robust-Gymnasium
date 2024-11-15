@@ -6,6 +6,50 @@
 Robust Safe Agents
 --------------------------------
 
+.. list-table:: Robust Safety Tasks
+   :widths: 30 20 20 20
+   :header-rows: 1
+
+   * - Tasks\Robust type
+     - Robust State
+     - Robust Action
+     - Robust Reward
+   * - RobustSafetyAnt-v4
+     - ✅
+     - ✅
+     - ✅
+   * - RobustSafetyHalfCheetah-v4
+     - ✅
+     - ✅
+     - ✅
+   * - RobustSafetyHopper-v4
+     - ✅
+     - ✅
+     - ✅
+   * - RobustSafetyWalker2d-v4
+     - ✅
+     - ✅
+     - ✅
+   * - RobustSafetySwimmer-v4
+     - ✅
+     - ✅
+     - ✅
+   * - RobustSafetyHumanoid-v4
+     - ✅
+     - ✅
+     - ✅
+   * - RobustSafetyHumanoidStandup-v4
+     - ✅
+     - ✅
+     - ✅
+   * - RobustSafetyPusher-v4
+     - ✅
+     - ✅
+     - ✅
+   * - RobustSafetyReacher-v4
+     - ✅
+     - ✅
+     - ✅
 
 
 `Github <https://github.com/SafeRL-Lab/Robust-Gymnasium>`__

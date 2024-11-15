@@ -6,6 +6,30 @@
 Robust Androit Hand Tasks
 --------------------------------
 
+.. list-table:: Robust Adroit Hand Tasks
+   :widths: 30 20 20 20
+   :header-rows: 1
+
+   * - Tasks\Robust type
+     - Robust State
+     - Robust Action
+     - Robust Reward
+   * - RobustAdroitHandDoor-v1
+     - ✅
+     - ✅
+     - ✅
+   * - RobustAdroitHandHammer-v1
+     - ✅
+     - ✅
+     - ✅
+   * - RobustAdroitHandPen-v1
+     - ✅
+     - ✅
+     - ✅
+   * - RobustAdroitHandRelocate-v1
+     - ✅
+     - ✅
+     - ✅
 
 
 `Github <https://github.com/SafeRL-Lab/Robust-Gymnasium>`__

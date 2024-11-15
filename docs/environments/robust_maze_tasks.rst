@@ -6,6 +6,22 @@
 Robust Maze Tasks
 --------------------------------
 
+.. list-table:: Robust Maze Tasks
+   :widths: 30 20 20 20
+   :header-rows: 1
+
+   * - Tasks\Robust type
+     - Robust State
+     - Robust Action
+     - Robust Reward
+   * - AntMaze_UMaze-v4
+     - ✅
+     - ✅
+     - ✅
+   * - PointMaze_UMaze-v3
+     - ✅
+     - ✅
+     - ✅
 
 
 `Github <https://github.com/SafeRL-Lab/Robust-Gymnasium>`__

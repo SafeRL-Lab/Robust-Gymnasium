@@ -6,6 +6,34 @@
 Robust Dexterous Tasks
 --------------------------------
 
+.. list-table:: Robust Dexterous Tasks
+   :widths: 30 20 20 20
+   :header-rows: 1
+
+   * - Tasks\Robust type
+     - Robust State
+     - Robust Action
+     - Robust Reward
+   * - RobustHandManipulateEgg_BooleanTouchSensors-v1
+     - ✅
+     - ✅
+     - ✅
+   * - RobustHandReach-v2
+     - ✅
+     - ✅
+     - ✅
+   * - RobustHandManipulateBlock-v1
+     - ✅
+     - ✅
+     - ✅
+   * - RobustHandManipulateEgg-v1
+     - ✅
+     - ✅
+     - ✅
+   * - RobustHandManipulatePen-v1
+     - ✅
+     - ✅
+     - ✅
 
 
 `Github <https://github.com/SafeRL-Lab/Robust-Gymnasium>`__

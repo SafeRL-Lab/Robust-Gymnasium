@@ -6,6 +6,30 @@
 Robust Humanoid Tasks
 --------------------------------
 
+.. list-table:: Robust Humanoid Tasks
+   :widths: 30 20 20 20
+   :header-rows: 1
+
+   * - Tasks\Robust type
+     - Robust State
+     - Robust Action
+     - Robust Reward
+   * - Robust1hand-reach-v0
+     - ✅
+     - ✅
+     - ✅
+   * - Robust1hand-push-v0
+     - ✅
+     - ✅
+     - ✅
+   * - h1hand-truck-v0
+     - ✅
+     - ✅
+     - ✅
+   * - Robust1hand-slide-v0
+     - ✅
+     - ✅
+     - ✅
 
 
 `Github <https://github.com/SafeRL-Lab/Robust-Gymnasium>`__

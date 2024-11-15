@@ -6,6 +6,18 @@
 Robust Robot Kitchen Tasks
 --------------------------------
 
+.. list-table:: Robust Robot Kitchen Tasks
+   :widths: 30 20 20 20
+   :header-rows: 1
+
+   * - Tasks\Robust type
+     - Robust State
+     - Robust Action
+     - Robust Reward
+   * - FrankaKitchen-v1
+     - ✅
+     - ✅
+     - ✅
 
 
 `Github <https://github.com/SafeRL-Lab/Robust-Gymnasium>`__

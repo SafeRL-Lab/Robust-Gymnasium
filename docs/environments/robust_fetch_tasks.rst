@@ -6,6 +6,30 @@
 Robust Fetch Manipulation Tasks
 --------------------------------
 
+.. list-table:: Robust Fetch Manipulation Tasks
+   :widths: 30 20 20 20
+   :header-rows: 1
+
+   * - Tasks\Robust type
+     - Robust State
+     - Robust Action
+     - Robust Reward
+   * - RobustFetchPush-v3
+     - ✅
+     - ✅
+     - ✅
+   * - RobustFetchReach-v3
+     - ✅
+     - ✅
+     - ✅
+   * - RobustFetchSlide-v3
+     - ✅
+     - ✅
+     - ✅
+   * - RobustFetchPickAndPlace-v3
+     - ✅
+     - ✅
+     - ✅
 
 
 `Github <https://github.com/SafeRL-Lab/Robust-Gymnasium>`__

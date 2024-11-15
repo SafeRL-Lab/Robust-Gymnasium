@@ -3,9 +3,33 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Robust Box2D
+Robust Box2D Tasks
 --------------------------------
 
+.. list-table:: Robustness Box2D Tasks
+   :widths: 30 20 20 20
+   :header-rows: 1
+
+   * - Tasks\Robust type
+     - Robust State
+     - Robust Action
+     - Robust Reward
+   * - CarRacing-v2
+     - ✅
+     - ✅
+     - ✅
+   * - LunarLanderContinuous-v3
+     - ✅
+     - ✅
+     - ✅
+   * - BipedalWalker-v3
+     - ✅
+     - ✅
+     - ✅
+   * - LunarLander-v3 (Discrete Task)
+     - ✅
+     - ✅
+     - ✅
 
 
 `Github <https://github.com/SafeRL-Lab/Robust-Gymnasium>`__

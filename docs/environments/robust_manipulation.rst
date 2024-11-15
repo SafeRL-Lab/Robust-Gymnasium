@@ -3,9 +3,65 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Robust Robot Manipulation
+Robust Robot Manipulation Tasks
 --------------------------------
 
+.. list-table:: Robust Robot Manipulation Tasks
+   :widths: 30 20 20 20
+   :header-rows: 1
+
+   * - Tasks\Robust type
+     - Robust State
+     - Robust Action
+     - Robust Reward
+   * - RobustLift
+     - ✅
+     - ✅
+     - ✅
+   * - RobustDoor
+     - ✅
+     - ✅
+     - ✅
+   * - RobustNutAssembly
+     - ✅
+     - ✅
+     - ✅
+   * - RobustPickPlace
+     - ✅
+     - ✅
+     - ✅
+   * - RobustStack
+     - ✅
+     - ✅
+     - ✅
+   * - RobustWipe
+     - ✅
+     - ✅
+     - ✅
+   * - RobustToolHang
+     - ✅
+     - ✅
+     - ✅
+   * - RobustTwoArmLift
+     - ✅
+     - ✅
+     - ✅
+   * - RobustTwoArmPegInHole
+     - ✅
+     - ✅
+     - ✅
+   * - RobustTwoArmHandover
+     - ✅
+     - ✅
+     - ✅
+   * - RobustTwoArmTransport
+     - ✅
+     - ✅
+     - ✅
+   * - MultiRobustDoor
+     - ✅
+     - ✅
+     - ✅
 
 
 `Github <https://github.com/SafeRL-Lab/Robust-Gymnasium>`__
