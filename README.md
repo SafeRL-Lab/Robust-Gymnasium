@@ -39,7 +39,7 @@
     ·
     <a href="https://github.com/SafeRL-Lab/Robust-Gymnasium">Code</a>
     ·
-    <a href="https://robust-gymnasium.readthedocs.io/">Tutorial (under actively development)</a>
+    <a href="https://robust-gymnasium.readthedocs.io/">Tutorial (under active development)</a>
     ·
     <a href="https://github.com/SafeRL-Lab/Robust-Gymnasium/issues">Issue</a>
   </p>
