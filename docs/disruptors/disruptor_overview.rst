@@ -27,17 +27,17 @@ Considering this, in this benchmark, we consider extensive potential uncertainty
    * - Adversarial
      - ✅
      - ✅
-     - \\
-     - \\
+     - /
+     - /
    * - Set arbitrarily
-     - \\
-     - \\
-     - \\
+     - /
+     - /
+     - /
      - ✅
    * - Semantic Domain shift
-     - \\
-     - \\
-     - \\
+     - /
+     - /
+     - /
      - ✅
 
 Those perturbation events can be generally categorized from three different perspectives:
