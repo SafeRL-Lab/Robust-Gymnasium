@@ -1,4 +1,4 @@
-.. Robust Gymnasium documentation master file, created by
+.. Robust Gymnasium documentation master file, created by Robust RL Team
    sphinx-quickstart on Thu Nov 14 19:51:51 2024.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
@@ -35,8 +35,16 @@ Driven by inherent uncertainty and the sim-to-real gap, robust reinforcement lea
    :caption: Environments
 
    environments/robust_mujoco
+   environments/robust_boxd2d
+   environments/robust_manipulation
    environments/robust_safe_agent
    environments/robust_multi_agent
+   environments/robust_android_hand
+   environments/robust_dexterous_tasks
+   environments/robust_fetch_tasks
+   environments/robust_kitchen_tasks
+   environments/robust_maze_tasks
+   environments/robust_humanoid
 
 
 .. toctree::
