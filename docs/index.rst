@@ -6,38 +6,21 @@
 Robust Gymnasium documentation
 ==============================
 
+Driven by inherent uncertainty and the sim-to-real gap, robust reinforcement learning (RL) seeks to improve resilience against the complexity and variability in agent-environment sequential interactions. Despite the existence of a large number of RL benchmarks, there is a lack of standardized benchmarks for robust RL. Current robust RL policies often focus on a specific type of uncertainty and are evaluated in distinct, one-off environments. In this work, we introduce \name, a unified modular benchmark designed for robust RL that supports a wide variety of disruptions across all key RL components—agents' observed state and reward, agents' actions, and the environment. Offering over sixty diverse task environments spanning control and robotics, safe RL, and multi-agent RL, it provides an open-source and user-friendly tool for the community to assess current methods and foster the development of robust RL algorithms. In addition, we benchmark existing standard and robust RL algorithms within this framework, uncovering significant deficiencies in each and offering new insights.
 
 .. toctree::
    :maxdepth: 4
    :caption: Contents:
 
 
-Robust Gymnasium: A Unified Modular Benchmark for Robust Reinforcement Learning.
+
 
 .. image:: _static/images/gif-edit-overview.gif
    :alt: racecar
    :width: 500
    :align: center
 
-.. code-block:: python
-
-   import robust_gymnasium
-   from robust_gymnasium.configs.robust_setting import get_config   
-
-   env = robust_gymnasium.vector.make("Ant-v4", render_mode="human")
-   observation, info = env.reset(seed=0)
-
-   for _ in range(1000):
-      args = get_config().parse_args()
-      action = env.action_space.sample()
-      robust_input = {"action": action, "robust_config": args}
-      observation, reward, terminated, truncated, info = env.step(robust_input)
-
-      if terminated or truncated:
-         observation, info = env.reset()
-
-   env.close()
-
+Robust Gymnasium: A Unified Modular Benchmark for Robust Reinforcement Learning.
 
 .. toctree::
    :hidden:
