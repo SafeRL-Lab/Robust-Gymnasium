@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    link back this repository and cite this work.
 
-Overview of Disruptor Module for Perturbations
+Overview of Disruptor Modules
 ===============================================
 
 Before introducing the disruptor module, we recall that the RL problem can be formulated as a process involving several key concepts: an agent, state, action, reward, and an environment. Specifically, at each time :math:`t`, the environment generates a state :math:`s_t` and a reward :math:`r_t`, and sends them to the agent, and the agent chooses an action :math:`a_t` and sends it back to the environment to generate the next state :math:`s_{t+1}` conditioned on the current state :math:`s_t` and the action :math:`a_t`.
@@ -27,17 +27,17 @@ Considering this, in this benchmark, we consider extensive potential uncertainty
    * - Adversarial
      - ✅
      - ✅
-     - \
-     - \
+     - \\
+     - \\
    * - Set arbitrarily
-     - \
-     - \
-     - \
+     - \\
+     - \\
+     - \\
      - ✅
    * - Semantic Domain shift
-     - \
-     - \
-     - \
+     - \\
+     - \\
+     - \\
      - ✅
 
 Those perturbation events can be generally categorized from three different perspectives:
@@ -55,7 +55,6 @@ Those perturbation events can be generally categorized from three different pers
   - *Semantic-domain-shifted*: We offer some partially-similar environment/tasks while with some semantic diversity (such as different goals) for domain generalization or transfer learning tasks.
 
 - **Frequency**: when does the perturbation happen. Viewed through the lens of time, the perturbations can happen at different periods during training and testing process, even with different frequency. We provide interactive modes that support step-wise varying interaction between disruptors, agents, and environments. So the user can choose to apply perturbations at any point in the dimension of time in any way.
-
 
 
 
