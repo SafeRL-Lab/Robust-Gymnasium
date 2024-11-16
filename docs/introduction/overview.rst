@@ -62,6 +62,6 @@ We illustrate the framework of robust RL for single-agent problems for instance:
 We hope this benchmark serves as a useful platform for pushing the boundaries of RL in real-world problems --- promoting robustness and domain adaptation ability!
 
 
-`Github <https://github.com/SafeRL-Lab/Robust-Gymnasium>`__
+.. `Github <https://github.com/SafeRL-Lab/Robust-Gymnasium>`__
 
-`Contribute to the Docs <https://github.com/PKU-Alignment/safety-gymnasium/blob/main/CONTRIBUTING.md>`__
+.. `Contribute to the Docs <https://github.com/PKU-Alignment/safety-gymnasium/blob/main/CONTRIBUTING.md>`__
