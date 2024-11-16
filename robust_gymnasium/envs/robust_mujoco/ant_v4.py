@@ -5,6 +5,9 @@ from robust_gymnasium.envs.robust_mujoco import MujocoEnv
 from robust_gymnasium.spaces import Box
 import xml.etree.ElementTree as ET
 import random
+# from robust_gymnasium.configs.robust_setting import get_config
+# args = get_config().parse_args()
+
 from robust_gymnasium.envs.llm_guide_robust.gpt_collect import gpt_call
 
 DEFAULT_CAMERA_CONFIG = {
@@ -50,7 +53,8 @@ class AntEnv(MujocoEnv, utils.EzPickle):
             reset_noise_scale,
             exclude_current_positions_from_observation,
             **kwargs,
-        )        
+        )
+        # print("args-------:", args.noise_mu)
         self._ctrl_cost_weight = ctrl_cost_weight
         self._contact_cost_weight = contact_cost_weight
 
@@ -89,6 +93,7 @@ class AntEnv(MujocoEnv, utils.EzPickle):
         self.xml_file = xml_file
         self.xml_file_original = "ant_original.xml"
         self.previous_reward = 0
+        self.pre_previous_reward = 0
         self.llm_disturb_iteration = 0
 
 
@@ -149,8 +154,15 @@ class AntEnv(MujocoEnv, utils.EzPickle):
                     action = action + args.noise_shift  
                 elif args.noise_type =="uniform":
                     action = action + random.uniform(args.uniform_low, args.uniform_high)
+                elif args.noise_type =="uniform_adversary":
+                    if self.previous_reward > self.pre_previous_reward:
+                        observation = self._get_obs() + random.uniform(args.uniform_low, args.uniform_high)
+                    else:
+                        observation = self._get_obs()  
+                    self.pre_previous_reward = self.previous_reward
             else:
                 action = action
+                # print('\033[0;31m "No action entropy learning! Using the original action" \033[0m')
         else:
             action = action
 
@@ -170,20 +182,7 @@ class AntEnv(MujocoEnv, utils.EzPickle):
 
         terminated = self.terminated
 
-        if args.noise_factor == "state":
-            self.llm_disturb_iteration += 1
-            if self.llm_disturb_iteration % args.llm_disturb_interval == 0:
-                if args.noise_type == "gauss":
-                    observation = self._get_obs() + random.gauss(mu, sigma)  # robust setting
-                elif args.noise_type == "shift":
-                    observation = self._get_obs() + args.noise_shift
-                elif args.noise_type =="uniform":
-                    observation = observation + random.uniform(args.uniform_low, args.uniform_high)
-            else:
-                observation = self._get_obs()          
-            
-        else:
-            observation = self._get_obs()
+        
 
         fullpath_original = self.expand_model_path(self.xml_file_original)
         info = {
@@ -205,6 +204,26 @@ class AntEnv(MujocoEnv, utils.EzPickle):
             info["reward_ctrl"] = -contact_cost
 
         reward = rewards - costs
+        
+        if args.noise_factor == "state":
+            self.llm_disturb_iteration += 1
+            if self.llm_disturb_iteration % args.llm_disturb_interval == 0:
+                if args.noise_type == "gauss":
+                    observation = self._get_obs() + random.gauss(mu, sigma)  # robust setting
+                elif args.noise_type == "shift":
+                    observation = self._get_obs() + args.noise_shift
+                elif args.noise_type =="uniform":
+                    observation = self._get_obs() + random.uniform(args.uniform_low, args.uniform_high)
+                elif args.noise_type =="uniform_adversary":
+                    if self.previous_reward > reward:
+                        observation = self._get_obs() + random.uniform(args.uniform_low, args.uniform_high)
+                    else:
+                        observation = self._get_obs()  
+                    self.previous_reward = reward                  
+            else:
+                observation = self._get_obs()
+        else:
+            observation = self._get_obs()
 
         if args.noise_factor == "reward":
             self.llm_disturb_iteration += 1
@@ -215,6 +234,12 @@ class AntEnv(MujocoEnv, utils.EzPickle):
                     reward = reward + args.noise_shift
                 elif args.noise_type =="uniform":
                     reward = reward + random.uniform(args.uniform_low, args.uniform_high)
+                elif args.noise_type =="uniform_adversary":
+                    if self.previous_reward > reward:
+                        observation = self._get_obs() + random.uniform(args.uniform_low, args.uniform_high)
+                    else:
+                        observation = self._get_obs()  
+                    self.previous_reward = reward
             else:
                 reward = reward
         else:
@@ -228,7 +253,7 @@ class AntEnv(MujocoEnv, utils.EzPickle):
 
         if args.noise_factor == "robust_force" or args.noise_factor == "robust_shape":
             self.replace_xml_content(fullpath_original, self.fullpath)
-            
+
         if args.llm_guide == "adversary":
             self.llm_disturb_iteration += 1
             if args.llm_guide_type == "stochastic":
@@ -239,6 +264,7 @@ class AntEnv(MujocoEnv, utils.EzPickle):
                     observation) + ", just output the revised state with its original format" \
                                    "do not output any other things."
                     prompt_state = gpt_call(prompt)
+                    # print("prompt_state-----:", prompt_state)
                     observation = prompt_state
             elif args.llm_guide_type == "uniform":
                 if self.llm_disturb_iteration % args.llm_disturb_interval == 0:
@@ -249,10 +275,10 @@ class AntEnv(MujocoEnv, utils.EzPickle):
                                    "do not output any other things."
                     prompt_state = gpt_call(prompt)
                     observation = prompt_state
-            elif args.llm_guide_type == "region_constraint":
+            elif args.llm_guide_type == "constraint":
                 if self.llm_disturb_iteration % args.llm_disturb_interval == 0:
                     prompt = "This is about a robust reinforcement learning setting; we want you as an adversary policy. If the current reward exceeds the previous reward value, please input some observation noises to disturb the environment and improve the learning algorithm's robustness. " \
-                         "The noises should be in this area:" +str((args.region_low, args.region_high))+ ", the current reward:" + str(reward) + ", the previous reward is" + str(self.previous_reward) \
+                         "The noises should should be in this area:" +str((args.uniform_low, args.uniform_high))+ ", the current reward:" + str(reward) + ", the previous reward is" + str(self.previous_reward) \
                          + "please slightly revise the current environment state values:" + str(
                     observation) + ", just output the revised state with its original format" \
                                    "do not output any other things."
@@ -260,7 +286,7 @@ class AntEnv(MujocoEnv, utils.EzPickle):
                     observation = prompt_state
             
 
-            self.previous_reward = reward
+        self.previous_reward = reward
 
         return observation, reward, terminated, False, info
 
@@ -278,9 +304,20 @@ class AntEnv(MujocoEnv, utils.EzPickle):
         return fullpath
 
     def modify_xml(self, file_name, args):
+        # import xml file
+        # Robust RL
+        # tree = ET.parse(file_name)
+        # root = tree.getroot()
+        # root = ET.fromstring(xml_data)
 
         tree = ET.parse(file_name)
         root = tree.getroot()
+
+        # find the specified name and revise its values
+        # for body in root.iter('body'):
+        #     if body.get('name') == 'latch':
+        #         body.set('pos', new_pos)  # set new pos value
+        #         break  # if find, then break
         if args.noise_factor == "robust_force":
             hip_4_motor = root.find('.//motor[@joint="hip_4"]')
             if hip_4_motor is not None:
@@ -308,6 +345,7 @@ class AntEnv(MujocoEnv, utils.EzPickle):
 
                 size_value = float(size_value)
                 if args.noise_type == "gauss":
+                    # print("test--------------", args.robust_shape_sigma)
                     size_value = size_value + random.gauss(args.robust_shape_mu,
                                                            args.robust_shape_sigma)  # robust setting
                 elif args.noise_type == "shift":
@@ -318,6 +356,7 @@ class AntEnv(MujocoEnv, utils.EzPickle):
                 else:
                     size_value = size_value
                 right_back_leg_geom.set('size', str(size_value))
+                # print(f"The size of geom for 'right_back_leg' is: ", right_back_leg_geom.get('size') )
                 tree.write(file_name)
             else:
                 print("No geom found for body 'right_back_leg'")
