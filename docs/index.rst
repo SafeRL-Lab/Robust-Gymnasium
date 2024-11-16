@@ -6,7 +6,8 @@
 Robust Gymnasium documentation
 ==============================
 
-Driven by inherent uncertainty and the sim-to-real gap, robust reinforcement learning (RL) seeks to improve resilience against the complexity and variability in agent-environment sequential interactions. Despite the existence of a large number of RL benchmarks, there is a lack of standardized benchmarks for robust RL. Current robust RL policies often focus on a specific type of uncertainty and are evaluated in distinct, one-off environments. In this work, we introduce Robust Gymnasium, a unified modular benchmark designed for robust RL that supports a wide variety of disruptions across all key RL components—agents’ observed state and reward, agents’ actions, and the environment. Offering over sixty diverse task environments spanning control and robotics, safe RL, and multi-agent RL, it provides an open-source and user-friendly tool for the community to assess current methods and foster the development of robust RL algorithms. In addition, we benchmark existing standard and robust RL algorithms within this framework, uncovering significant deficiencies in each and offering new insights. **Note:** The tutorial is currently under active development.
+Driven by inherent uncertainty and the sim-to-real gap, robust reinforcement learning (RL) seeks to improve resilience against the complexity and variability in agent-environment sequential interactions. Despite the existence of a large number of RL benchmarks, there is a lack of standardized benchmarks for robust RL. Current robust RL policies often focus on a specific type of uncertainty and are evaluated in distinct, one-off environments. In this work, we introduce Robust Gymnasium, a unified modular benchmark designed for robust RL that supports a wide variety of disruptions across all key RL components—agents’ observed state and reward, agents’ actions, and the environment. Offering over sixty diverse task environments spanning control and robotics, safe RL, and multi-agent RL, it provides an open-source and user-friendly tool for the community to assess current methods and foster the development of robust RL algorithms. In addition, we benchmark existing standard and robust RL algorithms within this framework, uncovering significant deficiencies in each and offering new insights. 
+.. **Note:** The tutorial is currently under active development.
 
 .. toctree::
    :maxdepth: 4
@@ -68,6 +69,6 @@ Driven by inherent uncertainty and the sim-to-real gap, robust reinforcement lea
    :hidden:
    :caption: Development
 
-`Github <https://github.com/SafeRL-Lab/Robust-Gymnasium>`__
+.. `Github <https://github.com/SafeRL-Lab/Robust-Gymnasium>`__
 
-`Contribute to the Docs <https://github.com/SafeRL-Lab/Robust-Gymnasium/tree/main/docs>`__
+.. `Contribute to the Docs <https://github.com/SafeRL-Lab/Robust-Gymnasium/tree/main/docs>`__
