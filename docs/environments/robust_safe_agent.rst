@@ -116,6 +116,6 @@ Robust Safety Tasks
 
 
 
-`Github <https://github.com/SafeRL-Lab/Robust-Gymnasium>`__
+.. `Github <https://github.com/SafeRL-Lab/Robust-Gymnasium>`__
 
-`Contribute to the Docs <https://github.com/PKU-Alignment/safety-gymnasium/blob/main/CONTRIBUTING.md>`__
+.. `Contribute to the Docs <https://github.com/PKU-Alignment/safety-gymnasium/blob/main/CONTRIBUTING.md>`__
