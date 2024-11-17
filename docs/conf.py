@@ -38,7 +38,7 @@ language = 'English'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = 'sphinx_book_theme' # 'sphinxawesome_theme' # 'sphinx_book_theme'
-html_title = 'Robust-Gymnasium Documentation'
+html_title = 'Robust-Gymnasium Tutorial'
 html_baseurl = 'https://www.robust-gymnasium.com'
 html_copy_source = False
 # html_favicon = '_static/images/favicon.png'
