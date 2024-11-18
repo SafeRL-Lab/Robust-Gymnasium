@@ -176,7 +176,7 @@ Example 3: Non-stationary Walker python code for training steps.
        torso_len = 0.2 + 0.1 * np.sin(0.3 * i_episode)
        foot_len = 0.1 + 0.05 * np.sin(0.3 * i_episode)
 
-**A Complete Simple Example**
+**A Simple Example**
 
 .. code-block:: python
 
@@ -203,7 +203,7 @@ Example 3: Non-stationary Walker python code for training steps.
     # "Ant-v4"
     # "Pusher-v4"
     # InvertedPendulum
-    args.noise_factor = "robust_force"
+    args.noise_factor = "action"
     # "robust_force"
     # "robust_shape"
     # "action"
