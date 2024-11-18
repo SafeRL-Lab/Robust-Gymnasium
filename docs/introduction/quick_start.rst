@@ -74,7 +74,7 @@ A Simple Complete Example
 **********************
 
 .. code-block:: python
-   
+
    # Import packages
     import robust_gymnasium as gym
     from os import path
@@ -110,7 +110,7 @@ A Simple Complete Example
             f.writelines(eachArg + ' : ' + str(value) + '\n')
         f.writelines('------------------- end -------------------')
 
-    # env = gym.make("Ant-v4")
+    # env = gym.make("Ant-v4") # without render environments
     env = gym.make(args.env_name, render_mode="human")  # render environments: human, rgb_array, or depth_array.
       
     def replace_xml_content(source_file_path, target_file_path):
