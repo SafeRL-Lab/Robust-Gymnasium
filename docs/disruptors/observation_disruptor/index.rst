@@ -6,6 +6,19 @@
 Observation Disruptor
 --------------------------------
 
+**Observation-disruptor**: An agent's observations may not perfectly reflect the true status of the environment due to factors like sensor noise and time delays.
+
+To model this sensing inaccuracy, we introduce an additional module—the observation-disruptor—which determines the agent's observations from the environment:
+
+- **Agents' observed state** :math:`\tilde{s}_t`
+    The observation-disruptor takes the true current state :math:`s_t` as input and outputs a perturbed state :math:`\tilde{s}_t = D_s(s_t)`. 
+    The agent uses :math:`\tilde{s}_t` as input to its policy to select an action.
+
+- **Agents' observed reward** :math:`\tilde{r}_t`
+    The observation-disruptor takes the real immediate reward :math:`r_t` as input and outputs a perturbed reward :math:`\tilde{r}_t = D_r(r_t)`. 
+    The agent observes :math:`\tilde{r}_t` and updates its policy accordingly.
+
+
 A Simple Example: Ant Environment
 =============================================
 
