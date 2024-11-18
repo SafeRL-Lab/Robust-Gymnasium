@@ -24,27 +24,6 @@ A Simple Example: Ant Environment
 
 This module implements the `AntEnv` class for robust reinforcement learning using the MuJoCo physics engine.
 
-Imports
--------
-.. code-block:: python
-
-    import numpy as np
-    from os import path
-    from robust_gymnasium import utils
-    from robust_gymnasium.envs.robust_mujoco import MujocoEnv
-    from robust_gymnasium.spaces import Box
-    import xml.etree.ElementTree as ET
-    import random
-    from robust_gymnasium.envs.llm_guide_robust.gpt_collect import gpt_call
-    DEFAULT_CAMERA_CONFIG = {
-        "distance": 4.0,
-    }
-
-   
-
-Classes
--------
-
 
 .. code-block:: python
 
