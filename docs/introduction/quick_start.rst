@@ -71,12 +71,13 @@ A Simple Example
    env.close()
 
 Step-by-Step Introduction
-=========================
+********************************************
+
 
 This introduction demonstrates how to set up and use the `robust_gymnasium` library for robust reinforcement learning environments. We'll cover configuring tasks, selecting attack modes, managing attack frequencies, and running simulations.
 
 Contents
---------
+=========================
 
 1. Importing Required Packages
 2. Configuring the Environment and Robust Settings
@@ -88,7 +89,7 @@ Contents
 .. _import_packages:
 
 1. Importing Required Packages
-------------------------------
+==================================================
 
 The following code imports all the necessary packages:
 
@@ -111,7 +112,7 @@ The following code imports all the necessary packages:
 .. _configuring_environment:
 
 2. Configuring the Environment and Robust Settings
---------------------------------------------------
+===========================================================================
 
 We define the environment, attack settings, and other parameters:
 
@@ -143,7 +144,7 @@ We define the environment, attack settings, and other parameters:
 .. _recording_experiment:
 
 3. Setting Up Experiment Data Recording
----------------------------------------
+==================================================
 
 We set up a directory structure to save experiment logs:
 
@@ -171,7 +172,7 @@ We set up a directory structure to save experiment logs:
 .. _running_environment:
 
 4. Running the Environment with Robust Attacks
-----------------------------------------------
+==================================================
 
 Set up the environment and run it with the specified robust settings:
 
@@ -212,7 +213,7 @@ Set up the environment and run it with the specified robust settings:
 .. _xml_content:
 
 5. Handling XML File Content Replacement
-----------------------------------------
+==================================================
 
 If XML file updates are required during the simulation, use the following function:
 
@@ -234,7 +235,7 @@ If XML file updates are required during the simulation, use the following functi
 .. _wrapping_up:
 
 6. Wrapping Up and Closing the Environment
-------------------------------------------
+==================================================
 
 Ensure the environment is closed properly to release resources:
 
