@@ -70,6 +70,81 @@ A Simple Example
 
    env.close()
 
+A Simple Complete Example
+**********************
+
+.. code-block:: python
+   
+   # Import packages
+    import robust_gymnasium as gym
+    from os import path
+    import json
+    import os
+    import time
+    from datetime import datetime
+    currentDateAndTime = datetime.now()
+    start_run_date_and_time = time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime())
+    from robust_gymnasium.configs.robust_setting import get_config
+    args = get_config().parse_args()
+    # choose robust task: choose any tasks that are listed in our benchmark, e.g., "InvertedDoublePendulum-v4",
+    # "Reacher-v4", "Pusher-v4", "Ant-v4", etc.
+    args.env_name = "Humanoid-v5"
+    # choose attack type: choose any robust type that are list in our benchmark, such as state, reward, action, robust force (internal attack), wind (external attack)
+    args.noise_factor = "state"
+    # choose attack mode: we provide diverse attack modes, such as gaussian distribution attack, uniform 
+    # distribution attack, LLM as adversary policy attack, etc.
+    args.noise_type = "gauss"    
+    # attack frequency: Different attack frequency settings are available. You can choose to perform an attack every 500 steps, 
+    # every 100 steps, or customize it to any desired number of steps.
+    args.llm_disturb_interval = 500
+    # record experiment data
+    folder = os.getcwd()[:0] + 'data/' + str(args.env_name) + '/' + str(args.noise_type) + '/' + str(
+        start_run_date_and_time) + '/'
+    if not os.path.exists(folder):
+        os.makedirs(folder)
+    json_path = folder + '/config.json'
+    argsDict = args.__dict__
+    with open(json_path, 'w') as f:
+        f.writelines('------------------ start ------------------' + '\n')
+        for eachArg, value in argsDict.items():
+            f.writelines(eachArg + ' : ' + str(value) + '\n')
+        f.writelines('------------------- end -------------------')
+
+    # env = gym.make("Ant-v4")
+    env = gym.make(args.env_name, render_mode="human")  # render environments: human, rgb_array, or depth_array.
+      
+    def replace_xml_content(source_file_path, target_file_path):
+        # read data from source file
+        with open(source_file_path, 'r', encoding='utf-8') as file:
+            source_content = file.read()
+        # write the data into the target file
+        with open(target_file_path, 'w', encoding='utf-8') as file:
+            file.write(source_content)
+
+    observation, info = env.reset(seed=42)
+    try:
+        for i in range(1000):
+            action = env.action_space.sample()
+            robust_input = {
+                "action": action,
+                "robust_type": "action",
+                "robust_config": args,
+            }
+
+            observation, reward, terminated, truncated, info = env.step(robust_input)            
+            env.render()  # render environments
+            if terminated or truncated:
+                observation, info = env.reset()
+
+            if i > 999:
+                replace_xml_content(info["source_file_path"], info["target_file_path"])
+    finally:  # except KeyboardInterrupt:
+        replace_xml_content(info["source_file_path"], info["target_file_path"])
+        print('\033[0;31m "Program was terminated by user (Ctrl+C) or finished!" \033[0m')
+
+    env.close()
+   
+
 
 .. `Github <https://github.com/SafeRL-Lab/Robust-Gymnasium>`__
 
