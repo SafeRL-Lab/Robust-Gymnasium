@@ -10,26 +10,6 @@ Action Disruptor
     The real action :math:`a_t` chosen by the agent may be altered before or during execution in the environment due to implementation inaccuracies or system malfunctions. 
     The action-disruptor models this perturbation, outputting a perturbed action :math:`\tilde{a}_t = D_a(a_t)`, which is then executed in the environment for the next step.
 
-Imports
--------
-.. code-block:: python
-
-    import numpy as np
-    from os import path
-    from robust_gymnasium import utils
-    from robust_gymnasium.envs.robust_mujoco import MujocoEnv
-    from robust_gymnasium.spaces import Box
-    import xml.etree.ElementTree as ET
-    import random
-    from robust_gymnasium.envs.llm_guide_robust.gpt_collect import gpt_call
-    DEFAULT_CAMERA_CONFIG = {
-        "distance": 4.0,
-    }
-
-   
-
-Classes
--------
 
 
 .. code-block:: python
