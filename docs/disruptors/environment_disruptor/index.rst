@@ -6,6 +6,11 @@
 Environment Disruptor
 --------------------------------
 
+**Environment-disruptor**: 
+    Recall that a task environment consists of both the internal dynamic model and the external workspace it interacts with, characterized by its transition dynamics :math:`P` and reward function :math:`r`. 
+    The environment during training can differ from the real-world environment due to factors such as the sim-to-real gap, human and natural variability, external disturbances, and more. 
+    We attribute this potential nonstationarity to an environment-disruptor, which determines the actual environment :math:`(P, r)` the agent is interacting with at any given moment. 
+    These dynamics may differ from the nominal environment :math:`(P^0, r^0)` that the agent was originally expected to interact with.
 
 
 `Github <https://github.com/SafeRL-Lab/Robust-Gymnasium>`__
