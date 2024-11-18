@@ -19,11 +19,6 @@ To model this sensing inaccuracy, we introduce an additional module—the observ
     The agent observes :math:`\tilde{r}_t` and updates its policy accordingly.
 
 
-A Simple Example: Ant Environment
-=============================================
-
-This module implements the `AntEnv` class for robust reinforcement learning using the MuJoCo physics engine.
-
 
 .. code-block:: python
 
