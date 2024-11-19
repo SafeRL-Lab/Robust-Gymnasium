@@ -78,7 +78,7 @@ Robust Box2D Tasks
             "robust_config": args,
         }
         observation, reward, terminated, truncated, info = env.step(robust_input)
-        # print("reward----------:", reward)
+        
         env.render()  # render environments
         if terminated or truncated:
             observation, info = env.reset()

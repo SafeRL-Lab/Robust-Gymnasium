@@ -76,8 +76,7 @@ Robust Multi-Agent Tasks
     args = get_config().parse_args()
 
     # Get nodes and edges for partitioning
-    unpartioned_nodes, edges, global_nodes = get_parts_and_edges('Ant', None)
-    print("unpartioned_nodes---:", unpartioned_nodes)
+    unpartioned_nodes, edges, global_nodes = get_parts_and_edges('Ant', None)    
 
     # Define partitioned nodes and agent factorization
     partioned_nodes = [
