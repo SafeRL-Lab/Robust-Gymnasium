@@ -250,9 +250,7 @@ Example 3: Non-stationary Walker python code for training steps.
                 "robust_config": args,
             }
 
-            observation, reward, terminated, truncated, info = env.step(robust_input)
-            # print("observation-------:", observation)
-            # print("reward----------:", reward)
+            observation, reward, terminated, truncated, info = env.step(robust_input)            
             env.render()  # render environments
             if terminated or truncated:
                 observation, info = env.reset()
