@@ -7,8 +7,8 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'Robust Gymnasium'
-copyright = '2024, Robust RL Team'
-author = 'Robust RL Team'
+copyright = '2024, Anonymous authors' # Robust RL Team
+author = 'Anonymous authors'
 release = '0.1'
 
 # -- General configuration ---------------------------------------------------
@@ -45,7 +45,7 @@ html_copy_source = False
 html_context = {
     'conf_py_path': '/docs/',
     'display_github': False,
-    'github_user': 'Robust RL Team',
+    'github_user': 'Anonymous authors',
     'github_repo': 'robustfety-gymnasium',
     'github_version': 'main',
     'slug': 'robust-gymnasium',
