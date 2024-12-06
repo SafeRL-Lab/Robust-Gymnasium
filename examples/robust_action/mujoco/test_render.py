@@ -21,7 +21,7 @@ args.env_name = "Humanoid-v5"
 # "Ant-v4"
 # "Pusher-v4"
 # InvertedPendulum
-args.noise_factor = "robust_force"
+args.noise_factor = "robust_shape"
 # "robust_force"
 # "robust_shape"
 # "action"
