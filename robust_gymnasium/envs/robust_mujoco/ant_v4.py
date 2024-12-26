@@ -264,7 +264,7 @@ class AntEnv(MujocoEnv, utils.EzPickle):
                     observation) + ", just output the revised state with its original format" \
                                    "do not output any other things."
                     prompt_state = gpt_call(prompt)
-                    # print("prompt_state-----:", prompt_state)
+                    
                     observation = prompt_state
             elif args.llm_guide_type == "uniform":
                 if self.llm_disturb_iteration % args.llm_disturb_interval == 0:
@@ -345,7 +345,7 @@ class AntEnv(MujocoEnv, utils.EzPickle):
 
                 size_value = float(size_value)
                 if args.noise_type == "gauss":
-                    # print("test--------------", args.robust_shape_sigma)
+                    
                     size_value = size_value + random.gauss(args.robust_shape_mu,
                                                            args.robust_shape_sigma)  # robust setting
                 elif args.noise_type == "shift":
