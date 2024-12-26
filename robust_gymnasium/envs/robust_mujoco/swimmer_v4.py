@@ -221,7 +221,7 @@ class SwimmerEnv(MujocoEnv, utils.EzPickle):
             if change_shape_mass is not None:
                 size_value = change_shape_mass.get('size')  # "0.046 .145"
                 size_value = float(size_value)
-                # print("size_value------:", size_value)
+                
                 # size_floats = [float(x) for x in size_value.split()]
                 # size_value = size_floats[0]
                 size_value = float(size_value)
