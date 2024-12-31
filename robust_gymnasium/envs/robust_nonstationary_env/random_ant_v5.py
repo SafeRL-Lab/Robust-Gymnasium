@@ -363,7 +363,7 @@ class AntRandomEnv(MujocoEnv, utils.EzPickle):
 
     def step(self, robust_input):
 
-        # print("test------reset---")
+        
         # action = action["action"]
 
         action = robust_input["action"]
