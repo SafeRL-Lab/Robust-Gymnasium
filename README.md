@@ -82,6 +82,7 @@ This benchmark aims to advance robust reinforcement learning (RL) for real-world
 - **Robust Fetch Manipulation Tasks:** Robust object manipulation with Fetch robots.
 - **Robust Robot Kitchen Tasks:** Robust manipulation in Kitchen environments with robots.
 - **Robust Maze Tasks:** Robust navigation robots.
+- **Robust Humanoid Robot Tasks:** Humanoid robot control with robust settings.
 - **Robust Multi-Agent Tasks:** Facilitate robust coordination among multiple agents.
 
 Each of these robust tasks incorporates robust elements such as robust observations, actions, reward signals, and dynamics to evaluate the robustness of RL algorithms.
