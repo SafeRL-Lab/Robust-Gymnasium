@@ -99,8 +99,7 @@ class Reach(Task):
 
         # , self._env.camera_id, self._env.camera_name
         # print("self._env.render_mode,-----:", self._env.render_mode)
-        # print("self._env.camera_id-------:", self._env.camera_id)
-        # print("self._env.camera_name-----:", self._env.camera_name)
+       
 
         return self._env.mujoco_renderer.render(
             self._env.render_mode, self._env.camera_id, self._env.camera_name
