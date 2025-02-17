@@ -547,8 +547,8 @@ If you find the repository useful, please cite the study
 @article{robustrl2024,
   title={Robust Gymnasium: A Unified Modular Benchmark for Robust Reinforcement Learning},
   author={Gu, Shangding and Shi, Laixi and Wen, Muning and Jin, Ming and Mazumdar, Eric and Chi, Yuejie and Wierman, Adam and Spanos, Costas},
-  journal={Github},
-  year={2024}
+  journal={ICLR},
+  year={2025}
 }
 ```
 
