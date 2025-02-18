@@ -1,6 +1,9 @@
 from robust_gymnasium.envs.robosuite.controllers import load_controller_config
 from robust_gymnasium.envs.robosuite.utils.input_utils import *
 
+from robust_gymnasium.configs.robust_setting import get_config
+args = get_config().parse_args()
+
 if __name__ == "__main__":
 
     # Create dict to hold options that will be passed to env creation call
@@ -62,6 +65,12 @@ if __name__ == "__main__":
     # do visualization
     for i in range(10000):
         action = np.random.uniform(low, high)
-        obs, reward, done, _ = env.step(action)
+        robust_input = {
+            "action": action,
+            "robust_type": "state",
+            "robust_config": args,
+        }
+        # env.step(robust_input)
+        obs, reward, done, _ = env.step(robust_input)
         # print("obs-------:", obs)
         env.render()
