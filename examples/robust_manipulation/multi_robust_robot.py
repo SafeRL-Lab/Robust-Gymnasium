@@ -63,7 +63,7 @@ if __name__ == "__main__":
     low, high = env.action_spec
 
     # do visualization
-    for i in range(10000):
+    for i in range(2000):
         action = np.random.uniform(low, high)
         robust_input = {
             "action": action,
