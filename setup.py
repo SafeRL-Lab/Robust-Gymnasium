@@ -2,6 +2,9 @@
 import pathlib
 from setuptools import setup
 
+from setuptools import setup, find_packages
+
+
 CWD = pathlib.Path(__file__).absolute().parent
 print("CWD-----:", CWD)
 
@@ -39,4 +42,4 @@ def get_description():
     return long_description
 
 
-setup(name="robust_gymnasium", version=get_version(), long_description=get_description())
+setup(name="robust_gymnasium", version=get_version(), long_description=get_description(), include_package_data=True)
