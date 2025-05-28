@@ -1,0 +1,5 @@
+include README.md
+include LICENSE
+recursive-include your_package_name *.py
+recursive-include your_package_name *.txt *.csv *.json *.pkl *.npy *.bin *.model *.pt *.onnx
+recursive-include your_package_name data/*
