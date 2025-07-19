@@ -404,14 +404,34 @@ We are currently developing our environments using a Linux system. The operating
    conda activate robustgymnasium
    ```
 
-3. **Install dependency packages:**
+2. **Install dependency packages:**
 
    Install the necessary packages using pip. Make sure you are in the project directory where the `setup.py` file is located:
 
    ```bash
+   git clone https://github.com/SafeRL-Lab/Robust-Gymnasium
+   cd Robust-Gymnasium
    pip install -r requirements.txt
    pip install -e .
    ```
+
+3. **(Optional) Install with `uv`**
+
+   If you prefer using [`uv`](https://github.com/astral-sh/uv) for faster environment setup:
+
+   ```bash
+   pip install uv
+   git clone https://github.com/SafeRL-Lab/Robust-Gymnasium
+   cd Robust-Gymnasium
+   uv venv robustgymnasium --python=3.11
+   source robustgymnasium/bin/activate
+   pip install -r requirements.txt
+   pip install -e .
+   ```
+
+
+
+
 ---------------
 ### Testing the Tasks
 
