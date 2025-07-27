@@ -52,6 +52,7 @@ all = [
     # NOTE: No need to manually remove the duplicates, setuptools automatically does that.
     # atari
     "ale_py >= 0.9",
+    "opencv-python",
     # box2d
     "box2d-py ==2.3.5",
     "pygame >=2.1.3",
