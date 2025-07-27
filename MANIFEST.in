@@ -1,3 +1,11 @@
+recursive-include robust_gymnasium/envs/mujoco/assets *.xml *.txt *.csv *.json *.pkl *.npy *.bin *.model *.pt *.onnx
+recursive-include robust_gymnasium/envs/classic_control/assets *.png *.txt *.csv *.json *.pkl *.npy *.bin *.model *.pt *.onnx
+recursive-include robust_gymnasium/envs/phys2d/assets *.png *.txt *.csv *.json *.pkl *.npy *.bin *.model *.pt *.onnx
+recursive-include robust_gymnasium/envs/toy_text/font *.ttf *.txt *.csv *.json *.pkl *.npy *.bin *.model *.pt *.onnx
+recursive-include robust_gymnasium/envs/toy_text/img *.png *.txt *.csv *.json *.pkl *.npy *.bin *.model *.pt *.onnx
+recursive-include robust_gymnasium/ *.png *.txt *.csv *.json *.pkl *.npy *.bin *.model *.pt *.onnx
+include robust_gymnasium/py.typed
+
 include README.md
 include LICENSE
 recursive-include your_package_name *.py
