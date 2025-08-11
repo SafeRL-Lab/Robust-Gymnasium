@@ -425,8 +425,8 @@ We are currently developing our environments using a Linux system. The operating
    cd Robust-Gymnasium
    uv venv robustgymnasium --python=3.11
    source robustgymnasium/bin/activate
-   pip install -r requirements.txt
-   pip install -e .
+   uv pip install -r requirements.txt
+   uv pip install -e .
    ```
 
 
